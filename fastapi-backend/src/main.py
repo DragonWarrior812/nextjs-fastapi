@@ -8,7 +8,7 @@ from sqlalchemy.orm.session import Session
 from .config import settings
 from .database import Base, engine, get_db
 from .db import create_new_user
-from .oauth2 import authenticate_user, create_access_token
+from .oauth2 import authenticate_user, create_access_token, get_current_user
 from .schemas import Token, User, UserCreate
 
 Base.metadata.create_all(bind=engine)
@@ -24,6 +24,13 @@ async def root():
 @app.post("/users", response_model=User)
 async def create_user(request: UserCreate, db: Session = Depends(get_db)):
     return create_new_user(request, db)
+
+
+@app.get("/users/me/", response_model=User)
+async def read_users_me(
+    current_user: Annotated[User, Depends(get_current_user)],
+):
+    return current_user
 
 
 @app.post("/token")
