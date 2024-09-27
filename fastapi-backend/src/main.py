@@ -4,7 +4,7 @@ from fastapi import Depends, FastAPI
 
 from .database import User, create_db_and_tables
 from .schemas import UserCreate, UserRead, UserUpdate
-from .users import auth_backend, current_active_user, fastapi_users
+from .users import auth_backend, current_active_user, fastapi_users, AUTH_URL_PATH
 
 
 @asynccontextmanager
@@ -17,21 +17,23 @@ async def lifespan(app: FastAPI):
 app = FastAPI(lifespan=lifespan)
 
 app.include_router(
-    fastapi_users.get_auth_router(auth_backend), prefix="/auth/jwt", tags=["auth"]
+    fastapi_users.get_auth_router(auth_backend),
+    prefix=f"/{AUTH_URL_PATH}/jwt",
+    tags=["auth"],
 )
 app.include_router(
     fastapi_users.get_register_router(UserRead, UserCreate),
-    prefix="/auth",
+    prefix=f"/{AUTH_URL_PATH}",
     tags=["auth"],
 )
 app.include_router(
     fastapi_users.get_reset_password_router(),
-    prefix="/auth",
+    prefix=f"/{AUTH_URL_PATH}",
     tags=["auth"],
 )
 app.include_router(
     fastapi_users.get_verify_router(UserRead),
-    prefix="/auth",
+    prefix=f"/{AUTH_URL_PATH}",
     tags=["auth"],
 )
 app.include_router(

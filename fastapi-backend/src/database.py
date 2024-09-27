@@ -9,7 +9,9 @@ from .models import Base, User
 
 engine = create_async_engine(settings.DATABASE_URL)
 
-async_session_maker = async_sessionmaker(engine, expire_on_commit=False)
+async_session_maker = async_sessionmaker(
+    engine, expire_on_commit=settings.EXPIRE_ON_COMMIT
+)
 
 
 async def create_db_and_tables():
