@@ -4,7 +4,6 @@ from .database import User
 from .schemas import UserCreate, UserRead, UserUpdate
 from .users import auth_backend, current_active_user, fastapi_users
 
-
 # @asynccontextmanager
 # async def lifespan(app: FastAPI):
 #     # Not needed if you setup a migration system like Alembic

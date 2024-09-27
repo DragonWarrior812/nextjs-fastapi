@@ -78,6 +78,7 @@ PyYAML==6.0.2
 requirements-detector==0.7
 rich==13.8.0
 rsa==4.9
+ruff==0.6.8
 setoptconf-tmp==0.3.1
 shellingham==1.5.4
 six==1.16.0
