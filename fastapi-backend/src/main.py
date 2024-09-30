@@ -1,20 +1,11 @@
-from contextlib import asynccontextmanager
-
 from fastapi import Depends, FastAPI
 
-from .database import User, create_db_and_tables
+from .database import User
 from .schemas import UserCreate, UserRead, UserUpdate
 from .users import auth_backend, current_active_user, fastapi_users, AUTH_URL_PATH
 
 
-@asynccontextmanager
-async def lifespan(app: FastAPI):
-    # Not needed if you setup a migration system like Alembic
-    await create_db_and_tables()
-    yield
-
-
-app = FastAPI(lifespan=lifespan)
+app = FastAPI()
 
 app.include_router(
     fastapi_users.get_auth_router(auth_backend),
