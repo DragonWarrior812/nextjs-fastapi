@@ -1,29 +1,15 @@
-from typing import Union
+import uuid
 
-from pydantic import BaseModel
-
-
-class UserBase(BaseModel):
-    username: str
-    email: str
+from fastapi_users import schemas
 
 
-class UserCreate(UserBase):
-    password: str
+class UserRead(schemas.BaseUser[uuid.UUID]):
+    pass
 
 
-class User(UserBase):
-    id: int
-    is_active: bool
-
-    class Config:
-        orm_mode = True
+class UserCreate(schemas.BaseUserCreate):
+    pass
 
 
-class Token(BaseModel):
-    access_token: str
-    token_type: str
-
-
-class TokenData(BaseModel):
-    username: Union[str, None] = None
+class UserUpdate(schemas.BaseUserUpdate):
+    pass
