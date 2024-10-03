@@ -2,9 +2,15 @@ FROM python:3.12-bookworm
 
 WORKDIR /app
 
-COPY requirements.txt ./
+RUN curl -sSL https://install.python-poetry.org | python3 -
 
-RUN pip install --no-cache-dir -r requirements.txt
+ENV PATH="/root/.local/bin:$PATH"
+
+RUN poetry config virtualenvs.create false
+
+COPY pyproject.toml poetry.lock ./
+
+RUN poetry install --no-root
 
 COPY . .
 
