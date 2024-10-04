@@ -23,6 +23,18 @@ services:
       - my_network
     volumes:
       - postgres_data:/var/lib/postgresql/data
+  frontend:
+    build:
+      context: ./nextjs-frontend
+    ports:
+      - "3000:3000"
+    networks:
+      - my_network
+    environment:
+      NODE_ENV: production
+    volumes:
+      - ./nextjs-frontend:/app
+      - /app/node_modules
 
 volumes:
   postgres_data:
