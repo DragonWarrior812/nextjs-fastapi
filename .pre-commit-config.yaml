@@ -26,3 +26,11 @@ repos:
         args: [--fix]
       # Run the formatter.
       - id: ruff-format
+
+  - repo: local
+    hooks:
+      - id: generate-openapi-schema
+        name: generate OpenAPI schema
+        entry: sh -c 'cd fastapi-backend && poetry run python -m commands.generate_openapi_schema'
+        language: system
+        pass_filenames: false
