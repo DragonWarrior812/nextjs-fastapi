@@ -34,3 +34,10 @@ repos:
         entry: sh -c 'cd fastapi-backend && poetry run python -m commands.generate_openapi_schema'
         language: system
         pass_filenames: false
+      - id: generate-frontend-client
+        name: generate frontend client
+        entry: sh -c 'cd nextjs-frontend && npm run generate-client'
+        language: system
+        # Only run frontend client generation if frontend files have changed:
+        files: openapi_schema\.json$
+        pass_filenames: false
