@@ -32,13 +32,17 @@ services:
       - my_network
     environment:
       NODE_ENV: production
+    env_file:
+      - ./nextjs-frontend/env.local
     volumes:
       - ./nextjs-frontend:/app
       - /app/node_modules
-      - /app/.next
+      - nextjs-build:/app/.next
 
 volumes:
   postgres_data:
+  nextjs-build:
+    name: nextjs-build-data
 
 networks:
   my_network:
