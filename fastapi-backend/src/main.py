@@ -3,9 +3,23 @@ from fastapi import Depends, FastAPI
 from .database import User
 from .schemas import UserCreate, UserRead, UserUpdate
 from .users import auth_backend, current_active_user, fastapi_users, AUTH_URL_PATH
-
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+
+origins = [
+    "http://localhost:3000",
+    "http://localhost:8080",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 
 app.include_router(
     fastapi_users.get_auth_router(auth_backend),

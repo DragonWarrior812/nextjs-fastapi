@@ -1,6 +1,14 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import { client } from './client/services.gen';
+
+
+const baseUrl = process.env.API_BASE_URL;
+client.setConfig({
+  baseUrl: baseUrl,
+});
+
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
