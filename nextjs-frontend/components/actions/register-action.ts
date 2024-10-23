@@ -3,6 +3,7 @@
 import { redirect } from "next/navigation";
 
 import {registerRegisterAuthRegisterPost} from "@/app/client";
+import '@/lib/clientConfig';
 
 
 export async function register(prevState: {}, formData: FormData) {

@@ -1,19 +1,13 @@
 "use client"
 
-import {Button} from "@/components/ui/button"
 import Link from "next/link"
-import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardHeader,
-    CardTitle,
-} from "@/components/ui/card"
+import {Card, CardContent, CardDescription, CardHeader, CardTitle,} from "@/components/ui/card"
 import {Input} from "@/components/ui/input"
 import {Label} from "@/components/ui/label"
 
 import {login} from "@/components/actions/login-action";
-import {useFormState, useFormStatus} from 'react-dom'
+import {useFormState} from 'react-dom'
+import {SubmitButton} from "@/components/ui/submitButton";
 
 
 export default function Page() {
@@ -55,12 +49,5 @@ export default function Page() {
                 </Card>
             </form>
         </div>
-    )
-}
-
-function SubmitButton() {
-    const {pending} = useFormStatus()
-    return (
-        <Button className="w-full" type="submit" disabled={pending}>Sign in</Button>
     )
 }

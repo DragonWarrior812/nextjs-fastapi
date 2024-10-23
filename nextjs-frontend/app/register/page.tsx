@@ -1,6 +1,5 @@
 "use client"
 
-import {Button} from "@/components/ui/button"
 import {
     Card,
     CardContent, CardDescription,
@@ -12,7 +11,9 @@ import {Input} from "@/components/ui/input"
 import {Label} from "@/components/ui/label"
 
 import {register} from "@/components/actions/register-action";
-import {useFormState, useFormStatus} from "react-dom";
+import {useFormState} from "react-dom";
+import {SubmitButton} from "@/components/ui/submitButton";
+
 
 
 export default function Page() {
@@ -44,12 +45,5 @@ export default function Page() {
                 </Card>
             </form>
         </div>
-    )
-}
-
-function SubmitButton() {
-    const {pending} = useFormStatus()
-    return (
-        <Button className="w-full" type="submit" disabled={pending}>Sign in</Button>
     )
 }
