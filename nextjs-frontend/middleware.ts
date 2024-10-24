@@ -1,7 +1,6 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import {usersCurrentUserUsersMeGet} from "@/app/client";
-import '@/lib/clientConfig';
+import {usersCurrentUserUsersMeGet} from "@/app/clientService";
 
 
 export async function middleware(request: NextRequest) {

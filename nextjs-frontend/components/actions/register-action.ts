@@ -2,9 +2,7 @@
 
 import { redirect } from "next/navigation";
 
-import {registerRegisterAuthRegisterPost} from "@/app/client";
-import '@/lib/clientConfig';
-
+import {registerRegisterAuthRegisterPost} from "@/app/clientService";
 
 export async function register(prevState: {}, formData: FormData) {
     const input = {

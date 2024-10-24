@@ -2,9 +2,8 @@
 
 import { cookies } from "next/headers";
 
-import {authJwtLoginAuthJwtLoginPost } from "@/app/client";
+import {authJwtLoginAuthJwtLoginPost } from "@/app/clientService";
 import {redirect} from "next/navigation";
-import '@/lib/clientConfig';
 
 
 export async function login(prevState: {}, formData: FormData) {
