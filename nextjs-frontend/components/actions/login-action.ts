@@ -1,11 +1,12 @@
 "use server"
 
 import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
 
-import {authJwtLoginAuthJwtLoginPost} from "@/app/client";
+import {authJwtLoginAuthJwtLoginPost } from "@/app/clientService";
+import {redirect} from "next/navigation";
 
-export default async function login(formData: FormData) {
+
+export async function login(prevState: {}, formData: FormData) {
     const input = {
         "body": {
             "username": formData.get("username") as string,
@@ -14,7 +15,8 @@ export default async function login(formData: FormData) {
     }
     const { data, error } = await authJwtLoginAuthJwtLoginPost(input)
     if (error) {
-        redirect(`/login?message=${error.detail}`);
+        return {message: `${error.detail}`};
     }
-    cookies().set("access_token", data.access_token);
+    cookies().set("accessToken", data.access_token);
+    redirect(`/dashboard`);
 }
