@@ -39,5 +39,5 @@ repos:
         entry: sh -c 'cd nextjs-frontend && npm run generate-client'
         language: system
         # Only run frontend client generation if frontend files have changed:
-        files: openapi_schema\.json$
+        files: openapi\.json$
         pass_filenames: false

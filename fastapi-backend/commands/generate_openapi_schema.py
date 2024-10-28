@@ -2,7 +2,7 @@ import json
 from pathlib import Path
 from src.main import app
 
-OUTPUT_FILE = "../nextjs-frontend/openapi.json"
+OUTPUT_FILE = "./shared-data/openapi.json"
 
 
 def generate_openapi_schema(output_file):
