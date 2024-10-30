@@ -1,7 +1,9 @@
 import { defineConfig } from '@hey-api/openapi-ts';
 
+const watchFile = process.env.OPENAPI_WATCH_FILE || './openapi.json';
+
 export default defineConfig({
   client: '@hey-api/client-fetch',
-  input: 'shared-data/openapi.json',
+  input: watchFile as string,
   output: 'app/openapi-client',
 });

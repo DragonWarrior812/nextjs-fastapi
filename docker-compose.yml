@@ -3,6 +3,8 @@ services:
   backend:
     build:
       context: ./fastapi-backend
+    environment:
+      - OPENAPI_OUTPUT_FILE=./shared-data/openapi.json
     ports:
       - "8000:8000"
     networks:
@@ -27,24 +29,24 @@ services:
   frontend:
     build:
       context: ./nextjs-frontend
+    user: node
     ports:
       - "3000:3000"
     networks:
       - my_network
     environment:
       NODE_ENV: development
-    env_file:
-      - ./nextjs-frontend/.env.local
+      NEXT_PUBLIC_API_BASE_URL: http://backend:8000
+      OPENAPI_WATCH_FILE: ./shared-data/openapi.json
     volumes:
       - ./nextjs-frontend:/app
       - nextjs-node-modules:/app/node_modules
-      - nextjs-build:/app/.next
       - ./local-shared-data:/app/shared-data
 
 volumes:
   postgres_data:
-  nextjs-build:
   nextjs-node-modules:
+#  local-shared-data:
 
 networks:
   my_network:
