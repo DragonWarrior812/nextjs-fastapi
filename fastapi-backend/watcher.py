@@ -4,6 +4,11 @@ from watchdog.events import FileSystemEventHandler
 import subprocess
 from threading import Timer
 
+WATCHER_FILES = [
+    "src/schemas.py",
+    "src/main.py",
+]
+
 
 class MyHandler(FileSystemEventHandler):
     def __init__(self):
@@ -14,10 +19,7 @@ class MyHandler(FileSystemEventHandler):
     def on_modified(self, event):
         # Check if the event is for a file and not a directory
         if not event.is_directory:
-            if event.src_path in [
-                "src/schemas.py",
-                "src/main.py",
-            ]:  # Specify the file(s) you want to track
+            if event.src_path in WATCHER_FILES:  # Specify the file(s) you want to track
                 # If there's an existing debounce timer, cancel it
                 if self.debounce_timer:
                     self.debounce_timer.cancel()
