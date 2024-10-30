@@ -18,6 +18,7 @@ pydantic-settings = "^2.5.2"
 pre-commit = "^3.4.0"
 ruff = "^0.1.0"
 watchdog = "^5.0.3"
+python-dotenv = "^1.0.1"
 
 [build-system]
 requires = ["poetry-core"]

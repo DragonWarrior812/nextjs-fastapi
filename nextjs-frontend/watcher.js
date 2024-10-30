@@ -1,7 +1,10 @@
 const chokidar = require('chokidar');
 const { exec } = require('child_process');
+const { config } = require('dotenv');
 
-const watchFile = process.env.OPENAPI_WATCH_FILE || './openapi.json';
+config({ path: '.env.local' });
+
+const watchFile = process.env.OPENAPI_WATCH_FILE || process.env.LOCAL_OPENAPI_WATCH_FILE;
 // Watch the specific file for changes
 chokidar.watch(watchFile).on('change', (path) => {
   console.log(`File ${path} has been modified. Running generate-client...`);

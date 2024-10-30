@@ -1,6 +1,9 @@
 import { defineConfig } from '@hey-api/openapi-ts';
+import { config } from 'dotenv';
 
-const watchFile = process.env.OPENAPI_WATCH_FILE || './openapi.json';
+config({ path: '.env.local' });
+
+const watchFile = process.env.OPENAPI_WATCH_FILE || process.env.LOCAL_OPENAPI_WATCH_FILE;
 
 export default defineConfig({
   client: '@hey-api/client-fetch',
