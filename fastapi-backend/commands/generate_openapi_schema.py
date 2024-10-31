@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-OUTPUT_FILE = os.getenv("OPENAPI_OUTPUT_FILE") or os.getenv("LOCAL_OPENAPI_OUTPUT_FILE")
+OUTPUT_FILE = os.getenv("OPENAPI_OUTPUT_FILE")
 
 
 def generate_openapi_schema(output_file):
