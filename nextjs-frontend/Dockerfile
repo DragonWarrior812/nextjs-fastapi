@@ -1,16 +1,21 @@
 FROM node:20-bookworm
 
+# Set the working directory
 WORKDIR /app
 
+# Copy package files and install dependencies
 COPY package*.json ./
 
+# Install dependencies as root (or myappuser, depending on your structure)
 RUN npm install
 
-COPY . .
+## Switch to the non-root user
+USER node
 
-RUN npm run build
+# Copy the rest of your application code
+COPY . .
 
 EXPOSE 3000
 
-# Start the Next.js app
-CMD ["npm", "start"]
+# Start the application
+CMD ["./start.sh"]

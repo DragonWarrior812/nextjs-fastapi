@@ -1,8 +1,13 @@
 import json
 from pathlib import Path
 from src.main import app
+import os
 
-OUTPUT_FILE = "../nextjs-frontend/openapi.json"
+from dotenv import load_dotenv
+
+load_dotenv()
+
+OUTPUT_FILE = os.getenv("OPENAPI_OUTPUT_FILE")
 
 
 def generate_openapi_schema(output_file):

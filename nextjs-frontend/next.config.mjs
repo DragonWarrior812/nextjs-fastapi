@@ -6,7 +6,7 @@ const nextConfig = {
     if (!isServer) {
       config.plugins.push(
         new ForkTsCheckerWebpackPlugin({
-          async: false, // Run type checking synchronously to block the build
+          async: true, // Run type checking synchronously to block the build
           typescript: {
             configOverwrite: {
               compilerOptions: {
