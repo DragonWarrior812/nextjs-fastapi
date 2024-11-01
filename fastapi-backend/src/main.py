@@ -1,17 +1,14 @@
 from fastapi import Depends, FastAPI
-from fastapi.routing import APIRoute
 
 from .database import User
 from .schemas import UserCreate, UserRead, UserUpdate
 from .users import auth_backend, current_active_user, fastapi_users, AUTH_URL_PATH
 from fastapi.middleware.cors import CORSMiddleware
+from .utils import simple_generate_unique_route_id
 
 
-def custom_generate_unique_id(route: APIRoute):
-    return f"{route.tags[0]}-{route.name}"
+app = FastAPI(generate_unique_id_function=simple_generate_unique_route_id)
 
-
-app = FastAPI(generate_unique_id_function=custom_generate_unique_id)
 
 origins = [
     "http://localhost:3000",
