@@ -11,12 +11,12 @@
           "auth"
         ],
         "summary": "Auth:Jwt.Login",
-        "operationId": "auth_jwt_login_auth_jwt_login_post",
+        "operationId": "auth:jwt.login",
         "requestBody": {
           "content": {
             "application/x-www-form-urlencoded": {
               "schema": {
-                "$ref": "#/components/schemas/Body_auth_jwt_login_auth_jwt_login_post"
+                "$ref": "#/components/schemas/login"
               }
             }
           },
@@ -80,7 +80,7 @@
           "auth"
         ],
         "summary": "Auth:Jwt.Logout",
-        "operationId": "auth_jwt_logout_auth_jwt_logout_post",
+        "operationId": "auth:jwt.logout",
         "responses": {
           "200": {
             "description": "Successful Response",
@@ -107,7 +107,7 @@
           "auth"
         ],
         "summary": "Register:Register",
-        "operationId": "register_register_auth_register_post",
+        "operationId": "register:register",
         "requestBody": {
           "content": {
             "application/json": {
@@ -175,12 +175,12 @@
           "auth"
         ],
         "summary": "Reset:Forgot Password",
-        "operationId": "reset_forgot_password_auth_forgot_password_post",
+        "operationId": "reset:forgot_password",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Body_reset_forgot_password_auth_forgot_password_post"
+                "$ref": "#/components/schemas/Body_auth-reset_forgot_password"
               }
             }
           },
@@ -214,12 +214,12 @@
           "auth"
         ],
         "summary": "Reset:Reset Password",
-        "operationId": "reset_reset_password_auth_reset_password_post",
+        "operationId": "reset:reset_password",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Body_reset_reset_password_auth_reset_password_post"
+                "$ref": "#/components/schemas/Body_auth-reset_reset_password"
               }
             }
           },
@@ -280,12 +280,12 @@
           "auth"
         ],
         "summary": "Verify:Request-Token",
-        "operationId": "verify_request_token_auth_request_verify_token_post",
+        "operationId": "verify:request-token",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Body_verify_request_token_auth_request_verify_token_post"
+                "$ref": "#/components/schemas/Body_auth-verify_request-token"
               }
             }
           },
@@ -319,12 +319,12 @@
           "auth"
         ],
         "summary": "Verify:Verify",
-        "operationId": "verify_verify_auth_verify_post",
+        "operationId": "verify:verify",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Body_verify_verify_auth_verify_post"
+                "$ref": "#/components/schemas/Body_auth-verify_verify"
               }
             }
           },
@@ -384,7 +384,7 @@
           "users"
         ],
         "summary": "Users:Current User",
-        "operationId": "users_current_user_users_me_get",
+        "operationId": "users:current_user",
         "responses": {
           "200": {
             "description": "Successful Response",
@@ -411,7 +411,7 @@
           "users"
         ],
         "summary": "Users:Patch Current User",
-        "operationId": "users_patch_current_user_users_me_patch",
+        "operationId": "users:patch_current_user",
         "requestBody": {
           "content": {
             "application/json": {
@@ -487,7 +487,7 @@
           "users"
         ],
         "summary": "Users:User",
-        "operationId": "users_user_users__id__get",
+        "operationId": "users:user",
         "security": [
           {
             "OAuth2PasswordBearer": []
@@ -541,7 +541,7 @@
           "users"
         ],
         "summary": "Users:Patch User",
-        "operationId": "users_patch_user_users__id__patch",
+        "operationId": "users:patch_user",
         "security": [
           {
             "OAuth2PasswordBearer": []
@@ -632,7 +632,7 @@
           "users"
         ],
         "summary": "Users:Delete User",
-        "operationId": "users_delete_user_users__id__delete",
+        "operationId": "users:delete_user",
         "security": [
           {
             "OAuth2PasswordBearer": []
@@ -677,8 +677,11 @@
     },
     "/authenticated-route": {
       "get": {
+        "tags": [
+          "custom-auth"
+        ],
         "summary": "Authenticated Route",
-        "operationId": "authenticated_route_authenticated_route_get",
+        "operationId": "authenticated_route",
         "responses": {
           "200": {
             "description": "Successful Response",
@@ -717,64 +720,7 @@
         ],
         "title": "BearerResponse"
       },
-      "Body_auth_jwt_login_auth_jwt_login_post": {
-        "properties": {
-          "grant_type": {
-            "anyOf": [
-              {
-                "type": "string",
-                "pattern": "password"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Grant Type"
-          },
-          "username": {
-            "type": "string",
-            "title": "Username"
-          },
-          "password": {
-            "type": "string",
-            "title": "Password"
-          },
-          "scope": {
-            "type": "string",
-            "title": "Scope",
-            "default": ""
-          },
-          "client_id": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Client Id"
-          },
-          "client_secret": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Client Secret"
-          }
-        },
-        "type": "object",
-        "required": [
-          "username",
-          "password"
-        ],
-        "title": "Body_auth_jwt_login_auth_jwt_login_post"
-      },
-      "Body_reset_forgot_password_auth_forgot_password_post": {
+      "Body_auth-reset_forgot_password": {
         "properties": {
           "email": {
             "type": "string",
@@ -786,9 +732,9 @@
         "required": [
           "email"
         ],
-        "title": "Body_reset_forgot_password_auth_forgot_password_post"
+        "title": "Body_auth-reset:forgot_password"
       },
-      "Body_reset_reset_password_auth_reset_password_post": {
+      "Body_auth-reset_reset_password": {
         "properties": {
           "token": {
             "type": "string",
@@ -804,9 +750,9 @@
           "token",
           "password"
         ],
-        "title": "Body_reset_reset_password_auth_reset_password_post"
+        "title": "Body_auth-reset:reset_password"
       },
-      "Body_verify_request_token_auth_request_verify_token_post": {
+      "Body_auth-verify_request-token": {
         "properties": {
           "email": {
             "type": "string",
@@ -818,9 +764,9 @@
         "required": [
           "email"
         ],
-        "title": "Body_verify_request_token_auth_request_verify_token_post"
+        "title": "Body_auth-verify:request-token"
       },
-      "Body_verify_verify_auth_verify_post": {
+      "Body_auth-verify_verify": {
         "properties": {
           "token": {
             "type": "string",
@@ -831,7 +777,7 @@
         "required": [
           "token"
         ],
-        "title": "Body_verify_verify_auth_verify_post"
+        "title": "Body_auth-verify:verify"
       },
       "ErrorModel": {
         "properties": {
@@ -1053,6 +999,63 @@
           "type"
         ],
         "title": "ValidationError"
+      },
+      "login": {
+        "properties": {
+          "grant_type": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "password"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Grant Type"
+          },
+          "username": {
+            "type": "string",
+            "title": "Username"
+          },
+          "password": {
+            "type": "string",
+            "title": "Password"
+          },
+          "scope": {
+            "type": "string",
+            "title": "Scope",
+            "default": ""
+          },
+          "client_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Client Id"
+          },
+          "client_secret": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Client Secret"
+          }
+        },
+        "type": "object",
+        "required": [
+          "username",
+          "password"
+        ],
+        "title": "Body_auth-auth:jwt.login"
       }
     },
     "securitySchemes": {

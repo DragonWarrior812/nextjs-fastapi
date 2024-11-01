@@ -5,29 +5,20 @@ export type BearerResponse = {
     token_type: string;
 };
 
-export type Body_auth_jwt_login_auth_jwt_login_post = {
-    grant_type?: (string | null);
-    username: string;
-    password: string;
-    scope?: string;
-    client_id?: (string | null);
-    client_secret?: (string | null);
-};
-
-export type Body_reset_forgot_password_auth_forgot_password_post = {
+export type Body_auth_reset_forgot_password = {
     email: string;
 };
 
-export type Body_reset_reset_password_auth_reset_password_post = {
+export type Body_auth_reset_reset_password = {
     token: string;
     password: string;
 };
 
-export type Body_verify_request_token_auth_request_verify_token_post = {
+export type Body_auth_verify_request_token = {
     email: string;
 };
 
-export type Body_verify_verify_auth_verify_post = {
+export type Body_auth_verify_verify = {
     token: string;
 };
 
@@ -71,101 +62,110 @@ export type ValidationError = {
     type: string;
 };
 
-export type AuthJwtLoginAuthJwtLoginPostData = {
-    body: Body_auth_jwt_login_auth_jwt_login_post;
+export type login = {
+    grant_type?: (string | null);
+    username: string;
+    password: string;
+    scope?: string;
+    client_id?: (string | null);
+    client_secret?: (string | null);
 };
 
-export type AuthJwtLoginAuthJwtLoginPostResponse = (BearerResponse);
+export type AuthJwtLoginData = {
+    body: login;
+};
 
-export type AuthJwtLoginAuthJwtLoginPostError = (ErrorModel | HTTPValidationError);
+export type AuthJwtLoginResponse = (BearerResponse);
 
-export type AuthJwtLogoutAuthJwtLogoutPostResponse = (unknown);
+export type AuthJwtLoginError = (ErrorModel | HTTPValidationError);
 
-export type AuthJwtLogoutAuthJwtLogoutPostError = (unknown);
+export type AuthJwtLogoutResponse = (unknown);
 
-export type RegisterRegisterAuthRegisterPostData = {
+export type AuthJwtLogoutError = (unknown);
+
+export type RegisterRegisterData = {
     body: UserCreate;
 };
 
-export type RegisterRegisterAuthRegisterPostResponse = (UserRead);
+export type RegisterRegisterResponse = (UserRead);
 
-export type RegisterRegisterAuthRegisterPostError = (ErrorModel | HTTPValidationError);
+export type RegisterRegisterError = (ErrorModel | HTTPValidationError);
 
-export type ResetForgotPasswordAuthForgotPasswordPostData = {
-    body: Body_reset_forgot_password_auth_forgot_password_post;
+export type ResetForgotPasswordData = {
+    body: Body_auth_reset_forgot_password;
 };
 
-export type ResetForgotPasswordAuthForgotPasswordPostResponse = (unknown);
+export type ResetForgotPasswordResponse = (unknown);
 
-export type ResetForgotPasswordAuthForgotPasswordPostError = (HTTPValidationError);
+export type ResetForgotPasswordError = (HTTPValidationError);
 
-export type ResetResetPasswordAuthResetPasswordPostData = {
-    body: Body_reset_reset_password_auth_reset_password_post;
+export type ResetResetPasswordData = {
+    body: Body_auth_reset_reset_password;
 };
 
-export type ResetResetPasswordAuthResetPasswordPostResponse = (unknown);
+export type ResetResetPasswordResponse = (unknown);
 
-export type ResetResetPasswordAuthResetPasswordPostError = (ErrorModel | HTTPValidationError);
+export type ResetResetPasswordError = (ErrorModel | HTTPValidationError);
 
-export type VerifyRequestTokenAuthRequestVerifyTokenPostData = {
-    body: Body_verify_request_token_auth_request_verify_token_post;
+export type VerifyRequestTokenData = {
+    body: Body_auth_verify_request_token;
 };
 
-export type VerifyRequestTokenAuthRequestVerifyTokenPostResponse = (unknown);
+export type VerifyRequestTokenResponse = (unknown);
 
-export type VerifyRequestTokenAuthRequestVerifyTokenPostError = (HTTPValidationError);
+export type VerifyRequestTokenError = (HTTPValidationError);
 
-export type VerifyVerifyAuthVerifyPostData = {
-    body: Body_verify_verify_auth_verify_post;
+export type VerifyVerifyData = {
+    body: Body_auth_verify_verify;
 };
 
-export type VerifyVerifyAuthVerifyPostResponse = (UserRead);
+export type VerifyVerifyResponse = (UserRead);
 
-export type VerifyVerifyAuthVerifyPostError = (ErrorModel | HTTPValidationError);
+export type VerifyVerifyError = (ErrorModel | HTTPValidationError);
 
-export type UsersCurrentUserUsersMeGetResponse = (UserRead);
+export type UsersCurrentUserResponse = (UserRead);
 
-export type UsersCurrentUserUsersMeGetError = (unknown);
+export type UsersCurrentUserError = (unknown);
 
-export type UsersPatchCurrentUserUsersMePatchData = {
+export type UsersPatchCurrentUserData = {
     body: UserUpdate;
 };
 
-export type UsersPatchCurrentUserUsersMePatchResponse = (UserRead);
+export type UsersPatchCurrentUserResponse = (UserRead);
 
-export type UsersPatchCurrentUserUsersMePatchError = (ErrorModel | unknown | HTTPValidationError);
+export type UsersPatchCurrentUserError = (ErrorModel | unknown | HTTPValidationError);
 
-export type UsersUserUsersIdGetData = {
+export type UsersUserData = {
     path: {
         id: string;
     };
 };
 
-export type UsersUserUsersIdGetResponse = (UserRead);
+export type UsersUserResponse = (UserRead);
 
-export type UsersUserUsersIdGetError = (unknown | HTTPValidationError);
+export type UsersUserError = (unknown | HTTPValidationError);
 
-export type UsersPatchUserUsersIdPatchData = {
+export type UsersPatchUserData = {
     body: UserUpdate;
     path: {
         id: string;
     };
 };
 
-export type UsersPatchUserUsersIdPatchResponse = (UserRead);
+export type UsersPatchUserResponse = (UserRead);
 
-export type UsersPatchUserUsersIdPatchError = (ErrorModel | unknown | HTTPValidationError);
+export type UsersPatchUserError = (ErrorModel | unknown | HTTPValidationError);
 
-export type UsersDeleteUserUsersIdDeleteData = {
+export type UsersDeleteUserData = {
     path: {
         id: string;
     };
 };
 
-export type UsersDeleteUserUsersIdDeleteResponse = (void);
+export type UsersDeleteUserResponse = (void);
 
-export type UsersDeleteUserUsersIdDeleteError = (unknown | HTTPValidationError);
+export type UsersDeleteUserError = (unknown | HTTPValidationError);
 
-export type AuthenticatedRouteAuthenticatedRouteGetResponse = (unknown);
+export type AuthenticatedRouteResponse = (unknown);
 
-export type AuthenticatedRouteAuthenticatedRouteGetError = unknown;
+export type AuthenticatedRouteError = unknown;
