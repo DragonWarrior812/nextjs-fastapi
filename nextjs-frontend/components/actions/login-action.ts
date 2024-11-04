@@ -2,7 +2,7 @@
 
 import { cookies } from "next/headers";
 
-import {authJwtLoginAuthJwtLoginPost } from "@/app/clientService";
+import {authJwtLogin } from "@/app/clientService";
 import {redirect} from "next/navigation";
 
 
@@ -13,7 +13,7 @@ export async function login(prevState: {}, formData: FormData) {
             "password": formData.get("password") as string,
         }
     }
-    const { data, error } = await authJwtLoginAuthJwtLoginPost(input)
+    const { data, error } = await authJwtLogin(input)
     if (error) {
         return {message: `${error.detail}`};
     }
