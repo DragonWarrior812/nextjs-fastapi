@@ -16,62 +16,7 @@ export const BearerResponseSchema = {
     title: 'BearerResponse'
 } as const;
 
-export const Body_auth_jwt_login_auth_jwt_login_postSchema = {
-    properties: {
-        grant_type: {
-            anyOf: [
-                {
-                    type: 'string',
-                    pattern: 'password'
-                },
-                {
-                    type: 'null'
-                }
-            ],
-            title: 'Grant Type'
-        },
-        username: {
-            type: 'string',
-            title: 'Username'
-        },
-        password: {
-            type: 'string',
-            title: 'Password'
-        },
-        scope: {
-            type: 'string',
-            title: 'Scope',
-            default: ''
-        },
-        client_id: {
-            anyOf: [
-                {
-                    type: 'string'
-                },
-                {
-                    type: 'null'
-                }
-            ],
-            title: 'Client Id'
-        },
-        client_secret: {
-            anyOf: [
-                {
-                    type: 'string'
-                },
-                {
-                    type: 'null'
-                }
-            ],
-            title: 'Client Secret'
-        }
-    },
-    type: 'object',
-    required: ['username', 'password'],
-    title: 'Body_auth_jwt_login_auth_jwt_login_post'
-} as const;
-
-export const Body_reset_forgot_password_auth_forgot_password_postSchema = {
+export const Body_auth_reset_forgot_passwordSchema = {
     properties: {
         email: {
             type: 'string',
@@ -81,10 +26,10 @@ export const Body_reset_forgot_password_auth_forgot_password_postSchema = {
     },
     type: 'object',
     required: ['email'],
-    title: 'Body_reset_forgot_password_auth_forgot_password_post'
+    title: 'Body_auth-reset:forgot_password'
 } as const;
 
-export const Body_reset_reset_password_auth_reset_password_postSchema = {
+export const Body_auth_reset_reset_passwordSchema = {
     properties: {
         token: {
             type: 'string',
@@ -97,10 +42,10 @@ export const Body_reset_reset_password_auth_reset_password_postSchema = {
     },
     type: 'object',
     required: ['token', 'password'],
-    title: 'Body_reset_reset_password_auth_reset_password_post'
+    title: 'Body_auth-reset:reset_password'
 } as const;
 
-export const Body_verify_request_token_auth_request_verify_token_postSchema = {
+export const Body_auth_verify_request_tokenSchema = {
     properties: {
         email: {
             type: 'string',
@@ -110,10 +55,10 @@ export const Body_verify_request_token_auth_request_verify_token_postSchema = {
     },
     type: 'object',
     required: ['email'],
-    title: 'Body_verify_request_token_auth_request_verify_token_post'
+    title: 'Body_auth-verify:request-token'
 } as const;
 
-export const Body_verify_verify_auth_verify_postSchema = {
+export const Body_auth_verify_verifySchema = {
     properties: {
         token: {
             type: 'string',
@@ -122,7 +67,7 @@ export const Body_verify_verify_auth_verify_postSchema = {
     },
     type: 'object',
     required: ['token'],
-    title: 'Body_verify_verify_auth_verify_post'
+    title: 'Body_auth-verify:verify'
 } as const;
 
 export const ErrorModelSchema = {
@@ -338,4 +283,59 @@ export const ValidationErrorSchema = {
     type: 'object',
     required: ['loc', 'msg', 'type'],
     title: 'ValidationError'
+} as const;
+
+export const loginSchema = {
+    properties: {
+        grant_type: {
+            anyOf: [
+                {
+                    type: 'string',
+                    pattern: 'password'
+                },
+                {
+                    type: 'null'
+                }
+            ],
+            title: 'Grant Type'
+        },
+        username: {
+            type: 'string',
+            title: 'Username'
+        },
+        password: {
+            type: 'string',
+            title: 'Password'
+        },
+        scope: {
+            type: 'string',
+            title: 'Scope',
+            default: ''
+        },
+        client_id: {
+            anyOf: [
+                {
+                    type: 'string'
+                },
+                {
+                    type: 'null'
+                }
+            ],
+            title: 'Client Id'
+        },
+        client_secret: {
+            anyOf: [
+                {
+                    type: 'string'
+                },
+                {
+                    type: 'null'
+                }
+            ],
+            title: 'Client Secret'
+        }
+    },
+    type: 'object',
+    required: ['username', 'password'],
+    title: 'Body_auth-auth:jwt.login'
 } as const;
