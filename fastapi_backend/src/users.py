@@ -48,20 +48,19 @@ class UserManager(UUIDIDMixin, BaseUserManager[User, uuid.UUID]):
         password: str,
         user: UserCreate,
     ) -> None:
+        errors = []
+
         if len(password) < 8:
-            raise InvalidPasswordException(
-                reason="Password should be at least 8 characters"
-            )
+            errors.append("Password should be at least 8 characters.")
         if user.email in password:
-            raise InvalidPasswordException(reason="Password should not contain e-mail")
+            errors.append("Password should not contain e-mail.")
         if not any(char.isupper() for char in password):
-            raise InvalidPasswordException(
-                reason="Password should contain at least one uppercase letter"
-            )
+            errors.append("Password should contain at least one uppercase letter.")
         if not re.search(r'[!@#$%^&*(),.?":{}|<>]', password):
-            raise InvalidPasswordException(
-                reason="Password should contain at least one special character"
-            )
+            errors.append("Password should contain at least one special character.")
+
+        if errors:
+            raise InvalidPasswordException(reason=errors)
 
 
 async def get_user_manager(user_db: SQLAlchemyUserDatabase = Depends(get_user_db)):

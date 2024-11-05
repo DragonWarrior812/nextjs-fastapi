@@ -70,12 +70,9 @@ DATABASE_URL=postgresql+asyncpg://postgres:password@db:5432/mydatabase
 Other environment variables remain unchanged:
 
 ```env
-ACCESS_SECRET_KEY=l6mvOtLRVKLYIGbSf7orZg_R4LXWpT8pUsmeCd-P-Fs=
-RESET_PASSWORD_SECRET_KEY=t0Rb4ABK8B7L9hqrjLSlb8mViyYCnLqALATSIVZ_Jlg=
-VERIFICATION_SECRET_KEY=tgxPyZXRRuTHSIGeDgAX4TGOwx8JDYge2u-pQbViA_I=
-EXPIRE_ON_COMMIT=False
-ALGORITHM=HS256
-ACCESS_TOKEN_EXPIRE_SECONDS=3600
+ACCESS_SECRET_KEY=<your-secret-key>
+RESET_PASSWORD_SECRET_KEY=<your-secret-key>
+VERIFICATION_SECRET_KEY=<your-secret-key>
 OPENAPI_OUTPUT_FILE=../nextjs-frontend/openapi.json
 ```
 
