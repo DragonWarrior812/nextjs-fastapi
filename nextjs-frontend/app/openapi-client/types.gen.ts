@@ -24,8 +24,8 @@ export type Body_auth_verify_verify = {
 
 export type ErrorModel = {
     detail: (string | {
-    [key: string]: (string);
-});
+        [key: string]: (string);
+    });
 };
 
 export type HTTPValidationError = {

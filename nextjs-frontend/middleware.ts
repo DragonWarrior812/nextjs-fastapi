@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import {usersCurrentUserUsersMeGet} from "@/app/clientService";
+import { usersCurrentUser } from "@/app/clientService";
 
 
 export async function middleware(request: NextRequest) {
@@ -16,7 +16,7 @@ export async function middleware(request: NextRequest) {
       }
   }
 
-  const { error } = await usersCurrentUserUsersMeGet(options)
+  const { error } = await usersCurrentUser(options)
 
   if (error) {
     return NextResponse.redirect(new URL('/login', request.url));

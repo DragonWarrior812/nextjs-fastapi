@@ -15,7 +15,6 @@ import {useFormState} from "react-dom";
 import {SubmitButton} from "@/components/ui/submitButton";
 
 
-
 export default function Page() {
     const [state, dispatch] = useFormState(register, {message: ""})
     return (

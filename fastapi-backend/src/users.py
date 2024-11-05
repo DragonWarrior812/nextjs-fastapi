@@ -1,8 +1,16 @@
 import uuid
+import re
+
 from typing import Optional
 
 from fastapi import Depends, Request
-from fastapi_users import BaseUserManager, FastAPIUsers, UUIDIDMixin
+from fastapi_users import (
+    BaseUserManager,
+    FastAPIUsers,
+    UUIDIDMixin,
+    InvalidPasswordException,
+)
+
 from fastapi_users.authentication import (
     AuthenticationBackend,
     BearerTransport,
@@ -13,6 +21,7 @@ from fastapi_users.db import SQLAlchemyUserDatabase
 from .config import settings
 from .database import get_user_db
 from .models import User
+from .schemas import UserCreate
 
 AUTH_URL_PATH = "auth"
 
@@ -33,6 +42,25 @@ class UserManager(UUIDIDMixin, BaseUserManager[User, uuid.UUID]):
         self, user: User, token: str, request: Optional[Request] = None
     ):
         print(f"Verification requested for user {user.id}. Verification token: {token}")
+
+    async def validate_password(
+        self,
+        password: str,
+        user: UserCreate,
+    ) -> None:
+        errors = []
+
+        if len(password) < 8:
+            errors.append("Password should be at least 8 characters.")
+        if user.email in password:
+            errors.append("Password should not contain e-mail.")
+        if not any(char.isupper() for char in password):
+            errors.append("Password should contain at least one uppercase letter.")
+        if not re.search(r'[!@#$%^&*(),.?":{}|<>]', password):
+            errors.append("Password should contain at least one special character.")
+
+        if errors:
+            raise InvalidPasswordException(reason=errors)
 
 
 async def get_user_manager(user_db: SQLAlchemyUserDatabase = Depends(get_user_db)):
