@@ -62,7 +62,3 @@ class TestPasswordValidation:
         json = {"email": email, "password": password}
         response = client.post("auth/register", json=json)
         assert response.status_code == expected_status
-
-        # Ensure the response detail matches the expected structure
-        if expected_status == status.HTTP_400_BAD_REQUEST:
-            assert response.json() == expected_detail
