@@ -16,7 +16,7 @@ class TestPasswordValidation:
                 {
                     "detail": {
                         "code": ErrorCode.REGISTER_INVALID_PASSWORD.value,
-                        "reason": "Password should be at least 8 characters",
+                        "reason": ["Password should be at least 8 characters."],
                     }
                 },
             ),
@@ -27,7 +27,7 @@ class TestPasswordValidation:
                 {
                     "detail": {
                         "code": ErrorCode.REGISTER_INVALID_PASSWORD.value,
-                        "reason": "Password should not contain e-mail",
+                        "reason": ["Password should not contain e-mail."],
                     }
                 },
             ),
@@ -38,7 +38,9 @@ class TestPasswordValidation:
                 {
                     "detail": {
                         "code": ErrorCode.REGISTER_INVALID_PASSWORD.value,
-                        "reason": "Password should contain at least one uppercase letter",
+                        "reason": [
+                            "Password should contain at least one uppercase letter."
+                        ],
                     }
                 },
             ),
@@ -49,7 +51,24 @@ class TestPasswordValidation:
                 {
                     "detail": {
                         "code": ErrorCode.REGISTER_INVALID_PASSWORD.value,
-                        "reason": "Password should contain at least one special character",
+                        "reason": [
+                            "Password should contain at least one special character."
+                        ],
+                    }
+                },
+            ),
+            (
+                "test@example.com",
+                "shorttest",
+                status.HTTP_400_BAD_REQUEST,
+                {
+                    "detail": {
+                        "code": ErrorCode.REGISTER_INVALID_PASSWORD.value,
+                        "reason": [
+                            "Password should be at least 8 characters.",
+                            "Password should contain at least one uppercase letter.",
+                            "Password should contain at least one special character.",
+                        ],
                     }
                 },
             ),
