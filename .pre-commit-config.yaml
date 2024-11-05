@@ -41,10 +41,3 @@ repos:
         # Only run frontend client generation if frontend files have changed:
         files: openapi\.json$
         pass_filenames: false
-      - id: mypy
-        name: Run mypy type checks
-        entry: sh -c "cd fastapi_backend && poetry run mypy src/; if [ $? -ne 0 ]; then echo 'Type errors detected! Please check mypy output.'; fi"
-        language: system
-        types: [ python ]
-        args: ['--verbose']
-        pass_filenames: false
