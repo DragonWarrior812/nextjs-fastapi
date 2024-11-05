@@ -2,7 +2,7 @@ version: '3.8'
 services:
   backend:
     build:
-      context: ./fastapi-backend
+      context: fastapi_backend
     environment:
       - OPENAPI_OUTPUT_FILE=./shared-data/openapi.json
     ports:
@@ -10,7 +10,7 @@ services:
     networks:
       - my_network
     volumes:
-      - ./fastapi-backend:/app
+      - ./fastapi_backend:/app
       - ./local-shared-data:/app/shared-data
     depends_on:
       - db

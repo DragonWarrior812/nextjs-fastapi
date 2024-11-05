@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "fastapi-backend"
+name = "fastapi_backend"
 version = "0.1.0"
 description = ""
 authors = ["Anderson Resende <anderson@vinta.com.br>"]
@@ -21,6 +21,7 @@ watchdog = "^5.0.3"
 python-dotenv = "^1.0.1"
 pytest = "^8.3.3"
 pytest-mock = "^3.14.0"
+mypy = "^1.13.0"
 
 [build-system]
 requires = ["poetry-core"]
