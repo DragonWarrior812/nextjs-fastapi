@@ -29,7 +29,7 @@ This project consists of a backend (API built with FastAPI) and a frontend (web 
 #### 1. Poetry
 Poetry is used to manage Python dependencies in the backend. Install Poetry by following the [official installation guide](https://python-poetry.org/docs/#installation).
 
-Once installed, navigate to the `fastapi-backend` directory and run:
+Once installed, navigate to the `fastapi_backend` directory and run:
 
 ```bash
 poetry install
@@ -55,9 +55,9 @@ Docker is needed to run the project in a containerized environment. Follow the a
 Ensure `docker-compose` is installed. Refer to the [Docker Compose installation guide](https://docs.docker.com/compose/install/).
 
 ### Setting Up Environment Variables
-Create or update the `.env` files in the `fastapi-backend` and `nextjs-frontend` directories with the following variables:
+Create or update the `.env` files in the `fastapi_backend` and `nextjs-frontend` directories with the following variables:
 
-**Backend (`fastapi-backend/.env`):**
+**Backend (`fastapi_backend/.env`):**
 
 For local setup:
 ```
@@ -86,7 +86,7 @@ OPENAPI_OUTPUT_FILE=openapi.json
 To run the project locally, use the following commands:
 
 #### Backend
-1. Navigate to the `fastapi-backend` directory.
+1. Navigate to the `fastapi_backend` directory.
 2. Use Docker to run the database to avoid local installation issues. Build and start the database container:
    ```bash
    docker compose build db
@@ -177,7 +177,7 @@ You can manually execute the same commands that the watchers call when they dete
 
 1. To export the `openapi.json` schema:
    ```bash
-   cd fastapi-backend && poetry run python -m commands.generate_openapi_schema
+   cd fastapi_backend && poetry run python -m commands.generate_openapi_schema
    ```
    or using Docker:
    ```bash
