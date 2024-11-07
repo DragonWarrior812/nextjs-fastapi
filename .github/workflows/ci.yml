@@ -31,5 +31,5 @@ jobs:
         run: poetry install
 
       - name: Run tests
-        working-directory: ./fastapi_backend/app
+        working-directory: ./fastapi_backend
         run: poetry run pytest
