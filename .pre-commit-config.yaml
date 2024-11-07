@@ -34,7 +34,7 @@ repos:
         entry: sh -c 'cd fastapi_backend && poetry run python -m app.commands.generate_openapi_schema'
         language: system
         # Only run OpenAPI schema generation if schemas.py, main.py or package version have changed:
-        files: (main\.py$|schemas\.py$|pyproject\.toml)
+        files: (main\.py$|schemas\.py|pyproject\.toml)
         pass_filenames: false
       - id: generate-frontend-client
         name: generate frontend client
