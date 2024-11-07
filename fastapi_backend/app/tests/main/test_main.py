@@ -2,7 +2,7 @@ import pytest
 from fastapi import status
 from fastapi.testclient import TestClient
 from fastapi_users.router import ErrorCode
-from src.main import app
+from app.src.main import app
 
 
 class TestPasswordValidation:

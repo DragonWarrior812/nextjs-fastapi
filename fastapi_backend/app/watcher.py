@@ -7,7 +7,7 @@ from watchdog.events import FileSystemEventHandler
 from threading import Timer
 
 WATCHER_REGEX_PATTERN = re.compile(r"(main|schemas)\.py$")
-APP_PATH = "src"
+APP_PATH = "app/src"
 
 
 class MyHandler(FileSystemEventHandler):
