@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build-fastapi:
+    name: FastAPI CI
+
+    runs-on: ubuntu-latest
+
+    env:
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      ACCESS_SECRET_KEY: ${{ secrets.ACCESS_SECRET_KEY }}
+      RESET_PASSWORD_SECRET_KEY: ${{ secrets.RESET_PASSWORD_SECRET_KEY }}
+      VERIFICATION_SECRET_KEY: ${{ secrets.VERIFICATION_SECRET_KEY }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Poetry with pip
+        run: pip install poetry
+
+      - name: Configure Poetry
+        working-directory: ./fastapi_backend
+        run: poetry config virtualenvs.create false
+
+      - name: Install dependencies
+        working-directory: ./fastapi_backend
+        run: poetry install
+
+      - name: Run tests
+        working-directory: ./fastapi_backend
+        run: poetry run pytest
