@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "generate-client": "openapi-ts"
+    "prettier": "prettier --write '**/*.{js,jsx,ts,tsx,json,css,html}'",
+    "generate-client": "openapi-ts",
+    "tsc": "tsc"
   },
   "dependencies": {
     "@hey-api/client-fetch": "^0.4.0",

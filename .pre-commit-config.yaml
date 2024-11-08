@@ -29,6 +29,27 @@ repos:
 
   - repo: local
     hooks:
+      - id: frontend-lint
+        name: run frontend lint
+        entry: sh -c 'cd nextjs-frontend && npm run lint'
+        language: system
+        types: [ file ]
+        files: ^nextjs-frontend/.*\.(js|jsx|ts|tsx)$
+        pass_filenames: true
+      - id: frontend-prettier
+        name: Run Prettier on frontend files
+        entry: sh -c 'cd nextjs-frontend && npm run prettier'
+        language: system
+        types: [ file ]
+        files: ^nextjs-frontend/.*\.(js|jsx|ts|tsx)$
+        pass_filenames: true
+      - id: frontend-tsc
+        name: run frontend tsc
+        entry: sh -c 'cd nextjs-frontend && npm run tsc'
+        language: system
+        types: [ file ]
+        files: ^nextjs-frontend/.*\.(ts|tsx)$
+        pass_filenames: false
       - id: generate-openapi-schema
         name: generate OpenAPI schema
         entry: sh -c 'cd fastapi_backend && poetry run python -m app.commands.generate_openapi_schema'
