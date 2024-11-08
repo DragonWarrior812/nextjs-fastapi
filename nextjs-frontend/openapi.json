@@ -7,7 +7,9 @@
   "paths": {
     "/auth/jwt/login": {
       "post": {
-        "tags": ["auth"],
+        "tags": [
+          "auth"
+        ],
         "summary": "Auth:Jwt.Login",
         "operationId": "auth:jwt.login",
         "requestBody": {
@@ -74,7 +76,9 @@
     },
     "/auth/jwt/logout": {
       "post": {
-        "tags": ["auth"],
+        "tags": [
+          "auth"
+        ],
         "summary": "Auth:Jwt.Logout",
         "operationId": "auth:jwt.logout",
         "responses": {
@@ -99,7 +103,9 @@
     },
     "/auth/register": {
       "post": {
-        "tags": ["auth"],
+        "tags": [
+          "auth"
+        ],
         "summary": "Register:Register",
         "operationId": "register:register",
         "requestBody": {
@@ -165,7 +171,9 @@
     },
     "/auth/forgot-password": {
       "post": {
-        "tags": ["auth"],
+        "tags": [
+          "auth"
+        ],
         "summary": "Reset:Forgot Password",
         "operationId": "reset:forgot_password",
         "requestBody": {
@@ -202,7 +210,9 @@
     },
     "/auth/reset-password": {
       "post": {
-        "tags": ["auth"],
+        "tags": [
+          "auth"
+        ],
         "summary": "Reset:Reset Password",
         "operationId": "reset:reset_password",
         "requestBody": {
@@ -266,7 +276,9 @@
     },
     "/auth/request-verify-token": {
       "post": {
-        "tags": ["auth"],
+        "tags": [
+          "auth"
+        ],
         "summary": "Verify:Request-Token",
         "operationId": "verify:request-token",
         "requestBody": {
@@ -303,7 +315,9 @@
     },
     "/auth/verify": {
       "post": {
-        "tags": ["auth"],
+        "tags": [
+          "auth"
+        ],
         "summary": "Verify:Verify",
         "operationId": "verify:verify",
         "requestBody": {
@@ -366,7 +380,9 @@
     },
     "/users/me": {
       "get": {
-        "tags": ["users"],
+        "tags": [
+          "users"
+        ],
         "summary": "Users:Current User",
         "operationId": "users:current_user",
         "responses": {
@@ -391,7 +407,9 @@
         ]
       },
       "patch": {
-        "tags": ["users"],
+        "tags": [
+          "users"
+        ],
         "summary": "Users:Patch Current User",
         "operationId": "users:patch_current_user",
         "requestBody": {
@@ -465,7 +483,9 @@
     },
     "/users/{id}": {
       "get": {
-        "tags": ["users"],
+        "tags": [
+          "users"
+        ],
         "summary": "Users:User",
         "operationId": "users:user",
         "security": [
@@ -517,7 +537,9 @@
         }
       },
       "patch": {
-        "tags": ["users"],
+        "tags": [
+          "users"
+        ],
         "summary": "Users:Patch User",
         "operationId": "users:patch_user",
         "security": [
@@ -606,7 +628,9 @@
         }
       },
       "delete": {
-        "tags": ["users"],
+        "tags": [
+          "users"
+        ],
         "summary": "Users:Delete User",
         "operationId": "users:delete_user",
         "security": [
@@ -653,7 +677,9 @@
     },
     "/authenticated-route": {
       "get": {
-        "tags": ["custom-auth"],
+        "tags": [
+          "custom-auth"
+        ],
         "summary": "Authenticated Route",
         "operationId": "authenticated_route",
         "responses": {
@@ -688,7 +714,10 @@
           }
         },
         "type": "object",
-        "required": ["access_token", "token_type"],
+        "required": [
+          "access_token",
+          "token_type"
+        ],
         "title": "BearerResponse"
       },
       "Body_auth-reset_forgot_password": {
@@ -700,7 +729,9 @@
           }
         },
         "type": "object",
-        "required": ["email"],
+        "required": [
+          "email"
+        ],
         "title": "Body_auth-reset:forgot_password"
       },
       "Body_auth-reset_reset_password": {
@@ -715,7 +746,10 @@
           }
         },
         "type": "object",
-        "required": ["token", "password"],
+        "required": [
+          "token",
+          "password"
+        ],
         "title": "Body_auth-reset:reset_password"
       },
       "Body_auth-verify_request-token": {
@@ -727,7 +761,9 @@
           }
         },
         "type": "object",
-        "required": ["email"],
+        "required": [
+          "email"
+        ],
         "title": "Body_auth-verify:request-token"
       },
       "Body_auth-verify_verify": {
@@ -738,7 +774,9 @@
           }
         },
         "type": "object",
-        "required": ["token"],
+        "required": [
+          "token"
+        ],
         "title": "Body_auth-verify:verify"
       },
       "ErrorModel": {
@@ -759,7 +797,9 @@
           }
         },
         "type": "object",
-        "required": ["detail"],
+        "required": [
+          "detail"
+        ],
         "title": "ErrorModel"
       },
       "HTTPValidationError": {
@@ -824,7 +864,10 @@
           }
         },
         "type": "object",
-        "required": ["email", "password"],
+        "required": [
+          "email",
+          "password"
+        ],
         "title": "UserCreate"
       },
       "UserRead": {
@@ -856,7 +899,10 @@
           }
         },
         "type": "object",
-        "required": ["id", "email"],
+        "required": [
+          "id",
+          "email"
+        ],
         "title": "UserRead"
       },
       "UserUpdate": {
@@ -947,7 +993,11 @@
           }
         },
         "type": "object",
-        "required": ["loc", "msg", "type"],
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
         "title": "ValidationError"
       },
       "login": {
@@ -1001,7 +1051,10 @@
           }
         },
         "type": "object",
-        "required": ["username", "password"],
+        "required": [
+          "username",
+          "password"
+        ],
         "title": "Body_auth-auth:jwt.login"
       }
     },
