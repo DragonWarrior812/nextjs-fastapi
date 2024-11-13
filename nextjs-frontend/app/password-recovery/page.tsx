@@ -10,21 +10,22 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
-import { register } from "@/components/actions/register-action";
+import { passwordReset } from "@/components/actions/password-reset-action";
 import { useFormState } from "react-dom";
 import { SubmitButton } from "@/components/ui/submitButton";
 import Link from "next/link";
 
 export default function Page() {
-  const [state, dispatch] = useFormState(register, { message: "" });
+  const [state, dispatch] = useFormState(passwordReset, { message: "" });
+
   return (
     <div className="flex h-screen w-full items-center justify-center px-4">
       <form action={dispatch}>
         <Card className="w-full max-w-sm">
           <CardHeader>
-            <CardTitle className="text-2xl">Signup</CardTitle>
+            <CardTitle className="text-2xl">Password Recovery</CardTitle>
             <CardDescription>
-              Enter your email and password below to create your account.
+              Enter your email to receive instructions to reset your password.
             </CardDescription>
           </CardHeader>
           <CardContent className="grid gap-4">
@@ -37,10 +38,6 @@ export default function Page() {
                 placeholder="m@example.com"
                 required
               />
-            </div>
-            <div className="grid gap-2">
-              <Label htmlFor="password">Password</Label>
-              <Input id="password" name="password" type="password" required />
             </div>
             <SubmitButton />
             <div>{state?.message && <p>{state.message}</p>}</div>
