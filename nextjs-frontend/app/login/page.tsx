@@ -40,13 +40,13 @@ export default function Page() {
             </div>
             <div className="grid gap-2">
               <Label htmlFor="password">Password</Label>
-              {/*<Link*/}
-              {/*    href="#"*/}
-              {/*    className="ml-auto inline-block text-sm underline"*/}
-              {/*>*/}
-              {/*    Forgot your password?*/}
-              {/*</Link>*/}
               <Input id="password" name="password" type="password" required />
+              <Link
+                href="/password-recovery"
+                className="ml-auto inline-block text-sm underline"
+              >
+                Forgot your password?
+              </Link>
             </div>
             <SubmitButton />
             <div>{state?.message && <p>{state.message}</p>}</div>

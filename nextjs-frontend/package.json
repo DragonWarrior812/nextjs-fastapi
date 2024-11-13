@@ -7,8 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prettier": "prettier --write '**/*.{js,jsx,ts,tsx,json,css,html}'",
     "generate-client": "openapi-ts",
+    "test": "jest",
+    "prettier": "prettier --write '**/*.{js,jsx,ts,tsx,json,css,html}'",
     "tsc": "tsc"
   },
   "dependencies": {
@@ -27,6 +28,9 @@
   },
   "devDependencies": {
     "@hey-api/openapi-ts": "^0.53.8",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.0.1",
+    "@types/jest": "^29.5.14",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
@@ -35,9 +39,13 @@
     "eslint": "^8",
     "eslint-config-next": "14.2.14",
     "fork-ts-checker-webpack-plugin": "^9.0.2",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
     "postcss": "^8.4.47",
     "prettier": "^3.3.3",
     "tailwindcss": "^3.4.13",
+    "ts-jest": "^29.2.5",
+    "ts-node": "^10.9.2",
     "typescript": "^5"
   }
 }
