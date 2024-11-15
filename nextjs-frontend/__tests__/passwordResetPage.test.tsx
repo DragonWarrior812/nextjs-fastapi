@@ -23,7 +23,6 @@ describe("Password Reset Page", () => {
   });
 
   it("displays success message on successful form submission", async () => {
-    // Mock the password reset action to resolve successfully
     (passwordReset as jest.Mock).mockResolvedValue({
       message: "Password reset instructions sent to your email.",
     });
@@ -33,11 +32,9 @@ describe("Password Reset Page", () => {
     const emailInput = screen.getByLabelText(/email/i);
     const submitButton = screen.getByRole("button", { name: /sign in/i });
 
-    // Simulate user input
     fireEvent.change(emailInput, { target: { value: "testuser@example.com" } });
     fireEvent.click(submitButton);
 
-    // Wait for success message to appear
     await waitFor(() => {
       expect(
         screen.getByText("Password reset instructions sent to your email."),
@@ -51,7 +48,6 @@ describe("Password Reset Page", () => {
   });
 
   it("displays error message if password reset fails", async () => {
-    // Mock the password reset action to return an error
     (passwordReset as jest.Mock).mockResolvedValue({
       message: "User not found",
     });
@@ -66,7 +62,6 @@ describe("Password Reset Page", () => {
     });
     fireEvent.click(submitButton);
 
-    // Wait for error message to appear
     await waitFor(() => {
       expect(screen.getByText("User not found")).toBeInTheDocument();
     });
