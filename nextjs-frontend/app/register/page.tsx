@@ -11,12 +11,12 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
 import { register } from "@/components/actions/register-action";
-import { useFormState } from "react-dom";
+import { useActionState } from "react";
 import { SubmitButton } from "@/components/ui/submitButton";
 import Link from "next/link";
 
 export default function Page() {
-  const [state, dispatch] = useFormState(register, { message: "" });
+  const [state, dispatch] = useActionState(register, { message: "" });
   return (
     <div className="flex h-screen w-full items-center justify-center px-4">
       <form action={dispatch}>

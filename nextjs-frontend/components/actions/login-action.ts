@@ -16,6 +16,6 @@ export async function login(prevState: {}, formData: FormData) {
   if (error) {
     return { message: `${error.detail}` };
   }
-  cookies().set("accessToken", data.access_token);
+  (await cookies()).set("accessToken", data.access_token);
   redirect(`/dashboard`);
 }
