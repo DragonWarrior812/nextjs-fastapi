@@ -43,7 +43,7 @@ jobs:
 
       - name: Install Node dependencies
         working-directory: ./nextjs-frontend
-        run: npm install
+        run: pnpm install
 
       - name: Run pre-commit
         uses: pre-commit/action@v3.0.1

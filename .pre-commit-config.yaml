@@ -38,14 +38,14 @@ repos:
         pass_filenames: true
       - id: frontend-prettier
         name: Run Prettier on frontend files
-        entry: sh -c 'cd nextjs-frontend && npm run prettier'
+        entry: sh -c 'cd nextjs-frontend && pnpm run prettier'
         language: system
         types: [ file ]
         files: ^nextjs-frontend/.*\.(js|jsx|ts|tsx)$
         pass_filenames: true
       - id: frontend-tsc
         name: run frontend tsc
-        entry: sh -c 'cd nextjs-frontend && npm run tsc'
+        entry: sh -c 'cd nextjs-frontend && pnpm run tsc'
         language: system
         types: [ file ]
         files: ^nextjs-frontend/.*\.(ts|tsx)$
@@ -59,7 +59,7 @@ repos:
         pass_filenames: false
       - id: generate-frontend-client
         name: generate frontend client
-        entry: sh -c 'cd nextjs-frontend && npm run generate-client'
+        entry: sh -c 'cd nextjs-frontend && pnpm run generate-client'
         language: system
         # Only run frontend client generation if frontend files have changed:
         files: openapi\.json$

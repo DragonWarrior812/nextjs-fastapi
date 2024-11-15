@@ -56,8 +56,8 @@ jobs:
 
       - name: Install Node dependencies
         working-directory: ./nextjs-frontend
-        run: npm install
+        run: pnpm install
 
       - name: Run tests
         working-directory: ./nextjs-frontend
-        run: npm run test
+        run: pnpm run test

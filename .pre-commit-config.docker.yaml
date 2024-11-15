@@ -38,7 +38,7 @@ repos:
         pass_filenames: false
       - id: generate-frontend-client
         name: generate frontend client
-        entry: sh -c 'docker compose run --rm --no-deps -T frontend npm run generate-client'
+        entry: sh -c 'docker compose run --rm --no-deps -T frontend pnpm run generate-client'
         language: system
         # Only run frontend client generation if frontend files have changed:
         files: ^local-shared-data/openapi\.json$

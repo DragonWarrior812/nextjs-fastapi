@@ -7,7 +7,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install dependencies as root (or myappuser, depending on your structure)
-RUN npm install
+RUN pnpm install
 
 ## Switch to the non-root user
 USER node
