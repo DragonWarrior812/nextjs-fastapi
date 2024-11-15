@@ -30,7 +30,7 @@ start-frontend: ## Start the frontend server with pnpm
 	cd $(FRONTEND_DIR) && pnpm run dev
 
 test-frontend: ## Run frontend tests using npm
-	cd $(FRONTEND_DIR) && npm run test
+	cd $(FRONTEND_DIR) && pnpm run test
 
 watch-frontend: ## Start frontend with file watchers
 	cd $(FRONTEND_DIR) && ./start.sh
@@ -59,3 +59,9 @@ docker-up-frontend: ## Start the frontend container
 
 docker-migrate-db: ## Run database migrations using Alembic
 	$(DOCKER_COMPOSE) run --rm backend alembic upgrade head
+
+docker-test-backend: ## Run tests for the backend
+	$(DOCKER_COMPOSE) run --rm backend pytest
+
+docker-test-frontend: ## Run tests for the frontend
+	$(DOCKER_COMPOSE) run --rm frontend pnpm run test
