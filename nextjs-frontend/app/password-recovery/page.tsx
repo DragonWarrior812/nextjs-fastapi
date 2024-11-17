@@ -39,7 +39,7 @@ export default function Page() {
                 required
               />
             </div>
-            <SubmitButton />
+            <SubmitButton text={"send"} />
             <div>{state?.message && <p>{state.message}</p>}</div>
             <div className="mt-4 text-center text-sm">
               <Link href="/login" className="underline">

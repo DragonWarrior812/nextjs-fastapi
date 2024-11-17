@@ -29,7 +29,7 @@ export default function Page() {
           </CardHeader>
           <CardContent className="grid gap-4">
             <div className="grid gap-2">
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="username">Username</Label>
               <Input
                 id="username"
                 name="username"
@@ -48,7 +48,7 @@ export default function Page() {
                 Forgot your password?
               </Link>
             </div>
-            <SubmitButton />
+            <SubmitButton text={"sign in"} />
             <div>{state?.message && <p>{state.message}</p>}</div>
             <div className="mt-4 text-center text-sm">
               Don&apos;t have an account?{" "}
