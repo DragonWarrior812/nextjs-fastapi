@@ -17,9 +17,7 @@ describe("Password Reset Page", () => {
     render(<Page />);
 
     expect(screen.getByLabelText(/email/i)).toBeInTheDocument();
-    expect(
-      screen.getByRole("button", { name: /sign in/i }),
-    ).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /send/i })).toBeInTheDocument();
   });
 
   it("displays success message on successful form submission", async () => {
@@ -30,7 +28,7 @@ describe("Password Reset Page", () => {
     render(<Page />);
 
     const emailInput = screen.getByLabelText(/email/i);
-    const submitButton = screen.getByRole("button", { name: /sign in/i });
+    const submitButton = screen.getByRole("button", { name: /send/i });
 
     fireEvent.change(emailInput, { target: { value: "testuser@example.com" } });
     fireEvent.click(submitButton);
@@ -55,7 +53,7 @@ describe("Password Reset Page", () => {
     render(<Page />);
 
     const emailInput = screen.getByLabelText(/email/i);
-    const submitButton = screen.getByRole("button", { name: /sign in/i });
+    const submitButton = screen.getByRole("button", { name: /send/i });
 
     fireEvent.change(emailInput, {
       target: { value: "invaliduser@example.com" },
