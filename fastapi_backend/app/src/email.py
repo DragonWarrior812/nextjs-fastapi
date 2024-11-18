@@ -4,22 +4,26 @@ from fastapi_mail import FastMail, MessageSchema, ConnectionConfig, MessageType
 from .config import settings
 from .models import User
 
-conf = ConnectionConfig(
-    MAIL_USERNAME=settings.MAIL_USERNAME,
-    MAIL_PASSWORD=settings.MAIL_PASSWORD,
-    MAIL_FROM=settings.MAIL_FROM,
-    MAIL_PORT=587,
-    MAIL_SERVER="smtp.gmail.com",
-    MAIL_FROM_NAME="FastAPI template",
-    MAIL_STARTTLS=True,
-    MAIL_SSL_TLS=False,
-    USE_CREDENTIALS=True,
-    VALIDATE_CERTS=True,
-    TEMPLATE_FOLDER=Path(__file__).parent / "email_templates",
-)
+
+def get_email_config():
+    conf = ConnectionConfig(
+        MAIL_USERNAME=settings.MAIL_USERNAME,
+        MAIL_PASSWORD=settings.MAIL_PASSWORD,
+        MAIL_FROM=settings.MAIL_FROM,
+        MAIL_PORT=587,
+        MAIL_SERVER="smtp.gmail.com",
+        MAIL_FROM_NAME="FastAPI template",
+        MAIL_STARTTLS=True,
+        MAIL_SSL_TLS=False,
+        USE_CREDENTIALS=True,
+        VALIDATE_CERTS=True,
+        TEMPLATE_FOLDER=Path(__file__).parent / "email_templates",
+    )
+    return conf
 
 
 async def send_reset_password_email(user: User, token: str):
+    conf = get_email_config()
     email = user.email
     link = f"{settings.FRONTEND_URL}/reset-password?token={token}"
     message = MessageSchema(
