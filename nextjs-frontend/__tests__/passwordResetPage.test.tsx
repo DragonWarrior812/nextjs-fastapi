@@ -21,6 +21,7 @@ describe("Password Reset Page", () => {
   });
 
   it("displays success message on successful form submission", async () => {
+    // Mock a successful password reset
     (passwordReset as jest.Mock).mockResolvedValue({
       message: "Password reset instructions sent to your email.",
     });
@@ -39,13 +40,13 @@ describe("Password Reset Page", () => {
       ).toBeInTheDocument();
     });
 
-    expect(passwordReset).toHaveBeenCalledWith(
-      expect.any(Object),
-      expect.any(FormData),
-    );
+    const formData = new FormData();
+    formData.set("email", "testuser@example.com");
+    expect(passwordReset).toHaveBeenCalledWith({ message: "" }, formData);
   });
 
   it("displays error message if password reset fails", async () => {
+    // Mock a failed password reset
     (passwordReset as jest.Mock).mockResolvedValue({
       message: "User not found",
     });
@@ -64,9 +65,8 @@ describe("Password Reset Page", () => {
       expect(screen.getByText("User not found")).toBeInTheDocument();
     });
 
-    expect(passwordReset).toHaveBeenCalledWith(
-      expect.any(Object),
-      expect.any(FormData),
-    );
+    const formData = new FormData();
+    formData.set("email", "invaliduser@example.com");
+    expect(passwordReset).toHaveBeenCalledWith({ message: "" }, formData);
   });
 });

@@ -3,6 +3,7 @@ import "@testing-library/jest-dom";
 
 import Page from "@/app/login/page";
 import { login } from "@/components/actions/login-action";
+import { passwordReset } from "@/components/actions/password-reset-action";
 
 jest.mock("../components/actions/login-action", () => ({
   login: jest.fn(),
@@ -24,6 +25,7 @@ describe("Login Page", () => {
   });
 
   it("calls login in successful form submission", async () => {
+    // Mock a successful login
     (login as jest.Mock).mockResolvedValue({
       message: "Password reset instructions sent to your email.",
     });
@@ -41,13 +43,14 @@ describe("Login Page", () => {
 
     await waitFor(() => {});
 
-    expect(login).toHaveBeenCalledWith(
-      expect.any(Object),
-      expect.any(FormData),
-    );
+    const formData = new FormData();
+    formData.set("username", "testuser@example.com");
+    formData.set("password", "#123176a@");
+    expect(login).toHaveBeenCalledWith({ message: "" }, formData);
   });
 
   it("displays error message if login fails", async () => {
+    // Mock a failed login
     (login as jest.Mock).mockResolvedValue({
       message: "LOGIN_BAD_CREDENTIALS",
     });
@@ -67,9 +70,9 @@ describe("Login Page", () => {
       expect(screen.getByText("LOGIN_BAD_CREDENTIALS")).toBeInTheDocument();
     });
 
-    expect(login).toHaveBeenCalledWith(
-      expect.any(Object),
-      expect.any(FormData),
-    );
+    const formData = new FormData();
+    formData.set("username", "invalid@invalid.com");
+    formData.set("password", "#123176a@");
+    expect(login).toHaveBeenCalledWith({ message: "" }, formData);
   });
 });

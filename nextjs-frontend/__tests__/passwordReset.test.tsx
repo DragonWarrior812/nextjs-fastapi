@@ -19,7 +19,7 @@ describe("passwordReset action", () => {
   it("should call resetForgotPassword with the correct input", async () => {
     const formData = new FormData();
     formData.set("email", "testuser@example.com");
-
+    // Mock a successful password reset
     (resetForgotPassword as jest.Mock).mockResolvedValue({});
 
     const result = await passwordReset({}, formData);
@@ -36,6 +36,7 @@ describe("passwordReset action", () => {
     const formData = new FormData();
     formData.set("email", "testuser@example.com");
 
+    // Mock a failed password reset
     (resetForgotPassword as jest.Mock).mockResolvedValue({
       error: { detail: "User not found" },
     });

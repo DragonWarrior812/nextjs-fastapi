@@ -3,6 +3,7 @@ import "@testing-library/jest-dom";
 
 import Page from "@/app/register/page";
 import { register } from "@/components/actions/register-action";
+import { login } from "@/components/actions/login-action";
 
 jest.mock("../components/actions/register-action", () => ({
   register: jest.fn(),
@@ -25,6 +26,7 @@ describe("Register Page", () => {
   });
 
   it("displays success message on successful form submission", async () => {
+    // Mock a successful register
     (register as jest.Mock).mockResolvedValue({});
 
     render(<Page />);
@@ -39,13 +41,14 @@ describe("Register Page", () => {
 
     await waitFor(() => {});
 
-    expect(register).toHaveBeenCalledWith(
-      expect.any(Object),
-      expect.any(FormData),
-    );
+    const formData = new FormData();
+    formData.set("email", "testuser@example.com");
+    formData.set("password", "@1231231%a");
+    expect(register).toHaveBeenCalledWith({ message: "" }, formData);
   });
 
   it("displays error message if register fails", async () => {
+    // Mock a failed register
     (register as jest.Mock).mockResolvedValue({
       message: "REGISTER_USER_ALREADY_EXISTS",
     });
@@ -66,9 +69,9 @@ describe("Register Page", () => {
       ).toBeInTheDocument();
     });
 
-    expect(register).toHaveBeenCalledWith(
-      expect.any(Object),
-      expect.any(FormData),
-    );
+    const formData = new FormData();
+    formData.set("email", "already@already.com");
+    formData.set("password", "@1231231%a");
+    expect(register).toHaveBeenCalledWith({ message: "" }, formData);
   });
 });

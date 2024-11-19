@@ -23,6 +23,7 @@ describe("login action", () => {
 
     const mockSet = (await cookies()).set;
 
+    // Mock a successful login
     (authJwtLogin as jest.Mock).mockResolvedValue({
       data: { access_token: "1245token" },
     });
@@ -45,6 +46,7 @@ describe("login action", () => {
     formData.set("username", "invalid@invalid.com");
     formData.set("password", "Q12341414#");
 
+    // Mock a failed login
     (authJwtLogin as jest.Mock).mockResolvedValue({
       error: {
         detail: "LOGIN_BAD_CREDENTIALS",
