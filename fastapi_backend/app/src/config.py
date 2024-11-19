@@ -17,9 +17,17 @@ class Settings(BaseSettings):
     MAIL_USERNAME: str | None = None
     MAIL_PASSWORD: str | None = None
     MAIL_FROM: str | None = None
+    MAIL_SERVER: str | None = None
+    MAIL_PORT: int = 587
+    MAIL_FROM_NAME: str = "FastAPI template"
+    MAIL_STARTTLS: bool = True
+    MAIL_SSL_TLS: bool = False
+    USE_CREDENTIALS: bool = True
+    VALIDATE_CERTS: bool = True
+    TEMPLATE_FOLDER: str = "email_templates"
 
     # Frontend
-    FRONTEND_URL: str | None = None
+    FRONTEND_URL: str
 
     model_config = SettingsConfigDict(
         env_file=".env", env_file_encoding="utf-8", extra="ignore"

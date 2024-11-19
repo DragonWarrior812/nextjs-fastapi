@@ -72,6 +72,11 @@ ACCESS_SECRET_KEY=<your-secret-key>
 RESET_PASSWORD_SECRET_KEY=<your-secret-key>
 VERIFICATION_SECRET_KEY=<your-secret-key>
 OPENAPI_OUTPUT_FILE=../nextjs-frontend/openapi.json
+
+MAIL_USERNAME=<your-username>
+MAIL_PASSWORD=<your-password>
+MAIL_FROM=<your-from>
+MAIL_SERVER=<your-server>
 ```
 
 **Frontend (`nextjs-frontend/.env.local`):**
