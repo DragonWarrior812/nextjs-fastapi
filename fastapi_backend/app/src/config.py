@@ -27,7 +27,7 @@ class Settings(BaseSettings):
     TEMPLATE_FOLDER: str = "email_templates"
 
     # Frontend
-    FRONTEND_URL: str
+    FRONTEND_URL: str = "http://localhost:3000"
 
     model_config = SettingsConfigDict(
         env_file=".env", env_file_encoding="utf-8", extra="ignore"
