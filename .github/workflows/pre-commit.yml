@@ -36,6 +36,12 @@ jobs:
         working-directory: ./fastapi_backend
         run: poetry install
 
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+          run_install: false
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
@@ -43,7 +49,7 @@ jobs:
 
       - name: Install Node dependencies
         working-directory: ./nextjs-frontend
-        run: npm install
+        run: pnpm install
 
       - name: Run pre-commit
         uses: pre-commit/action@v3.0.1

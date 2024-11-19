@@ -37,7 +37,7 @@ class MyHandler(FileSystemEventHandler):
         """Run mypy type checks and print output."""
         print("Running mypy type checks...")
         result = subprocess.run(
-            ["poetry", "run", "mypy", "src/"],
+            ["poetry", "run", "mypy", "app/src/"],
             capture_output=True,
             text=True,
             check=False,
@@ -55,7 +55,13 @@ class MyHandler(FileSystemEventHandler):
         print("Proceeding with OpenAPI schema generation...")
         try:
             subprocess.run(
-                ["poetry", "run", "python", "-m", "commands.generate_openapi_schema"],
+                [
+                    "poetry",
+                    "run",
+                    "python",
+                    "-m",
+                    "app.commands.generate_openapi_schema",
+                ],
                 check=True,
             )
             print("OpenAPI schema generation completed successfully.")

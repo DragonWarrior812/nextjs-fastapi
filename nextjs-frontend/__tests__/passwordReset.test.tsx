@@ -19,8 +19,7 @@ describe("passwordReset action", () => {
   it("should call resetForgotPassword with the correct input", async () => {
     const formData = new FormData();
     formData.set("email", "testuser@example.com");
-
-    // Mock successful password reset
+    // Mock a successful password reset
     (resetForgotPassword as jest.Mock).mockResolvedValue({});
 
     const result = await passwordReset({}, formData);

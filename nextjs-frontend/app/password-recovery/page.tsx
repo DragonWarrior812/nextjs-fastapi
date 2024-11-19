@@ -11,12 +11,12 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
 import { passwordReset } from "@/components/actions/password-reset-action";
-import { useFormState } from "react-dom";
+import { useActionState } from "react";
 import { SubmitButton } from "@/components/ui/submitButton";
 import Link from "next/link";
 
 export default function Page() {
-  const [state, dispatch] = useFormState(passwordReset, { message: "" });
+  const [state, dispatch] = useActionState(passwordReset, { message: "" });
 
   return (
     <div className="flex h-screen w-full items-center justify-center px-4">
@@ -39,7 +39,7 @@ export default function Page() {
                 required
               />
             </div>
-            <SubmitButton />
+            <SubmitButton text={"send"} />
             <div>{state?.message && <p>{state.message}</p>}</div>
             <div className="mt-4 text-center text-sm">
               <Link href="/login" className="underline">
