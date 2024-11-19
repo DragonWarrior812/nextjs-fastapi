@@ -20,6 +20,7 @@ from fastapi_users.db import SQLAlchemyUserDatabase
 
 from .config import settings
 from .database import get_user_db
+from .email import send_reset_password_email
 from .models import User
 from .schemas import UserCreate
 
@@ -36,7 +37,7 @@ class UserManager(UUIDIDMixin, BaseUserManager[User, uuid.UUID]):
     async def on_after_forgot_password(
         self, user: User, token: str, request: Optional[Request] = None
     ):
-        print(f"User {user.id} has forgot their password. Reset token: {token}")
+        await send_reset_password_email(user, token)
 
     async def on_after_request_verify(
         self, user: User, token: str, request: Optional[Request] = None
