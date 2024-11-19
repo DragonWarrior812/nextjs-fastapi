@@ -16,6 +16,7 @@ describe("register action", () => {
     formData.set("email", "a@a.com");
     formData.set("password", "Q12341414#");
 
+    // Mock a successful register
     (registerRegister as jest.Mock).mockResolvedValue({});
 
     await register({}, formData);
@@ -34,6 +35,7 @@ describe("register action", () => {
     formData.set("email", "a@a.com");
     formData.set("password", "Q12341414#");
 
+    // Mock a failed register
     (registerRegister as jest.Mock).mockResolvedValue({
       error: {
         detail: "REGISTER_USER_ALREADY_EXISTS",
