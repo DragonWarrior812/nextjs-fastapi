@@ -26,6 +26,17 @@ services:
       - my_network
     volumes:
       - postgres_data:/var/lib/postgresql/data
+  db_test:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: testdatabase
+    ports:
+      - "5433:5432"
+    networks:
+      - my_network
+    restart: always
   frontend:
     build:
       context: ./nextjs-frontend
