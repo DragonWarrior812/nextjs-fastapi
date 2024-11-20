@@ -25,7 +25,7 @@ class Settings(BaseSettings):
     MAIL_SSL_TLS: bool = False
     USE_CREDENTIALS: bool = True
     VALIDATE_CERTS: bool = True
-    TEMPLATE_FOLDER: str = "email_templates"
+    TEMPLATE_DIR: str = "email_templates"
 
     # Frontend
     FRONTEND_URL: str = "http://localhost:3000"

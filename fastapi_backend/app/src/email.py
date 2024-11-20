@@ -17,7 +17,7 @@ def get_email_config():
         MAIL_SSL_TLS=settings.MAIL_SSL_TLS,
         USE_CREDENTIALS=settings.USE_CREDENTIALS,
         VALIDATE_CERTS=settings.VALIDATE_CERTS,
-        TEMPLATE_FOLDER=Path(__file__).parent / settings.TEMPLATE_FOLDER,
+        TEMPLATE_FOLDER=Path(__file__).parent / settings.TEMPLATE_DIR,
     )
     return conf
 
