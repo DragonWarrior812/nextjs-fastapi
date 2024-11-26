@@ -25,7 +25,7 @@ def get_email_config():
 async def send_reset_password_email(user: User, token: str):
     conf = get_email_config()
     email = user.email
-    link = f"{settings.FRONTEND_URL}/reset-password?token={token}"
+    link = f"{settings.FRONTEND_URL}/password-recovery/confirm?token={token}"
     message = MessageSchema(
         subject="Password recovery",
         recipients=[email],
