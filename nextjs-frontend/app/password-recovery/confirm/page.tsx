@@ -1,7 +1,7 @@
 "use client";
 
 import { useActionState } from "react";
-import { useSearchParams } from "next/navigation";
+import { notFound, useSearchParams } from "next/navigation";
 import { passwordResetConfirm } from "@/components/actions/password-reset-action";
 import { SubmitButton } from "@/components/ui/submitButton";
 import {
@@ -19,7 +19,11 @@ const initialState = { message: "" };
 export default function Page() {
   const [state, dispatch] = useActionState(passwordResetConfirm, initialState);
   const searchParams = useSearchParams();
-  const token = searchParams.get("token") || "";
+  const token = searchParams.get("token");
+
+  if (!token) {
+    notFound();
+  }
 
   return (
     <div className="flex h-screen w-full items-center justify-center px-4">
@@ -36,6 +40,16 @@ export default function Page() {
               <Label htmlFor="password">Password</Label>
               <Input id="password" name="password" type="password" required />
             </div>
+            {state?.errors?.password && (
+              <div>
+                <p>Password must:</p>
+                <ul>
+                  {state.errors.password.map((error) => (
+                    <li key={error}>- {error}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
             <div className="grid gap-2">
               <Label htmlFor="passwordConfirm">Password Confirm</Label>
               <Input
@@ -45,6 +59,9 @@ export default function Page() {
                 required
               />
             </div>
+            {state.errors?.passwordConfirm && (
+              <p className="text-green-600">{state.errors.passwordConfirm}</p>
+            )}
             <input
               type="hidden"
               id="resetToken"
