@@ -3,11 +3,12 @@ import "@testing-library/jest-dom";
 
 import Page from "@/app/password-recovery/confirm/page";
 import { passwordResetConfirm } from "@/components/actions/password-reset-action";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, notFound } from "next/navigation";
 
 jest.mock("next/navigation", () => ({
   ...jest.requireActual("next/navigation"),
   useSearchParams: jest.fn(),
+  notFound: jest.fn(),
 }));
 
 jest.mock("../components/actions/password-reset-action", () => ({
@@ -29,6 +30,16 @@ describe("Password Reset Confirm Page", () => {
     expect(screen.getByLabelText("Password")).toBeInTheDocument();
     expect(screen.getByLabelText("Password Confirm")).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /send/i })).toBeInTheDocument();
+  });
+
+  it("renders the 404 page in case there is not a token", () => {
+    (useSearchParams as jest.Mock).mockImplementation(() => ({
+      get: (key: string) => (key === "token" ? "" : undefined),
+    }));
+
+    render(<Page />);
+
+    expect(notFound).toHaveBeenCalled();
   });
 
   it("displays error message if password reset fails", async () => {
