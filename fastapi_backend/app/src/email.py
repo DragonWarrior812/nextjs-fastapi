@@ -1,4 +1,5 @@
 from pathlib import Path
+import urllib.parse
 
 from fastapi_mail import FastMail, MessageSchema, ConnectionConfig, MessageType
 from .config import settings
@@ -25,7 +26,10 @@ def get_email_config():
 async def send_reset_password_email(user: User, token: str):
     conf = get_email_config()
     email = user.email
-    link = f"{settings.FRONTEND_URL}/password-recovery/confirm?token={token}"
+    base_url = f"{settings.FRONTEND_URL}/password-recovery/confirm?"
+    params = {"token": token}
+    encoded_params = urllib.parse.urlencode(params)
+    link = f"{base_url}{encoded_params}"
     message = MessageSchema(
         subject="Password recovery",
         recipients=[email],
