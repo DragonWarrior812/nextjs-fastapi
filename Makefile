@@ -15,7 +15,7 @@ help:
 .PHONY: start-backend test-backend migrate-backend watch-backend
 
 start-backend: ## Start the backend server with FastAPI
-	cd $(BACKEND_DIR) && poetry run fastapi dev app/src/main.py --host 0.0.0.0 --port 8000 --reload
+	cd $(BACKEND_DIR) && poetry run fastapi dev app/main.py --host 0.0.0.0 --port 8000 --reload
 
 test-backend: ## Run backend tests using pytest
 	cd $(BACKEND_DIR) && poetry run pytest

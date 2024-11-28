@@ -1,6 +1,6 @@
 import json
 from pathlib import Path
-from app.src.main import app
+from app.main import app
 import os
 
 from dotenv import load_dotenv
