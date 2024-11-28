@@ -29,7 +29,6 @@ export async function register(prevState: {}, formData: FormData) {
   const { error } = await registerRegister(input);
   if (error) {
     return { message: getErrorMessage(error) };
-    // return { message: `${error.detail}` };
   }
   redirect(`/login`);
 }
