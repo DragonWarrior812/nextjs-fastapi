@@ -15,8 +15,10 @@ import { login } from "@/components/actions/login-action";
 import { useActionState } from "react";
 import { SubmitButton } from "@/components/ui/submitButton";
 
+const initialState = { message: "" };
+
 export default function Page() {
-  const [state, dispatch] = useActionState(login, { message: "" });
+  const [state, dispatch] = useActionState(login, initialState);
   return (
     <div className="flex h-screen w-full items-center justify-center px-4">
       <form action={dispatch}>
