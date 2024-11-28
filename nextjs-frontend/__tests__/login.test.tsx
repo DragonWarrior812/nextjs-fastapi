@@ -66,4 +66,23 @@ describe("login action", () => {
 
     expect(cookies).not.toHaveBeenCalled();
   });
+
+  it("should should return an error if either the password or username is not sent", async () => {
+    const formData = new FormData();
+    formData.set("username", "");
+    formData.set("password", "");
+
+    const result = await login({}, formData);
+
+    expect(authJwtLogin).not.toHaveBeenCalledWith();
+
+    expect(result).toEqual({
+      errors: {
+        password: ["Password is required"],
+        username: ["Username is required"],
+      },
+    });
+
+    expect(cookies).not.toHaveBeenCalled();
+  });
 });
