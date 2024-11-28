@@ -33,7 +33,7 @@ def test_remove_operation_id_tag(sample_openapi_schema, expected_output_schema):
 
 @pytest.fixture
 def mock_app(mocker):
-    app = mocker.patch("app.commands.generate_openapi_schema.app")
+    app = mocker.patch("commands.generate_openapi_schema.app")
     app.openapi.return_value = {
         "openapi": "3.1.0",
         "info": {"title": "FastAPI", "version": "0.1.0"},
@@ -44,7 +44,7 @@ def mock_app(mocker):
 
 def test_generate_openapi_schema(mocker, mock_app):
     mock_remove_operation_id_tag = mocker.patch(
-        "app.commands.generate_openapi_schema.remove_operation_id_tag"
+        "commands.generate_openapi_schema.remove_operation_id_tag"
     )
     mock_remove_operation_id_tag.return_value = {"mocked_schema": True}
 
