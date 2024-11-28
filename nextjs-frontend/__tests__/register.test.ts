@@ -52,4 +52,23 @@ describe("register action", () => {
     });
     expect(result).toEqual({ message: "REGISTER_USER_ALREADY_EXISTS" });
   });
+
+  it("should return an validation error if the form is invalid", async () => {
+    const formData = new FormData();
+    formData.set("email", "email");
+    formData.set("password", "invalid_password");
+
+    const result = await register({}, formData);
+
+    expect(result).toEqual({
+      errors: {
+        email: ["Invalid email address"],
+        password: [
+          "Password should contain at least one uppercase letter.",
+          "Password should contain at least one special character.",
+        ],
+      },
+    });
+    expect(registerRegister).not.toHaveBeenCalledWith();
+  });
 });

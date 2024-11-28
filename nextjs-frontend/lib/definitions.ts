@@ -20,3 +20,8 @@ export const passwordResetConfirmSchema = z
     message: "Passwords must match.",
     path: ["passwordConfirm"],
   });
+
+export const registerSchema = z.object({
+  password: passwordSchema,
+  email: z.string().email({ message: "Invalid email address" }),
+});
