@@ -3,7 +3,6 @@ import "@testing-library/jest-dom";
 
 import Page from "@/app/register/page";
 import { register } from "@/components/actions/register-action";
-import { login } from "@/components/actions/login-action";
 
 jest.mock("../components/actions/register-action", () => ({
   register: jest.fn(),
@@ -72,6 +71,48 @@ describe("Register Page", () => {
     const formData = new FormData();
     formData.set("email", "already@already.com");
     formData.set("password", "@1231231%a");
+    expect(register).toHaveBeenCalledWith({ message: "" }, formData);
+  });
+
+  it("displays validation errors if password and email are invalid", async () => {
+    // Mock a successful password register
+    (register as jest.Mock).mockResolvedValue({
+      errors: {
+        email: ["Invalid email address"],
+        password: [
+          "Password should contain at least one uppercase letter.",
+          "Password should contain at least one special character.",
+        ],
+      },
+    });
+
+    render(<Page />);
+
+    const emailInput = screen.getByLabelText(/email/i);
+    const passwordInput = screen.getByLabelText(/password/i);
+    const submitButton = screen.getByRole("button", { name: /sign up/i });
+
+    fireEvent.change(emailInput, { target: { value: "email@email.com" } });
+    fireEvent.change(passwordInput, { target: { value: "invalid_password" } });
+    fireEvent.click(submitButton);
+
+    await waitFor(() => {
+      expect(
+        screen.getByText(
+          "- Password should contain at least one uppercase letter.",
+        ),
+      ).toBeInTheDocument();
+      expect(
+        screen.getByText(
+          "- Password should contain at least one special character.",
+        ),
+      ).toBeInTheDocument();
+      expect(screen.getByText("Invalid email address")).toBeInTheDocument();
+    });
+
+    const formData = new FormData();
+    formData.set("email", "email@email.com");
+    formData.set("password", "invalid_password");
     expect(register).toHaveBeenCalledWith({ message: "" }, formData);
   });
 });

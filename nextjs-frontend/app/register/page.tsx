@@ -15,8 +15,10 @@ import { useActionState } from "react";
 import { SubmitButton } from "@/components/ui/submitButton";
 import Link from "next/link";
 
+const initialState = { message: "" };
+
 export default function Page() {
-  const [state, dispatch] = useActionState(register, { message: "" });
+  const [state, dispatch] = useActionState(register, initialState);
   return (
     <div className="flex h-screen w-full items-center justify-center px-4">
       <form action={dispatch}>
@@ -38,10 +40,23 @@ export default function Page() {
                 required
               />
             </div>
+            {state.errors?.email && (
+              <p className="text-green-600">{state.errors.email}</p>
+            )}
             <div className="grid gap-2">
               <Label htmlFor="password">Password</Label>
               <Input id="password" name="password" type="password" required />
             </div>
+            {state?.errors?.password && (
+              <div>
+                <p>Password must:</p>
+                <ul>
+                  {state.errors.password.map((error) => (
+                    <li key={error}>- {error}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
             <SubmitButton text={"sign up"} />
             <div>{state?.message && <p>{state.message}</p>}</div>
             <div className="mt-4 text-center text-sm">
