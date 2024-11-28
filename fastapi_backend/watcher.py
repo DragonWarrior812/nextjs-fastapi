@@ -7,7 +7,7 @@ from watchdog.events import FileSystemEventHandler
 from threading import Timer
 
 WATCHER_REGEX_PATTERN = re.compile(r"(main|schemas)\.py$")
-APP_PATH = "app/src"
+APP_PATH = "app"
 
 
 class MyHandler(FileSystemEventHandler):
@@ -37,7 +37,7 @@ class MyHandler(FileSystemEventHandler):
         """Run mypy type checks and print output."""
         print("Running mypy type checks...")
         result = subprocess.run(
-            ["poetry", "run", "mypy", "app/src/"],
+            ["poetry", "run", "mypy", "app"],
             capture_output=True,
             text=True,
             check=False,
@@ -60,7 +60,7 @@ class MyHandler(FileSystemEventHandler):
                     "run",
                     "python",
                     "-m",
-                    "app.commands.generate_openapi_schema",
+                    "commands.generate_openapi_schema",
                 ],
                 check=True,
             )

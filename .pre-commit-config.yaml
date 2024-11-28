@@ -52,7 +52,7 @@ repos:
         pass_filenames: false
       - id: generate-openapi-schema
         name: generate OpenAPI schema
-        entry: sh -c 'cd fastapi_backend && poetry run python -m app.commands.generate_openapi_schema'
+        entry: sh -c 'cd fastapi_backend && poetry run python -m commands.generate_openapi_schema'
         language: system
         # Only run OpenAPI schema generation if schemas.py, main.py or package version have changed:
         files: (main\.py$|schemas\.py$|pyproject\.toml)
