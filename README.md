@@ -1,3 +1,6 @@
+[![CI](https://github.com/vintasoftware/nextjs-fastapi-template/actions/workflows/ci.yml/badge.svg)](https://github.com/vintasoftware/nextjs-fastapi-template/actions/workflows/ci.yml)
+[![Coverage Status](https://coveralls.io/repos/github/vintasoftware/nextjs-fastapi-template/badge.svg)](https://coveralls.io/github/vintasoftware/nextjs-fastapi-template)
+
 # nextjs-fastapi-template
 
 ## Table of Contents
