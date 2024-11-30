@@ -9,6 +9,7 @@
     "lint": "next lint",
     "generate-client": "openapi-ts",
     "test": "jest",
+    "coverage": "jest --coverage",
     "prettier": "prettier --write '**/*.{js,jsx,ts,tsx,json,css,html}'",
     "tsc": "tsc"
   },

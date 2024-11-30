@@ -55,6 +55,7 @@ jobs:
         uses: coverallsapp/github-action@v2.3.4
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          flag-name: python-coverage
 
   build-frontend:
     name: Next.js CI
@@ -82,4 +83,10 @@ jobs:
 
       - name: Run tests
         working-directory: ./nextjs-frontend
-        run: pnpm run test
+        run: pnpm run coverage
+
+      - name: Coveralls GitHub Action
+        uses: coverallsapp/github-action@v2.3.4
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          flag-name: node-coverage
