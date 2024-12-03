@@ -55,6 +55,8 @@ jobs:
         uses: coverallsapp/github-action@v2.3.4
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          flag-name: python-coverage
+          parallel: true
 
   build-frontend:
     name: Next.js CI
@@ -82,4 +84,26 @@ jobs:
 
       - name: Run tests
         working-directory: ./nextjs-frontend
-        run: pnpm run test
+        run: pnpm run coverage
+
+      - name: Coveralls GitHub Action
+        uses: coverallsapp/github-action@v2.3.4
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          flag-name: node-coverage
+          parallel: true
+
+  finish:
+
+    name: Coveralls
+
+    needs: [ build-fastapi, build-frontend ]
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Close parallel build
+        uses: coverallsapp/github-action@v2.3.4
+        with:
+          parallel-finished: true
+          carryforward: "python-coverage,node-coverage"
