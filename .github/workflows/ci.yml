@@ -106,4 +106,4 @@ jobs:
         uses: coverallsapp/github-action@v2.3.4
         with:
           parallel-finished: true
-          carryforward: "python-coverage,,node-coverage"
+          carryforward: "python-coverage,node-coverage"
