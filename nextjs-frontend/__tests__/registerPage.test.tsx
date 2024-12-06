@@ -99,12 +99,12 @@ describe("Register Page", () => {
     await waitFor(() => {
       expect(
         screen.getByText(
-          "- Password should contain at least one uppercase letter.",
+          "Password should contain at least one uppercase letter.",
         ),
       ).toBeInTheDocument();
       expect(
         screen.getByText(
-          "- Password should contain at least one special character.",
+          "Password should contain at least one special character.",
         ),
       ).toBeInTheDocument();
       expect(screen.getByText("Invalid email address")).toBeInTheDocument();
