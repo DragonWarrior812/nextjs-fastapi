@@ -76,10 +76,7 @@ export default function Page() {
                 </div>
               )}
             </div>
-            <SubmitButton
-              text="Sign Up"
-              // className="bg-gradient-to-r from-blue-500 to-indigo-500 text-white font-semibold py-2 px-4 rounded-lg hover:from-blue-600 hover:to-indigo-600 focus:ring-4 focus:ring-blue-300"
-            />
+            <SubmitButton text="Sign Up" />
             <div className="mt-2 text-sm text-center text-red-500">
               {state?.message && <p>{state.message}</p>}
             </div>
