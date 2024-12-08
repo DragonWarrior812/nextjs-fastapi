@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { Home, Users2, List } from "lucide-react";
+import Image from "next/image";
+
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -27,8 +29,16 @@ export default function DashboardLayout({
         <div className="flex flex-col items-center gap-8">
           <Link
             href="/"
-            className="flex items-center justify-center rounded-full bg-primary p-3"
-          ></Link>
+            className="flex items-center justify-center rounded-full"
+          >
+            <Image
+              src="/images/vinta.png"
+              alt="Vinta"
+              width={64}
+              height={64}
+              className="object-cover transition-transform duration-200 hover:scale-105"
+            />
+          </Link>
           <Link
             href="/dashboard"
             className="flex items-center gap-2 text-muted-foreground hover:text-foreground"

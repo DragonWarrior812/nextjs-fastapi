@@ -13,7 +13,10 @@ export function DeleteButton({ itemId }: DeleteButtonProps) {
   };
 
   return (
-    <DropdownMenuItem className="text-red-500" onClick={handleDelete}>
+    <DropdownMenuItem
+      className="text-red-500 cursor-pointer"
+      onClick={handleDelete}
+    >
       Delete
     </DropdownMenuItem>
   );

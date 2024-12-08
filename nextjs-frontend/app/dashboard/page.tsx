@@ -66,7 +66,9 @@ export default async function DashboardPage() {
                         <span className="text-lg font-semibold">...</span>
                       </DropdownMenuTrigger>
                       <DropdownMenuContent className="p-2">
-                        <DropdownMenuItem>Edit</DropdownMenuItem>
+                        <DropdownMenuItem disabled={true}>
+                          Edit
+                        </DropdownMenuItem>
                         <DeleteButton itemId={item.id} />
                       </DropdownMenuContent>
                     </DropdownMenu>
