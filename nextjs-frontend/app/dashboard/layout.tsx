@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Home, ShoppingCart, Package, Users2 } from "lucide-react";
+import { Home, Users2, List } from "lucide-react";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -30,22 +30,10 @@ export default function DashboardLayout({
             className="flex items-center justify-center rounded-full bg-primary p-3"
           ></Link>
           <Link
-            href="/"
+            href="/dashboard"
             className="flex items-center gap-2 text-muted-foreground hover:text-foreground"
           >
-            <Home className="h-5 w-5" />
-          </Link>
-          <Link
-            href="/orders"
-            className="flex items-center gap-2 text-muted-foreground hover:text-foreground"
-          >
-            <ShoppingCart className="h-5 w-5" />
-          </Link>
-          <Link
-            href="/products"
-            className="flex items-center gap-2 text-muted-foreground hover:text-foreground"
-          >
-            <Package className="h-5 w-5" />
+            <List className="h-5 w-5" />
           </Link>
           <Link
             href="/customers"
@@ -69,7 +57,12 @@ export default function DashboardLayout({
               </BreadcrumbItem>
               <BreadcrumbSeparator>/</BreadcrumbSeparator>
               <BreadcrumbItem>
-                <BreadcrumbLink>Dashboard</BreadcrumbLink>
+                <BreadcrumbLink asChild>
+                  <Link href="/dashboard" className="flex items-center gap-2">
+                    <List className="h-4 w-4" />
+                    <span>Dashboard</span>
+                  </Link>
+                </BreadcrumbLink>
               </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>
