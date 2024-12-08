@@ -5,8 +5,6 @@ import { Label } from "@/components/ui/label";
 import { addItem } from "@/components/actions/items-action";
 import { useActionState } from "react";
 import { SubmitButton } from "@/components/ui/submitButton";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
 
 const initialState = { message: "" };
 
@@ -101,14 +99,6 @@ export default function CreateItemPage() {
             </div>
           )}
         </form>
-      </div>
-
-      <div className="fixed bottom-8 right-8">
-        <Link href="/dashboard/add-item">
-          <Button variant="outline" className="text-lg px-4 py-2">
-            Add New Item
-          </Button>
-        </Link>
       </div>
     </div>
   );
