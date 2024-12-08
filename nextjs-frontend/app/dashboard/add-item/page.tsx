@@ -43,9 +43,9 @@ export default function CreateItemPage() {
                 required
                 className="w-full border-gray-300 dark:border-gray-600"
               />
-              {/*{state.errors?.name && (*/}
-              {/*  <p className="text-red-500 text-sm">{state.errors.name}</p>*/}
-              {/*)}*/}
+              {state.errors?.name && (
+                <p className="text-red-500 text-sm">{state.errors.name}</p>
+              )}
             </div>
 
             <div className="space-y-3">
@@ -63,11 +63,11 @@ export default function CreateItemPage() {
                 required
                 className="w-full border-gray-300 dark:border-gray-600"
               />
-              {/*{state.errors?.description && (*/}
-              {/*  <p className="text-red-500 text-sm">*/}
-              {/*    {state.errors.description}*/}
-              {/*  </p>*/}
-              {/*)}*/}
+              {state.errors?.description && (
+                <p className="text-red-500 text-sm">
+                  {state.errors.description}
+                </p>
+              )}
             </div>
 
             <div className="space-y-3">
@@ -85,9 +85,9 @@ export default function CreateItemPage() {
                 required
                 className="w-full border-gray-300 dark:border-gray-600"
               />
-              {/*{state.errors?.quantity && (*/}
-              {/*  <p className="text-red-500 text-sm">{state.errors.quantity}</p>*/}
-              {/*)}*/}
+              {state.errors?.quantity && (
+                <p className="text-red-500 text-sm">{state.errors.quantity}</p>
+              )}
             </div>
           </div>
 

@@ -4,6 +4,7 @@ import { cookies } from "next/headers";
 import { readItem, deleteItem, createItem } from "@/app/clientService";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import { itemSchema } from "@/lib/definitions";
 
 export async function fetchItems() {
   const cookieStore = await cookies();
@@ -57,14 +58,26 @@ export async function addItem(prevState: {}, formData: FormData) {
     return { message: "No access token found" };
   }
 
+  const validatedFields = itemSchema.safeParse({
+    name: formData.get("name"),
+    description: formData.get("description"),
+    quantity: formData.get("quantity"),
+  });
+
+  if (!validatedFields.success) {
+    return { errors: validatedFields.error.flatten().fieldErrors };
+  }
+
+  const { name, description, quantity } = validatedFields.data;
+
   const input = {
     headers: {
       Authorization: `Bearer ${token}`,
     },
     body: {
-      name: formData.get("name") as string,
-      description: formData.get("description") as string,
-      quantity: formData.get("quantity") as unknown as number,
+      name,
+      description,
+      quantity,
     },
   };
   const { error } = await createItem(input);
