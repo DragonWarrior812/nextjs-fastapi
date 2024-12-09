@@ -41,8 +41,6 @@ import type {
   UsersDeleteUserData,
   UsersDeleteUserError,
   UsersDeleteUserResponse,
-  AuthenticatedRouteError,
-  AuthenticatedRouteResponse,
   ReadItemError,
   ReadItemResponse,
   CreateItemData,
@@ -51,6 +49,8 @@ import type {
   DeleteItemData,
   DeleteItemError,
   DeleteItemResponse,
+  AuthenticatedRouteError,
+  AuthenticatedRouteResponse,
 } from "./types.gen";
 
 export const client = createClient(createConfig());
@@ -253,22 +253,6 @@ export const usersDeleteUser = <ThrowOnError extends boolean = false>(
 };
 
 /**
- * Authenticated Route
- */
-export const authenticatedRoute = <ThrowOnError extends boolean = false>(
-  options?: Options<unknown, ThrowOnError>,
-) => {
-  return (options?.client ?? client).get<
-    AuthenticatedRouteResponse,
-    AuthenticatedRouteError,
-    ThrowOnError
-  >({
-    ...options,
-    url: "/authenticated-route",
-  });
-};
-
-/**
  * Read Item
  */
 export const readItem = <ThrowOnError extends boolean = false>(
@@ -313,5 +297,21 @@ export const deleteItem = <ThrowOnError extends boolean = false>(
   >({
     ...options,
     url: "/items/{item_id}",
+  });
+};
+
+/**
+ * Authenticated Route
+ */
+export const authenticatedRoute = <ThrowOnError extends boolean = false>(
+  options?: Options<unknown, ThrowOnError>,
+) => {
+  return (options?.client ?? client).get<
+    AuthenticatedRouteResponse,
+    AuthenticatedRouteError,
+    ThrowOnError
+  >({
+    ...options,
+    url: "/authenticated-route",
   });
 };

@@ -185,10 +185,6 @@ export type UsersDeleteUserResponse = void;
 
 export type UsersDeleteUserError = unknown | HTTPValidationError;
 
-export type AuthenticatedRouteResponse = unknown;
-
-export type AuthenticatedRouteError = unknown;
-
 export type ReadItemResponse = Array<ItemRead>;
 
 export type ReadItemError = unknown;
@@ -210,3 +206,7 @@ export type DeleteItemData = {
 export type DeleteItemResponse = unknown;
 
 export type DeleteItemError = HTTPValidationError;
+
+export type AuthenticatedRouteResponse = unknown;
+
+export type AuthenticatedRouteError = unknown;

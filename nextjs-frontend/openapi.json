@@ -675,30 +675,6 @@
         }
       }
     },
-    "/authenticated-route": {
-      "get": {
-        "tags": [
-          "custom-auth"
-        ],
-        "summary": "Authenticated Route",
-        "operationId": "authenticated_route",
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "OAuth2PasswordBearer": []
-          }
-        ]
-      }
-    },
     "/items/": {
       "get": {
         "tags": [
@@ -817,6 +793,30 @@
             }
           }
         }
+      }
+    },
+    "/authenticated-route": {
+      "get": {
+        "tags": [
+          "custom-auth"
+        ],
+        "summary": "Authenticated Route",
+        "operationId": "authenticated_route",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2PasswordBearer": []
+          }
+        ]
       }
     }
   },
