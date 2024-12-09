@@ -5,6 +5,7 @@ from .schemas import UserCreate, UserRead, UserUpdate
 from .users import auth_backend, current_active_user, fastapi_users, AUTH_URL_PATH
 from fastapi.middleware.cors import CORSMiddleware
 from .utils import simple_generate_unique_route_id
+from app.routes.items import router as items_router
 
 
 app = FastAPI(generate_unique_id_function=simple_generate_unique_route_id)
@@ -49,6 +50,8 @@ app.include_router(
     prefix="/users",
     tags=["users"],
 )
+
+app.include_router(items_router, prefix="/items")
 
 
 @app.get("/authenticated-route", tags=["custom-auth"])
