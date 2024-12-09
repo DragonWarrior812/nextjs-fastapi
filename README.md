@@ -4,14 +4,14 @@
 # nextjs-fastapi-template
 
 ## Table of Contents
-* [Overview](#overview)
+* [About](#about)
 * [Local Setup](#local-setup)
   * [Installing Required Tools](#installing-required-tools)
   * [Setting Up Environment Variables](#setting-up-environment-variables)
-  * [Running the Project Locally](#running-the-project-locally-without-docker)
+  * [If you are not using Docker](#if-you-are-not-using-docker)
     * [Backend](#backend)
     * [Frontend](#frontend)
-  * [Running the Project Using Docker](#running-the-project-using-docker)
+  * [If you are using Docker](#if-you-are-using-docker)
 * [Pre-Commit Setup](#pre-commit-setup)
 * [Running the Application](#running-the-application)
 * [Watchers](#watchers)
@@ -20,8 +20,22 @@
 * [Makefile](#makefile)
 * [Important Considerations](#important-considerations)
 
-## Overview
-This project consists of a backend (API built with FastAPI) and a frontend (web application built with Next.js). You can choose to run the project locally or using Docker. Using Docker is recommended to simplify setup, especially for database management.
+## About
+This template streamlines building APIs with [FastAPI](https://fastapi.tiangolo.com/) and dynamic frontends with [Next.js](https://nextjs.org/). It integrates the backend and frontend using [@hey-api/openapi-ts](https://github.com/hey-ai/openapi-ts) to generate a type-safe client, with automated watchers to keep the OpenAPI schema and client updated, ensuring a smooth and synchronized development workflow.  
+
+- [Next.js](https://nextjs.org/): Fast, SEO-friendly frontend framework  
+- [FastAPI](https://fastapi.tiangolo.com/): High-performance Python backend  
+- [Zod](https://zod.dev/) + [TypeScript](https://www.typescriptlang.org/): End-to-end type safety and schema validation  
+- [fastapi-users](https://fastapi-users.github.io/fastapi-users/): Built-in authentication and user management  
+- [OpenAPI-fetch](https://github.com/Hey-AI/openapi-fetch): Fully typed client generation from OpenAPI schema  
+- Watchers:  
+  - Backend: [Watchdog](https://github.com/gorakhargosh/watchdog) for monitoring file changes  
+  - Frontend: [Chokidar](https://github.com/paulmillr/chokidar) for live updates  
+- [Docker](https://www.docker.com/): Consistent environments for development and production  
+- [Pre-commit hooks](https://pre-commit.com/): Enforce code quality with automated checks  
+- [OpenAPI JSON schema](https://swagger.io/specification/): Centralized API documentation and client generation  
+
+With this setup, you’ll save time and maintain a seamless connection between your backend and frontend, boosting productivity and reliability.  
 
 ## Local Setup
 
@@ -88,7 +102,7 @@ NEXT_PUBLIC_API_BASE_URL=http://localhost:8000
 OPENAPI_OUTPUT_FILE=openapi.json
 ```
 
-### Running the Project Locally Without Docker
+### If you are not using Docker:
 To run the project locally, use the following commands:
 
 #### Backend
@@ -118,7 +132,7 @@ To run the project locally, use the following commands:
    make start-frontend
    ```
 
-### Running the Project Using Docker
+### If you are using Docker:
 1. Ensure Docker is running.
 2. Run the following command to build and start the backend, frontend, and database containers:
    ```bash
