@@ -1,5 +1,3 @@
-# fastapi_backend/tests/routes/test_items.py
-
 import pytest
 from fastapi import status
 
