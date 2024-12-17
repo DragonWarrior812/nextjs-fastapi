@@ -2,6 +2,8 @@ from httpx import AsyncClient
 import pytest_asyncio
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
 from fastapi_users.db import SQLAlchemyUserDatabase
+from fastapi_users.password import PasswordHelper
+import uuid
 
 from app.config import settings
 from app.models import User, Base
@@ -61,21 +63,29 @@ async def test_client(db_session):
 
 
 @pytest_asyncio.fixture(scope="session")
-async def authenticated_user(test_client):
-    """Fixture to create and authenticate a test user."""
-    # Register user
-    register_json = {
+async def authenticated_user(test_client, db_session):
+    """Fixture to create and authenticate a test user directly in the database."""
+    # Create user data
+    user_data = {
+        "id": uuid.uuid4(),
         "email": "test@example.com",
-        "password": "TestPassword123#",
+        "hashed_password": PasswordHelper().hash("TestPassword123#"),
+        "is_active": True,
+        "is_superuser": False,
+        "is_verified": True,
     }
-    response = await test_client.post("/auth/register", json=register_json)
-    assert response.status_code == 201
 
-    # Login to get access token
+    # Create user directly in database
+    user = User(**user_data)
+    db_session.add(user)
+    await db_session.commit()
+    await db_session.refresh(user)
+
+    # Get access token through login
     login_response = await test_client.post(
         "/auth/jwt/login",
         data={
-            "username": "test@example.com",
+            "username": user_data["email"],
             "password": "TestPassword123#",
         },
     )
@@ -85,5 +95,6 @@ async def authenticated_user(test_client):
     # Return both the headers and the user data
     return {
         "headers": {"Authorization": f"Bearer {access_token}"},
-        "user_data": register_json,
+        "user": user,
+        "user_data": {"email": user_data["email"], "password": "TestPassword123#"},
     }
