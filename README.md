@@ -7,18 +7,27 @@
 * [About](#about)
 * [Local Setup](#local-setup)
   * [Installing Required Tools](#installing-required-tools)
+    * [1. Poetry](#1-poetry)
+    * [2. Node.js, npm and pnpm](#2-nodejsm-npm-and-pnpm)
+    * [3. Docker](#3-docker)
+    * [4. Docker Compose](#4-docker-compose)
   * [Setting Up Environment Variables](#setting-up-environment-variables)
   * [If you are not using Docker](#if-you-are-not-using-docker)
     * [Backend](#backend)
     * [Frontend](#frontend)
   * [If you are using Docker](#if-you-are-using-docker)
 * [Pre-Commit Setup](#pre-commit-setup)
+  * [Installing and Activating Pre-Commit Hooks](#installing-and-activating-pre-commit-hooks)
+  * [Running Pre-Commit Checks](#running-pre-commit-checks)
+  * [Updating Pre-Commit Hooks](#updating-pre-commit-hooks)
 * [Running the Application](#running-the-application)
 * [Watchers](#watchers)
   * [Recommended Approach](#recommended-approach-run-both-watchers-and-servers-simultaneously)
   * [Manual Execution of Watcher Commands](#manual-execution-of-watcher-commands)
 * [Makefile](#makefile)
 * [Important Considerations](#important-considerations)
+* [Contributing](#contributing)
+* [Commercial Support](#commercial-support)
 
 ## About
 This template streamlines building APIs with [FastAPI](https://fastapi.tiangolo.com/) and dynamic frontends with [Next.js](https://nextjs.org/). It integrates the backend and frontend using [@hey-api/openapi-ts](https://github.com/hey-ai/openapi-ts) to generate a type-safe client, with automated watchers to keep the OpenAPI schema and client updated, ensuring a smooth and synchronized development workflow.  
@@ -37,26 +46,18 @@ This template streamlines building APIs with [FastAPI](https://fastapi.tiangolo.
 
 With this setup, you’ll save time and maintain a seamless connection between your backend and frontend, boosting productivity and reliability.  
 
-## Local Setup
+## Setup
 
 ### Installing Required Tools
 
 #### 1. Poetry
 Poetry is used to manage Python dependencies in the backend. Install Poetry by following the [official installation guide](https://python-poetry.org/docs/#installation).
 
-Once installed, navigate to the `fastapi_backend` directory and run:
-
-```bash
-poetry install
-```
-
-#### 2. Node.js and npm
+#### 2. Node.jsm, npm and pnpm
 Ensure Node.js and npm are installed for running the frontend. Follow the [Node.js installation guide](https://nodejs.org/en/download/).
-
-Install the frontend dependencies by navigating to the `nextjs-frontend` directory and running:
-
+After that install pnpm by running:
 ```bash
-npm install
+npm install -g pnpm
 ```
 
 #### 3. Docker
@@ -106,7 +107,11 @@ OPENAPI_OUTPUT_FILE=openapi.json
 To run the project locally, use the following commands:
 
 #### Backend
-1. Navigate to the `fastapi_backend` directory.
+
+1. Navigate to the `fastapi_backend` directory and run:
+   ```bash
+   poetry install
+   ```
 2. Use Docker to run the database to avoid local installation issues. Build and start the database container:
    ```bash
    docker compose build db
@@ -120,16 +125,23 @@ To run the project locally, use the following commands:
    ```bash
    make start-backend
    ```
+5. Test the backend application:
+   ```bash
+   make test-backend
+   ```
 
 #### Frontend
-1. Navigate to the `nextjs-frontend` directory.
-2. Install dependencies (if not already installed):
+1. Navigate to the `nextjs-frontend` directory and run:
    ```bash
-   npm install
+   pnpm install
    ```
-3. Start the Next.js development server:
+2. Start the Next.js development server:
    ```bash
    make start-frontend
+   ```
+3. Test the frontend application:
+   ```bash
+   make test-frontend
    ```
 
 ### If you are using Docker:
@@ -144,6 +156,14 @@ To run the project locally, use the following commands:
 3. To create the database schema for the first time, run:
    ```bash
    make docker-migrate-db
+   ```
+4. Test the backend application:
+   ```bash
+   make docker-test-backend
+   ```
+5. Test the frontend application:
+   ```bash
+   make docker-test-frontend
    ```
 
 ## Pre-Commit Setup
@@ -241,3 +261,15 @@ make help
 - **Environment Variables**: Ensure your `.env` files are up-to-date.
 - **Database Setup**: It is recommended to use Docker for running the database, even when running the backend and frontend locally, to simplify configuration and avoid potential conflicts.
 - **Consistency**: It is **not recommended** to switch between running the project locally and using Docker, as this may cause permission issues or unexpected problems. Choose one method and stick with it.
+
+## Contributing
+
+If you wish to contribute to this project, please first discuss the change you wish to make via an [issue](https://github.com/vintasoftware/nextjs-fastapi-template/issues).
+
+Check our [contributing guide](https://github.com/vintasoftware/nextjs-fastapi-template/issues/blob/main/CONTRIBUTING.md) to learn more about our development process and how you can test your changes to the boilerplate.
+
+## Commercial Support
+
+[![alt text](https://avatars2.githubusercontent.com/u/5529080?s=80&v=4 "Vinta Logo")](https://www.vinta.com.br/)
+
+This project is maintained by [Vinta Software](https://www.vinta.com.br/) and is used in products of Vinta's clients. We are always looking for exciting work! If you need any commercial support, feel free to get in touch: contact@vinta.com.br
