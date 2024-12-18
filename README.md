@@ -25,6 +25,8 @@
 * [Watchers](#watchers)
   * [Recommended Approach](#recommended-approach-run-both-watchers-and-servers-simultaneously)
   * [Manual Execution of Watcher Commands](#manual-execution-of-watcher-commands)
+* [Testing](#testing)
+* [Alembic migrations](#alembic-migrations)
 * [Makefile](#makefile)
 * [Important Considerations](#important-considerations)
 * [Contributing](#contributing)
@@ -147,10 +149,6 @@ To run the project locally, use the following commands:
    ```bash
    make start-backend
    ```
-5. Test the backend application:
-   ```bash
-   make test-backend
-   ```
 
 #### Frontend
 1. Navigate to the `nextjs-frontend` directory and run:
@@ -160,10 +158,6 @@ To run the project locally, use the following commands:
 2. Start the Next.js development server:
    ```bash
    make start-frontend
-   ```
-3. Test the frontend application:
-   ```bash
-   make test-frontend
    ```
 
 ### If you are using Docker:
@@ -178,14 +172,6 @@ To run the project locally, use the following commands:
 3. To create the database schema for the first time, run:
    ```bash
    make docker-migrate-db
-   ```
-4. Test the backend application:
-   ```bash
-   make docker-test-backend
-   ```
-5. Test the frontend application:
-   ```bash
-   make docker-test-frontend
    ```
 
 ## Pre-Commit Setup
@@ -265,6 +251,34 @@ You can manually execute the same commands that the watchers call when they dete
    or using Docker:
    ```bash
    docker compose run --rm --no-deps -T frontend npm run generate-client
+   ```
+
+## Testing
+To run the tests, you need to run the test database container:
+   ```bash
+   make docker-up-test-db
+   ```
+
+Then run the tests locally:
+   ```bash
+   make test-backend
+   make test-frontend
+   ```
+
+Or using Docker:
+   ```bash
+   make docker-test-backend
+   make docker-test-frontend
+   ```
+
+## Alembic migrations
+If you need to create a new migration, you can do it by running:
+   ```bash
+   make docker-db-schema migration_name="add users"
+   ```
+then apply the migration to the database:
+   ```bash
+   make docker-migrate-db
    ```
 
 ## Makefile
