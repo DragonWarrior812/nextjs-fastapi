@@ -5,6 +5,7 @@
 
 ## Table of Contents
 * [About](#about)
+* [Share your project!](#share-your-project)
 * [Local Setup](#local-setup)
   * [Installing Required Tools](#installing-required-tools)
     * [1. Poetry](#1-poetry)
@@ -34,17 +35,38 @@ This template streamlines building APIs with [FastAPI](https://fastapi.tiangolo.
 
 - [Next.js](https://nextjs.org/): Fast, SEO-friendly frontend framework  
 - [FastAPI](https://fastapi.tiangolo.com/): High-performance Python backend  
+- [SQLAlchemy](https://www.sqlalchemy.org/): Powerful Python SQL toolkit and ORM
+- [PostgreSQL](https://www.postgresql.org/): Advanced open-source relational database
+- [Pydantic](https://docs.pydantic.dev/): Data validation and settings management using Python type annotations
 - [Zod](https://zod.dev/) + [TypeScript](https://www.typescriptlang.org/): End-to-end type safety and schema validation  
-- [fastapi-users](https://fastapi-users.github.io/fastapi-users/): Built-in authentication and user management  
+- [fastapi-users](https://fastapi-users.github.io/fastapi-users/): Complete authentication system with:
+  - Secure password hashing by default
+  - JWT (JSON Web Token) authentication
+  - Email-based password recovery
+- [Shadcn/ui](https://ui.shadcn.com/): Beautiful and customizable React components
 - [OpenAPI-fetch](https://github.com/Hey-AI/openapi-fetch): Fully typed client generation from OpenAPI schema  
+- [fastapi-mail](https://sabuhish.github.io/fastapi-mail/): Efficient email handling for FastAPI applications
+- [Poetry](https://python-poetry.org/): Dependency management and packaging made easy
+- [Pytest](https://docs.pytest.org/): Powerful Python testing framework
+- Code Quality Tools:
+  - [Ruff](https://github.com/astral-sh/ruff): Fast Python linter
+  - [ESLint](https://eslint.org/): JavaScript/TypeScript code quality
 - Watchers:  
   - Backend: [Watchdog](https://github.com/gorakhargosh/watchdog) for monitoring file changes  
   - Frontend: [Chokidar](https://github.com/paulmillr/chokidar) for live updates  
-- [Docker](https://www.docker.com/): Consistent environments for development and production  
+- [Docker](https://www.docker.com/) and [Docker Compose](https://docs.docker.com/compose/): Consistent environments for development and production  
 - [Pre-commit hooks](https://pre-commit.com/): Enforce code quality with automated checks  
 - [OpenAPI JSON schema](https://swagger.io/specification/): Centralized API documentation and client generation  
 
-With this setup, you’ll save time and maintain a seamless connection between your backend and frontend, boosting productivity and reliability.  
+With this setup, you'll save time and maintain a seamless connection between your backend and frontend, boosting productivity and reliability.  
+
+
+## Share your project!
+
+Several people have leveraged our template to start spinoffs or to boost their efforts in the challenging pursuit of securing funding. Starting with a solid foundation allows you to create more resilient products and focus on what really matters: discovering and delivering value to your customers. If you are one of those people, we're eager to help you even more! We can spread the word about your project across our social media platforms, giving you access to a broader audience.
+
+Send us an email at contact@vintasoftware.com telling us a bit more about how our template helped you boost your project.
+
 
 ## Setup
 
