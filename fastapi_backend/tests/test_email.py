@@ -41,10 +41,10 @@ def test_get_email_config(mock_settings):
     assert config.MAIL_PORT == 587
     assert config.MAIL_SERVER == "smtp.test.com"
     assert config.MAIL_FROM_NAME == "Test Sender"
-    assert config.MAIL_STARTTLS is True
-    assert config.MAIL_SSL_TLS is False
-    assert config.USE_CREDENTIALS is True
-    assert config.VALIDATE_CERTS is True
+    assert config.MAIL_STARTTLS
+    assert not config.MAIL_SSL_TLS
+    assert config.USE_CREDENTIALS
+    assert config.VALIDATE_CERTS
     assert isinstance(config.TEMPLATE_FOLDER, Path)
 
 
