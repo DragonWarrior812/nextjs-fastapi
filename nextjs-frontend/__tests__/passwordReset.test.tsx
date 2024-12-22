@@ -1,7 +1,7 @@
 import { passwordReset } from "@/components/actions/password-reset-action";
 import { resetForgotPassword } from "@/app/clientService";
 
-jest.mock("../app/openapi-client/services.gen", () => ({
+jest.mock("../app/openapi-client/sdk.gen", () => ({
   resetForgotPassword: jest.fn(),
 }));
 

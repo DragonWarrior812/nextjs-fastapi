@@ -6,7 +6,7 @@ jest.mock("next/navigation", () => ({
   redirect: jest.fn(),
 }));
 
-jest.mock("../app/openapi-client/services.gen", () => ({
+jest.mock("../app/openapi-client/sdk.gen", () => ({
   resetResetPassword: jest.fn(),
 }));
 
