@@ -48,6 +48,15 @@ export type ItemRead = {
   user_id: string;
 };
 
+export type login = {
+  grant_type?: string | null;
+  username: string;
+  password: string;
+  scope?: string;
+  client_id?: string | null;
+  client_secret?: string | null;
+};
+
 export type UserCreate = {
   email: string;
   password: string;
@@ -76,15 +85,6 @@ export type ValidationError = {
   loc: Array<string | number>;
   msg: string;
   type: string;
-};
-
-export type login = {
-  grant_type?: string | null;
-  username: string;
-  password: string;
-  scope?: string;
-  client_id?: string | null;
-  client_secret?: string | null;
 };
 
 export type AuthJwtLoginData = {
