@@ -34,11 +34,11 @@ export async function login(prevState: unknown, formData: FormData) {
       return { server_validation_error: getErrorMessage(error) };
     }
     (await cookies()).set("accessToken", data.access_token);
-    redirect(`/dashboard`);
   } catch (err) {
     console.error("Login error:", err);
     return {
       server_error: "An unexpected error occurred. Please try again later.",
     };
   }
+  redirect("/dashboard");
 }
