@@ -32,6 +32,8 @@
   * [Running Pre-Commit Checks](#running-pre-commit-checks)
   * [Updating Pre-Commit Hooks](#updating-pre-commit-hooks)
 * [Alembic Database Migrations](#alembic-database-migrations)
+* [GitHub Actions](#github-actions)
+  * [Secrets Configuration](#secrets-configuration)
 * [Makefile](#makefile)
 * [Important Considerations](#important-considerations)
 * [Contributing](#contributing)
@@ -289,6 +291,19 @@ then apply the migration to the database:
    ```bash
    make docker-migrate-db
    ```
+
+## GitHub Actions
+This project comes with a pre-configured GitHub Actions setup to enable CI/CD. You can find the workflow configuration files inside the .github/workflows directory. Feel free to customize these workflows to better suit your project's needs.
+
+### Secrets Configuration
+For the workflows to function correctly, make sure to add the necessary secret keys to your GitHub repository's settings. Navigate to Settings > Secrets and variables > Actions and add the following keys:
+```
+DATABASE_URL: The connection string for your primary database.
+TEST_DATABASE_URL: The connection string for your test database.
+ACCESS_SECRET_KEY: The secret key for access token generation.
+RESET_PASSWORD_SECRET_KEY: The secret key for reset password functionality.
+VERIFICATION_SECRET_KEY: The secret key for email or user verification.
+```
 
 ## Makefile
 
