@@ -5,6 +5,7 @@
 
 ## Table of Contents
 * [About](#about)
+* [Production-Ready Authentication & Dashboard](#production-ready-authentication-and-dashboard)
 * [Share your project!](#share-your-project)
 * [Getting Started with This Template](#getting-started-with-this-template)
 * [Setup](#local-setup)
@@ -64,8 +65,10 @@ This template streamlines building APIs with [FastAPI](https://fastapi.tiangolo.
 - [Pre-commit hooks](https://pre-commit.com/): Enforce code quality with automated checks  
 - [OpenAPI JSON schema](https://swagger.io/specification/): Centralized API documentation and client generation  
 
-With this setup, you'll save time and maintain a seamless connection between your backend and frontend, boosting productivity and reliability.  
+With this setup, you'll save time and maintain a seamless connection between your backend and frontend, boosting productivity and reliability.
 
+## Production-Ready Authentication & Dashboard features
+This template comes with a pre-configured authentication system and a simple dashboard interface, allowing you to start building your application with user management features right away.
 
 ## Share your project!
 
