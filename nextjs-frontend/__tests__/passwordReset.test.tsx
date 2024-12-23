@@ -48,4 +48,19 @@ describe("passwordReset action", () => {
       body: { email: "testuser@example.com" },
     });
   });
+
+  it("should handle unexpected errors and return server error message", async () => {
+    // Mock the resetForgotPassword to throw an error
+    const mockError = new Error("Network error");
+    (resetForgotPassword as jest.Mock).mockRejectedValue(mockError);
+
+    const formData = new FormData();
+    formData.append("email", "testuser@example.com");
+
+    const result = await passwordReset(undefined, formData);
+
+    expect(result).toEqual({
+      server_error: "An unexpected error occurred. Please try again later.",
+    });
+  });
 });
