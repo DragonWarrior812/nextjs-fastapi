@@ -74,6 +74,7 @@ describe("passwordReset action", () => {
   });
 
   it("should handle unexpected errors and return server error message", async () => {
+    // Mock the resetResetPassword to throw an error
     const mockError = new Error("Network error");
     (resetResetPassword as jest.Mock).mockRejectedValue(mockError);
 

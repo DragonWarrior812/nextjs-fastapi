@@ -99,7 +99,6 @@ describe("login action", () => {
 
     const result = await login(undefined, formData);
 
-    // Verify console.error was called with the error
     expect(result).toEqual({
       server_error: "An unexpected error occurred. Please try again later.",
     });
