@@ -14,9 +14,10 @@ import { passwordReset } from "@/components/actions/password-reset-action";
 import { useActionState } from "react";
 import { SubmitButton } from "@/components/ui/submitButton";
 import Link from "next/link";
+import { FormError } from "@/components/ui/FormError";
 
 export default function Page() {
-  const [state, dispatch] = useActionState(passwordReset, { message: "" });
+  const [state, dispatch] = useActionState(passwordReset, undefined);
 
   return (
     <div className="flex h-screen w-full items-center justify-center bg-gray-50 dark:bg-gray-900 px-4">
@@ -48,7 +49,8 @@ export default function Page() {
               />
             </div>
             <SubmitButton text="Send" />
-            <div className="mt-2 text-sm text-center text-red-500">
+            <FormError state={state} />
+            <div className="mt-2 text-sm text-center text-blue-500">
               {state?.message && <p>{state.message}</p>}
             </div>
             <div className="mt-4 text-center text-sm text-gray-600 dark:text-gray-400">

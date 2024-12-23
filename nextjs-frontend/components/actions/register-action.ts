@@ -32,11 +32,11 @@ export async function register(prevState: unknown, formData: FormData) {
     if (error) {
       return { server_validation_error: getErrorMessage(error) };
     }
-    redirect(`/login`);
   } catch (err) {
     console.error("Registration error:", err);
     return {
       server_error: "An unexpected error occurred. Please try again later.",
     };
   }
+  redirect(`/login`);
 }

@@ -14,11 +14,10 @@ import {
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Suspense } from "react";
-
-const initialState = { message: "" };
+import { FieldError, FormError } from "@/components/ui/FormError";
 
 function ResetPasswordForm() {
-  const [state, dispatch] = useActionState(passwordResetConfirm, initialState);
+  const [state, dispatch] = useActionState(passwordResetConfirm, undefined);
   const searchParams = useSearchParams();
   const token = searchParams.get("token");
 
@@ -40,16 +39,7 @@ function ResetPasswordForm() {
             <Label htmlFor="password">Password</Label>
             <Input id="password" name="password" type="password" required />
           </div>
-          {state?.errors?.password && (
-            <div>
-              <p>Password must:</p>
-              <ul>
-                {state.errors.password.map((error) => (
-                  <li key={error}>- {error}</li>
-                ))}
-              </ul>
-            </div>
-          )}
+          <FieldError state={state} field="password" />
           <div className="grid gap-2">
             <Label htmlFor="passwordConfirm">Password Confirm</Label>
             <Input
@@ -59,9 +49,7 @@ function ResetPasswordForm() {
               required
             />
           </div>
-          {state.errors?.passwordConfirm && (
-            <p className="text-green-600">{state.errors.passwordConfirm}</p>
-          )}
+          <FieldError state={state} field="passwordConfirm" />
           <input
             type="hidden"
             id="resetToken"
@@ -70,7 +58,7 @@ function ResetPasswordForm() {
             readOnly
           />
           <SubmitButton text={"Send"} />
-          {state?.message && <p className="text-green-600">{state.message}</p>}
+          <FormError state={state} />
         </CardContent>
       </Card>
     </form>

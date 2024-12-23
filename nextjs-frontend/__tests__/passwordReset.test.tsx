@@ -16,7 +16,7 @@ describe("passwordReset action", () => {
     jest.clearAllMocks();
   });
 
-  it("should call resetForgotPassword with the correct input", async () => {
+  it("should call resetForgotPassword with the correct input and return success message", async () => {
     const formData = new FormData();
     formData.set("email", "testuser@example.com");
     // Mock a successful password reset
@@ -32,7 +32,7 @@ describe("passwordReset action", () => {
     });
   });
 
-  it("should return an error message if password reset fails", async () => {
+  it("should return a server validation error if the server call fails", async () => {
     const formData = new FormData();
     formData.set("email", "testuser@example.com");
 
@@ -43,7 +43,7 @@ describe("passwordReset action", () => {
 
     const result = await passwordReset({}, formData);
 
-    expect(result).toEqual({ message: "User not found" });
+    expect(result).toEqual({ server_validation_error: "User not found" });
     expect(resetForgotPassword).toHaveBeenCalledWith({
       body: { email: "testuser@example.com" },
     });
