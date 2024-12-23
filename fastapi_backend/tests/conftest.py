@@ -10,52 +10,59 @@ from app.models import User, Base
 
 from app.database import get_user_db, get_async_session
 from app.main import app
+from app.users import get_jwt_strategy
 
 
-@pytest_asyncio.fixture(scope="session")
-async def db_session():
-    """Fixture to create and return a new async database session."""
-
+@pytest_asyncio.fixture(scope="function")
+async def engine():
+    """Create a fresh test database engine for each test function."""
     engine = create_async_engine(settings.TEST_DATABASE_URL, echo=True)
-
-    async_session_maker = async_sessionmaker(
-        engine, class_=AsyncSession, expire_on_commit=False
-    )
 
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
 
-    async with async_session_maker() as session:
-        yield session
-        await session.rollback()
+    yield engine
 
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.drop_all)
 
-    await session.close()
+    await engine.dispose()
 
 
-@pytest_asyncio.fixture(scope="session")
+@pytest_asyncio.fixture(scope="function")
+async def db_session(engine):
+    """Create a fresh database session for each test."""
+    async_session_maker = async_sessionmaker(
+        engine, class_=AsyncSession, expire_on_commit=False
+    )
+
+    async with async_session_maker() as session:
+        yield session
+        await session.rollback()
+        await session.close()
+
+
+@pytest_asyncio.fixture(scope="function")
 async def test_client(db_session):
     """Fixture to create a test client that uses the test database session."""
 
-    # Override for user database
-    async def override_get_db():
+    # FastAPI-Users database override (wraps session with user operation helpers)
+    async def override_get_user_db():
         session = SQLAlchemyUserDatabase(db_session, User)
         try:
             yield session
         finally:
             await db_session.close()
 
-    # Override for general database session
+    # General database override (raw session access)
     async def override_get_async_session():
         try:
             yield db_session
         finally:
             await db_session.close()
 
-    # Override both dependencies
-    app.dependency_overrides[get_user_db] = override_get_db
+    # Set up test database overrides
+    app.dependency_overrides[get_user_db] = override_get_user_db
     app.dependency_overrides[get_async_session] = override_get_async_session
 
     async with AsyncClient(
@@ -64,9 +71,10 @@ async def test_client(db_session):
         yield client
 
 
-@pytest_asyncio.fixture(scope="session")
+@pytest_asyncio.fixture(scope="function")
 async def authenticated_user(test_client, db_session):
     """Fixture to create and authenticate a test user directly in the database."""
+
     # Create user data
     user_data = {
         "id": uuid.uuid4(),
@@ -83,16 +91,9 @@ async def authenticated_user(test_client, db_session):
     await db_session.commit()
     await db_session.refresh(user)
 
-    # Get access token through login
-    login_response = await test_client.post(
-        "/auth/jwt/login",
-        data={
-            "username": user_data["email"],
-            "password": "TestPassword123#",
-        },
-    )
-    assert login_response.status_code == 200
-    access_token = login_response.json()["access_token"]
+    # Generate token using the strategy directly
+    strategy = get_jwt_strategy()
+    access_token = await strategy.write_token(user)
 
     # Return both the headers and the user data
     return {

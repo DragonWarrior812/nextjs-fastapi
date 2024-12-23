@@ -14,11 +14,10 @@ import { Label } from "@/components/ui/label";
 import { login } from "@/components/actions/login-action";
 import { useActionState } from "react";
 import { SubmitButton } from "@/components/ui/submitButton";
-
-const initialState = { message: "" };
+import { FieldError, FormError } from "@/components/ui/FormError";
 
 export default function Page() {
-  const [state, dispatch] = useActionState(login, initialState);
+  const [state, dispatch] = useActionState(login, undefined);
   return (
     <div className="flex h-screen w-full items-center justify-center bg-gray-50 dark:bg-gray-900 px-4">
       <form action={dispatch}>
@@ -47,6 +46,7 @@ export default function Page() {
                 required
                 className="border-gray-300 dark:border-gray-600"
               />
+              <FieldError state={state} field="username" />
             </div>
             <div className="grid gap-3">
               <Label
@@ -62,6 +62,7 @@ export default function Page() {
                 required
                 className="border-gray-300 dark:border-gray-600"
               />
+              <FieldError state={state} field="password" />
               <Link
                 href="/password-recovery"
                 className="ml-auto inline-block text-sm text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-500"
@@ -70,9 +71,7 @@ export default function Page() {
               </Link>
             </div>
             <SubmitButton text="Sign In" />
-            <div className="mt-2 text-sm text-center text-red-500">
-              {state?.message && <p>{state.message}</p>}
-            </div>
+            <FormError state={state} />
             <div className="mt-4 text-center text-sm text-gray-600 dark:text-gray-400">
               Don&apos;t have an account?{" "}
               <Link

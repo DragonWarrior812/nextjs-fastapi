@@ -48,9 +48,9 @@ describe("passwordReset action", () => {
       error: { detail: "Invalid token" },
     });
 
-    const result = await passwordResetConfirm({}, formData);
+    const result = await passwordResetConfirm(undefined, formData);
 
-    expect(result).toEqual({ message: "Invalid token" });
+    expect(result).toEqual({ server_validation_error: "Invalid token" });
     expect(resetResetPassword).toHaveBeenCalledWith({
       body: { token: "invalid_token", password: "P12345678#" },
     });
@@ -62,7 +62,7 @@ describe("passwordReset action", () => {
     formData.set("password", "12345678#");
     formData.set("passwordConfirm", "45678#");
 
-    const result = await passwordResetConfirm({}, formData);
+    const result = await passwordResetConfirm(undefined, formData);
 
     expect(result).toEqual({
       errors: {
