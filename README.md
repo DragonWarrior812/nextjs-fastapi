@@ -6,6 +6,7 @@
 ## Table of Contents
 * [About](#about)
 * [Share your project!](#share-your-project)
+* [Getting Started with This Template](#getting-started-with-this-template)
 * [Setup](#local-setup)
   * [Installing Required Tools](#installing-required-tools)
     * [1. Poetry](#1-poetry)
@@ -72,6 +73,18 @@ Several people have leveraged our template to start spinoffs or to boost their e
 
 Send us an email at contact@vintasoftware.com telling us a bit more about how our template helped you boost your project.
 
+## Getting Started with This Template
+
+To use this template for your own project:
+
+1. Create a new repository using this template by following GitHub's [template repository guide](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template#creating-a-repository-from-a-template)
+2. Clone your new repository and navigate to it: `cd your-project-name`
+3. Update this README:
+   - Change the project name in the first line
+   - Remove this "Getting Started with This Template" section
+4. Make sure you have Python 3.12 installed
+
+Once completed, proceed to the [Setup](#setup) section below.
 
 ## Setup
 
@@ -98,36 +111,17 @@ Docker is needed to run the project in a containerized environment. Follow the a
 Ensure `docker-compose` is installed. Refer to the [Docker Compose installation guide](https://docs.docker.com/compose/install/).
 
 ### Setting Up Environment Variables
-Create or update the `.env` files in the `fastapi_backend` and `nextjs-frontend` directories with the following variables:
 
 **Backend (`fastapi_backend/.env`):**
-
-For local setup:
-```
-DATABASE_URL=postgresql+asyncpg://postgres:password@localhost:5432/mydatabase
-```
-For Docker setup, replace localhost with db:
-```
-DATABASE_URL=postgresql+asyncpg://postgres:password@db:5432/mydatabase
-```
-Other environment variables remain unchanged:
-
-```env
-ACCESS_SECRET_KEY=<your-secret-key>
-RESET_PASSWORD_SECRET_KEY=<your-secret-key>
-VERIFICATION_SECRET_KEY=<your-secret-key>
-OPENAPI_OUTPUT_FILE=../nextjs-frontend/openapi.json
-
-MAIL_USERNAME=<your-username>
-MAIL_PASSWORD=<your-password>
-MAIL_FROM=<your-from>
-MAIL_SERVER=<your-server>
+Copy the `.env.example` files to `.env` and update the variables with your own values.
+```bash
+cp project_name/.env.example project_name/.env
 ```
 
 **Frontend (`nextjs-frontend/.env.local`):**
-```env
-NEXT_PUBLIC_API_BASE_URL=http://localhost:8000
-OPENAPI_OUTPUT_FILE=openapi.json
+Copy the `.env.local.example` files to `.env.local` and update the variables with your own values.
+```bash
+cp project_name/.env.local.example project_name/.env.local
 ```
 
 ### Running the Database
