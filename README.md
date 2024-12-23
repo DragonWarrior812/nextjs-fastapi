@@ -6,27 +6,30 @@
 ## Table of Contents
 * [About](#about)
 * [Share your project!](#share-your-project)
-* [Local Setup](#local-setup)
+* [Setup](#local-setup)
   * [Installing Required Tools](#installing-required-tools)
     * [1. Poetry](#1-poetry)
     * [2. Node.js, npm and pnpm](#2-nodejsm-npm-and-pnpm)
     * [3. Docker](#3-docker)
     * [4. Docker Compose](#4-docker-compose)
   * [Setting Up Environment Variables](#setting-up-environment-variables)
+  * [Running the Database](#running-the-database)
   * [If you are not using Docker](#if-you-are-not-using-docker)
     * [Backend](#backend)
     * [Frontend](#frontend)
   * [If you are using Docker](#if-you-are-using-docker)
-* [Pre-Commit Setup](#pre-commit-setup)
-  * [Installing and Activating Pre-Commit Hooks](#installing-and-activating-pre-commit-hooks)
-  * [Running Pre-Commit Checks](#running-pre-commit-checks)
-  * [Updating Pre-Commit Hooks](#updating-pre-commit-hooks)
+    * [Backend](#backend)
+    * [Frontend](#frontend)
 * [Running the Application](#running-the-application)
 * [Watchers](#watchers)
   * [Recommended Approach](#recommended-approach-run-both-watchers-and-servers-simultaneously)
   * [Manual Execution of Watcher Commands](#manual-execution-of-watcher-commands)
 * [Testing](#testing)
-* [Alembic migrations](#alembic-migrations)
+* [Pre-Commit Setup](#pre-commit-setup)
+  * [Installing and Activating Pre-Commit Hooks](#installing-and-activating-pre-commit-hooks)
+  * [Running Pre-Commit Checks](#running-pre-commit-checks)
+  * [Updating Pre-Commit Hooks](#updating-pre-commit-hooks)
+* [Alembic Database Migrations](#alembic-database-migrations)
 * [Makefile](#makefile)
 * [Important Considerations](#important-considerations)
 * [Contributing](#contributing)
@@ -127,8 +130,19 @@ NEXT_PUBLIC_API_BASE_URL=http://localhost:8000
 OPENAPI_OUTPUT_FILE=openapi.json
 ```
 
+### Running the Database
+1. Use Docker to run the database to avoid local installation issues. Build and start the database container:
+   ```bash
+   docker compose build db
+   docker compose up db
+   ```
+2. Run the following command to apply database migrations:
+   ```bash
+   make docker-migrate-db
+   ```
+
 ### If you are not using Docker:
-To run the project locally, use the following commands:
+To setup the project environment locally, use the following commands:
 
 #### Backend
 
@@ -136,83 +150,45 @@ To run the project locally, use the following commands:
    ```bash
    poetry install
    ```
-2. Use Docker to run the database to avoid local installation issues. Build and start the database container:
-   ```bash
-   docker compose build db
-   docker compose up db
-   ```
-3. Run the following command to apply database migrations:
-   ```bash
-   make docker-migrate-db
-   ```
-4. Start the FastAPI server:
-   ```bash
-   make start-backend
-   ```
 
 #### Frontend
 1. Navigate to the `nextjs-frontend` directory and run:
    ```bash
    pnpm install
    ```
+
+### If you are using Docker:
+
+1. Build the backend and frontend containers:
+   ```bash
+   make docker-build-backend
+   make docker-build-frontend
+   ```
+
+## Running the Application
+
+If you are not using Docker:
+
+1. Start the FastAPI server:
+   ```bash
+   make start-backend
+   ```
+
 2. Start the Next.js development server:
    ```bash
    make start-frontend
    ```
 
-### If you are using Docker:
-1. Ensure Docker is running.
-2. Run the following command to build and start the backend, frontend, and database containers:
+If you are using Docker:
+1. Start the FastAPI server container:
    ```bash
    make docker-up-backend
+   ```
+2. Start the Next.js development server container:
+   ```bash
    make docker-up-frontend
    ```
-   This command will automatically set up the database and other necessary containers.
 
-3. To create the database schema for the first time, run:
-   ```bash
-   make docker-migrate-db
-   ```
-
-## Pre-Commit Setup
-To maintain code quality and consistency, the project includes two separate pre-commit configuration files:
-- `.pre-commit-config.yaml` for running pre-commit checks locally.
-- `.pre-commit-config.docker.yaml` for running pre-commit checks within Docker.
-
-### Installing and Activating Pre-Commit Hooks
-To activate pre-commit hooks, run the following commands for each configuration file:
-
-- **For the local configuration file**:
-  ```bash
-  pre-commit install -c .pre-commit-config.yaml
-  ```
-
-- **For the Docker configuration file**:
-  ```bash
-  pre-commit install -c .pre-commit-config.docker.yaml
-  ```
-
-### Running Pre-Commit Checks
-To manually run the pre-commit checks on all files, use:
-
-```bash
-pre-commit run --all-files -c .pre-commit-config.yaml
-```
-
-or
-
-```bash
-pre-commit run --all-files -c .pre-commit-config.docker.yaml
-```
-
-### Updating Pre-Commit Hooks
-To update the hooks to their latest versions, run:
-
-```bash
-pre-commit autoupdate
-```
-
-## Running the Application
 - **Backend**: Access the API at `http://localhost:8000`.
 - **Frontend**: Access the web application at `http://localhost:3000`.
 
@@ -270,9 +246,45 @@ Or using Docker:
    make docker-test-backend
    make docker-test-frontend
    ```
+## Pre-Commit Setup
+To maintain code quality and consistency, the project includes two separate pre-commit configuration files:
+- `.pre-commit-config.yaml` for running pre-commit checks locally.
+- `.pre-commit-config.docker.yaml` for running pre-commit checks within Docker.
 
-## Alembic migrations
-If you need to create a new migration, you can do it by running:
+### Installing and Activating Pre-Commit Hooks
+To activate pre-commit hooks, run the following commands for each configuration file:
+
+- **For the local configuration file**:
+  ```bash
+  pre-commit install -c .pre-commit-config.yaml
+  ```
+
+- **For the Docker configuration file**:
+  ```bash
+  pre-commit install -c .pre-commit-config.docker.yaml
+  ```
+
+### Running Pre-Commit Checks
+To manually run the pre-commit checks on all files, use:
+
+```bash
+pre-commit run --all-files -c .pre-commit-config.yaml
+```
+
+or
+
+```bash
+pre-commit run --all-files -c .pre-commit-config.docker.yaml
+```
+
+### Updating Pre-Commit Hooks
+To update the hooks to their latest versions, run:
+
+```bash
+pre-commit autoupdate
+```
+## Alembic Database Migrations
+If you need to create a new Database Migration:
    ```bash
    make docker-db-schema migration_name="add users"
    ```
