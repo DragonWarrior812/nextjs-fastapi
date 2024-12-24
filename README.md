@@ -118,9 +118,9 @@ cp project_name/.env.example project_name/.env
 ```
 
 **Frontend (`nextjs-frontend/.env.local`):**
-Copy the `.env.local.example` files to `.env.local` and update the variables with your own values.
+Copy the `.env.example` files to `.env`. These values are unlikely to change, so you can leave them as they are.
 ```bash
-cp project_name/.env.local.example project_name/.env.local
+cp project_name/.env.example project_name/.env
 ```
 
 ### Running the Database
