@@ -64,7 +64,8 @@ This template streamlines building APIs with [FastAPI](https://fastapi.tiangolo.
 - Watchers:  
   - Backend: [Watchdog](https://github.com/gorakhargosh/watchdog) for monitoring file changes  
   - Frontend: [Chokidar](https://github.com/paulmillr/chokidar) for live updates  
-- [Docker](https://www.docker.com/) and [Docker Compose](https://docs.docker.com/compose/): Consistent environments for development and production  
+- [Docker](https://www.docker.com/) and [Docker Compose](https://docs.docker.com/compose/): Consistent environments for development and production
+- [MailHog](https://github.com/mailhog/MailHog): Email server for development
 - [Pre-commit hooks](https://pre-commit.com/): Enforce code quality with automated checks  
 - [OpenAPI JSON schema](https://swagger.io/specification/): Centralized API documentation and client generation  
 
