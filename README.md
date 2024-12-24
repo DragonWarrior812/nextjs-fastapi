@@ -26,6 +26,7 @@
   * [Recommended Approach](#recommended-approach-run-both-watchers-and-servers-simultaneously)
   * [Manual Execution of Watcher Commands](#manual-execution-of-watcher-commands)
 * [Testing](#testing)
+* [Email Localhost Setup](#email-localhost-setup)
 * [Pre-Commit Setup](#pre-commit-setup)
   * [Installing and Activating Pre-Commit Hooks](#installing-and-activating-pre-commit-hooks)
   * [Running Pre-Commit Checks](#running-pre-commit-checks)
@@ -262,6 +263,15 @@ To activate pre-commit hooks, run the following commands for each configuration 
   ```bash
   pre-commit install -c .pre-commit-config.docker.yaml
   ```
+
+### Email Localhost Setup
+
+To setup the email locally, you need to start [MailHog](https://github.com/mailhog/MailHog) by running the following command:
+   ```bash
+   make docker-up-mailhog
+   ```
+
+- **Email client**: Access the email at `http://localhost:8025`.
 
 ### Running Pre-Commit Checks
 To manually run the pre-commit checks on all files, use:
