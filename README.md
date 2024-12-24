@@ -6,7 +6,6 @@
 ## Table of Contents
 * [About](#about)
 * [Production-Ready Authentication & Dashboard](#production-ready-authentication-and-dashboard)
-* [Share your project!](#share-your-project)
 * [Getting Started with This Template](#getting-started-with-this-template)
 * [Setup](#local-setup)
   * [Installing Required Tools](#installing-required-tools)
@@ -16,14 +15,14 @@
     * [4. Docker Compose](#4-docker-compose)
   * [Setting Up Environment Variables](#setting-up-environment-variables)
   * [Running the Database](#running-the-database)
-  * [If you are not using Docker](#if-you-are-not-using-docker)
+  * [Build the project (without Docker)](#build-the-project-without-docker)
     * [Backend](#backend)
     * [Frontend](#frontend)
-  * [If you are using Docker](#if-you-are-using-docker)
+  * [Build the project (with Docker)](#build-the-project-with-docker)
     * [Backend](#backend)
     * [Frontend](#frontend)
 * [Running the Application](#running-the-application)
-* [Watchers](#watchers)
+* [Hot Reload on development](#hot-reload-on-development)
   * [Recommended Approach](#recommended-approach-run-both-watchers-and-servers-simultaneously)
   * [Manual Execution of Watcher Commands](#manual-execution-of-watcher-commands)
 * [Testing](#testing)
@@ -37,6 +36,7 @@
 * [Makefile](#makefile)
 * [Important Considerations](#important-considerations)
 * [Contributing](#contributing)
+* [Share your project!](#share-your-project)
 * [Commercial Support](#commercial-support)
 
 ## About
@@ -71,12 +71,6 @@ With this setup, you'll save time and maintain a seamless connection between you
 
 ## Production-Ready Authentication & Dashboard features
 This template comes with a pre-configured authentication system and a simple dashboard interface, allowing you to start building your application with user management features right away.
-
-## Share your project!
-
-Several people have leveraged our template to start spinoffs or to boost their efforts in the challenging pursuit of securing funding. Starting with a solid foundation allows you to create more resilient products and focus on what really matters: discovering and delivering value to your customers. If you are one of those people, we're eager to help you even more! We can spread the word about your project across our social media platforms, giving you access to a broader audience.
-
-Send us an email at contact@vintasoftware.com telling us a bit more about how our template helped you boost your project.
 
 ## Getting Started with This Template
 
@@ -140,7 +134,7 @@ cp project_name/.env.local.example project_name/.env.local
    make docker-migrate-db
    ```
 
-### If you are not using Docker:
+### Build the project (without Docker):
 To setup the project environment locally, use the following commands:
 
 #### Backend
@@ -156,7 +150,7 @@ To setup the project environment locally, use the following commands:
    pnpm install
    ```
 
-### If you are using Docker:
+### Build the project (with Docker):
 
 1. Build the backend and frontend containers:
    ```bash
@@ -191,7 +185,7 @@ If you are using Docker:
 - **Backend**: Access the API at `http://localhost:8000`.
 - **Frontend**: Access the web application at `http://localhost:3000`.
 
-## Watchers
+## Hot Reload on development
 The project includes two watchers, one for the backend and one for the frontend, which automatically restart when they detect changes.
 
 - The **backend watcher** monitors changes to the API code.
@@ -327,6 +321,14 @@ make help
 If you wish to contribute to this project, please first discuss the change you wish to make via an [issue](https://github.com/vintasoftware/nextjs-fastapi-template/issues).
 
 Check our [contributing guide](https://github.com/vintasoftware/nextjs-fastapi-template/blob/main/CONTRIBUTING.md) to learn more about our development process and how you can test your changes to the boilerplate.
+
+## Share your project!
+
+You can use our template to kick-start your project or streamline your efforts in securing funding. Starting with a strong foundation can make your product more resilient and allow you to focus on what matters most: delivering value to your customers.
+
+If our template has been part of your journey, we'd love to hear about it! Share your story with us, and we’ll help spread the word about your project through our social media channels, giving it a broader reach.
+
+Send us an email at contact@vintasoftware.com telling us a bit more about how our template helped you boost your project.
 
 ## Commercial Support
 
