@@ -73,4 +73,20 @@ describe("register action", () => {
     });
     expect(registerRegister).not.toHaveBeenCalledWith();
   });
+
+  it("should handle unexpected errors and return server error message", async () => {
+    // Mock the registerRegister to throw an error
+    const mockError = new Error("Network error");
+    (registerRegister as jest.Mock).mockRejectedValue(mockError);
+
+    const formData = new FormData();
+    formData.append("email", "testuser@example.com");
+    formData.append("password", "Password123#");
+
+    const result = await register(undefined, formData);
+
+    expect(result).toEqual({
+      server_error: "An unexpected error occurred. Please try again later.",
+    });
+  });
 });

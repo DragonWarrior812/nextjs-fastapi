@@ -87,4 +87,20 @@ describe("login action", () => {
 
     expect(cookies).not.toHaveBeenCalled();
   });
+
+  it("should handle unexpected errors and return server error message", async () => {
+    // Mock the authJwtLogin to throw an error
+    const mockError = new Error("Network error");
+    (authJwtLogin as jest.Mock).mockRejectedValue(mockError);
+
+    const formData = new FormData();
+    formData.append("username", "testuser");
+    formData.append("password", "password123");
+
+    const result = await login(undefined, formData);
+
+    expect(result).toEqual({
+      server_error: "An unexpected error occurred. Please try again later.",
+    });
+  });
 });

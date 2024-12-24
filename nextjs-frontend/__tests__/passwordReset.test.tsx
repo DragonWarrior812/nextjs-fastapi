@@ -1,7 +1,7 @@
 import { passwordReset } from "@/components/actions/password-reset-action";
 import { resetForgotPassword } from "@/app/clientService";
 
-jest.mock("../app/openapi-client/services.gen", () => ({
+jest.mock("../app/openapi-client/sdk.gen", () => ({
   resetForgotPassword: jest.fn(),
 }));
 
@@ -46,6 +46,21 @@ describe("passwordReset action", () => {
     expect(result).toEqual({ server_validation_error: "User not found" });
     expect(resetForgotPassword).toHaveBeenCalledWith({
       body: { email: "testuser@example.com" },
+    });
+  });
+
+  it("should handle unexpected errors and return server error message", async () => {
+    // Mock the resetForgotPassword to throw an error
+    const mockError = new Error("Network error");
+    (resetForgotPassword as jest.Mock).mockRejectedValue(mockError);
+
+    const formData = new FormData();
+    formData.append("email", "testuser@example.com");
+
+    const result = await passwordReset(undefined, formData);
+
+    expect(result).toEqual({
+      server_error: "An unexpected error occurred. Please try again later.",
     });
   });
 });
