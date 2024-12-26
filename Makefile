@@ -12,28 +12,24 @@ help:
 	@awk '/^[a-zA-Z_-]+:/{split($$1, target, ":"); print "  " target[1] "\t" substr($$0, index($$0,$$2))}' $(MAKEFILE_LIST)
 
 # Backend commands
-.PHONY: start-backend test-backend migrate-backend watch-backend
+.PHONY: start-backend test-backend migrate-backend
 
-start-backend: ## Start the backend server with FastAPI
-	cd $(BACKEND_DIR) && poetry run fastapi dev app/main.py --host 0.0.0.0 --port 8000 --reload
+start-backend: ## Start the backend server with FastAPI and hot reload
+	cd $(BACKEND_DIR) && ./start.sh
 
 test-backend: ## Run backend tests using pytest
 	cd $(BACKEND_DIR) && poetry run pytest
 
-watch-backend: ## Start backend with file watchers
-	cd $(BACKEND_DIR) && ./start.sh
 
 # Frontend commands
-.PHONY: start-frontend test-frontend watch-frontend
+.PHONY: start-frontend test-frontend
 
-start-frontend: ## Start the frontend server with pnpm
-	cd $(FRONTEND_DIR) && pnpm run dev
+start-frontend: ## Start the frontend server with pnpm and hot reload
+	cd $(FRONTEND_DIR) && ./start.sh
 
 test-frontend: ## Run frontend tests using npm
 	cd $(FRONTEND_DIR) && pnpm run test
 
-watch-frontend: ## Start frontend with file watchers
-	cd $(FRONTEND_DIR) && ./start.sh
 
 # Docker commands
 .PHONY: docker-backend-shell docker-frontend-shell build-backend-container build-frontend-container \
