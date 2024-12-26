@@ -61,7 +61,7 @@ This template streamlines building APIs with [FastAPI](https://fastapi.tiangolo.
 - Code Quality Tools:
   - [Ruff](https://github.com/astral-sh/ruff): Fast Python linter
   - [ESLint](https://eslint.org/): JavaScript/TypeScript code quality
-- Watchers:  
+- Hot reload watchers:  
   - Backend: [Watchdog](https://github.com/gorakhargosh/watchdog) for monitoring file changes  
   - Frontend: [Chokidar](https://github.com/paulmillr/chokidar) for live updates  
 - [Docker](https://www.docker.com/) and [Docker Compose](https://docs.docker.com/compose/): Consistent environments for development and production
@@ -115,21 +115,21 @@ Ensure `docker-compose` is installed. Refer to the [Docker Compose installation 
 
 **Backend (`fastapi_backend/.env`):**
 Copy the `.env.example` files to `.env` and update the variables with your own values.
-```bash
-cp project_name/.env.example project_name/.env
-```
-1. You will only need to update the User Secrets. You can use the following command to generate a new secret key:
+   ```bash
+   cd fastapi_backend && cp .env.example .env
+   ```
+1. You will only need to update the secret keys. You can use the following command to generate a new secret key:
    ```bash
    python3 -c "import secrets; print(secrets.token_hex(32))"
    ```
-2. The DATABASE, Email, OPENAPI, and FRONTEND_URL settings are ready to use locally.
+2. The DATABASE, MAIL, OPENAPI, and FRONTEND_URL settings are ready to use locally.
 3. You can check the .env.example file for more information about the variables.
 
 **Frontend (`nextjs-frontend/.env.local`):**
 Copy the `.env.example` files to `.env`. These values are unlikely to change, so you can leave them as they are.
-```bash
-cp project_name/.env.example project_name/.env
-```
+   ```bash
+   cd nextjs-frontend && cp .env.example .env
+   ```
 
 ### Running the Database
 1. Use Docker to run the database to avoid local installation issues. Build and start the database container:
