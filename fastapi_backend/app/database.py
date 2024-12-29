@@ -8,12 +8,11 @@ from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_asyn
 from .config import settings
 from .models import Base, User
 
-engine = create_async_engine(settings.DATABASE_URL)
+engine = create_async_engine(settings.DATABASE_URL, poolclass=NullPool)
 
 async_session_maker = async_sessionmaker(
     engine,
-    expire_on_commit=settings.EXPIRE_ON_COMMIT,
-    poolclass=NullPool
+    expire_on_commit=settings.EXPIRE_ON_COMMIT
 )
 
 
