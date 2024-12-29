@@ -11,8 +11,7 @@ from .models import Base, User
 engine = create_async_engine(settings.DATABASE_URL, poolclass=NullPool)
 
 async_session_maker = async_sessionmaker(
-    engine,
-    expire_on_commit=settings.EXPIRE_ON_COMMIT
+    engine, expire_on_commit=settings.EXPIRE_ON_COMMIT
 )
 
 
