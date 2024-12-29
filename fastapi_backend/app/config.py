@@ -7,7 +7,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 class Settings(BaseSettings):
     # Database
     DATABASE_URL: str
-    TEST_DATABASE_URL: str
+    TEST_DATABASE_URL: str = None
     EXPIRE_ON_COMMIT: bool = False
 
     # User
@@ -35,7 +35,6 @@ class Settings(BaseSettings):
 
     # CORS
     CORS_ORIGINS: Set[str] = Field(default_factory=lambda: set("*"))
-
 
     model_config = SettingsConfigDict(
         env_file=".env", env_file_encoding="utf-8", extra="ignore"

@@ -1,6 +1,4 @@
-from fastapi import FastAPI, Request
-from fastapi.responses import JSONResponse
-import traceback
+from fastapi import FastAPI
 from .schemas import UserCreate, UserRead, UserUpdate
 from .users import auth_backend, fastapi_users, AUTH_URL_PATH
 from fastapi.middleware.cors import CORSMiddleware
@@ -48,20 +46,3 @@ app.include_router(
 
 # Include items routes
 app.include_router(items_router, prefix="/items")
-
-
-# Custom Exception Handlers
-
-@app.exception_handler(Exception)
-async def general_exception_handler(request: Request, exc: Exception):
-    # Log the exception with context (type and message)
-    error_message = f"Exception occurred: {exc}"
-    # Capture the full traceback for more context
-    stack_trace = traceback.format_exc()
-
-    # You can log both the message and the stack trace for debugging
-    print(error_message)
-    print("Stack trace:\n", stack_trace)
-
-    # FastAPI will automatically log the exception traceback, so this is optional for more control
-    return JSONResponse(status_code=500, content={})
