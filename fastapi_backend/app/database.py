@@ -2,12 +2,14 @@ from typing import AsyncGenerator
 
 from fastapi import Depends
 from fastapi_users.db import SQLAlchemyUserDatabase
+from sqlalchemy import NullPool
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
 
 from .config import settings
 from .models import Base, User
 
-engine = create_async_engine(settings.DATABASE_URL)
+# Disable connection pooling for serverless environments like Vercel
+engine = create_async_engine(settings.DATABASE_URL, poolclass=NullPool)
 
 async_session_maker = async_sessionmaker(
     engine, expire_on_commit=settings.EXPIRE_ON_COMMIT

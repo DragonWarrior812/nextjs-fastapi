@@ -1,29 +1,23 @@
 from fastapi import FastAPI
-
 from .schemas import UserCreate, UserRead, UserUpdate
 from .users import auth_backend, fastapi_users, AUTH_URL_PATH
 from fastapi.middleware.cors import CORSMiddleware
 from .utils import simple_generate_unique_route_id
 from app.routes.items import router as items_router
-
+from app.config import settings
 
 app = FastAPI(generate_unique_id_function=simple_generate_unique_route_id)
 
-
-origins = [
-    "http://localhost:3000",
-    "http://localhost:8080",
-]
-
+# Middleware for CORS configuration
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=settings.CORS_ORIGINS,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-
+# Include authentication and user management routes
 app.include_router(
     fastapi_users.get_auth_router(auth_backend),
     prefix=f"/{AUTH_URL_PATH}/jwt",
@@ -50,4 +44,5 @@ app.include_router(
     tags=["users"],
 )
 
+# Include items routes
 app.include_router(items_router, prefix="/items")
