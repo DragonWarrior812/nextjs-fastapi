@@ -16,6 +16,8 @@ jobs:
       RESET_PASSWORD_SECRET_KEY: ${{ secrets.RESET_PASSWORD_SECRET_KEY }}
       VERIFICATION_SECRET_KEY: ${{ secrets.VERIFICATION_SECRET_KEY }}
       OPENAPI_OUTPUT_FILE: ${{ secrets.OPENAPI_OUTPUT_FILE }}
+      CORS_ORIGINS: ${{ secrets.CORS_ORIGINS }}
+
 
     steps:
       - name: Checkout code
