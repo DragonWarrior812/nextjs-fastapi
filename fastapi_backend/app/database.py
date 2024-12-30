@@ -8,6 +8,7 @@ from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_asyn
 from .config import settings
 from .models import Base, User
 
+# Disable connection pooling for serverless environments like Vercel
 engine = create_async_engine(settings.DATABASE_URL, poolclass=NullPool)
 
 async_session_maker = async_sessionmaker(
