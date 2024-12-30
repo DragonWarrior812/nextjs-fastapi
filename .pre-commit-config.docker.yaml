@@ -43,3 +43,10 @@ repos:
         # Only run frontend client generation if frontend files have changed:
         files: ^local-shared-data/openapi\.json$
         pass_filenames: false
+      - id: export-requirements
+        name: Export requirements.txt
+        entry: sh -c 'docker compose run --rm --no-deps -T backend poetry export --without-hashes -f requirements.txt > requirements.txt'
+        language: system
+        # Trigger when poetry.lock is modified
+        files: poetry.lock
+        pass_filenames: false
