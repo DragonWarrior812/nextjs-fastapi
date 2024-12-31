@@ -310,7 +310,7 @@ VERIFICATION_SECRET_KEY: The secret key for email or user verification.
 
 ### Overview
 
-Deployment is streamlined through **Vercel**, with dedicated buttons for the **Frontend** and **Backend** applications. Both require specific configurations during and after deployment to ensure proper functionality.
+ Deploy to **Vercel** is supported, with dedicated buttons for the **Frontend** and **Backend** applications. Both require specific configurations during and after deployment to ensure proper functionality.
 
 ---
 
@@ -320,7 +320,7 @@ Deployment is streamlined through **Vercel**, with dedicated buttons for the **F
 
 1. **Deploying the Frontend**  
    - Click the **Frontend** button above to start the deployment process.  
-   - During deployment, you will be prompted to set the `API_BASE_URL`. Use a placeholder value (e.g., `http://`) for now, as this will be updated with the backend URL later.  
+   - During deployment, you will be prompted to set the `API_BASE_URL`. Use a placeholder value (e.g., `https://`) for now, as this will be updated with the backend URL later.  
    - Complete the deployment process.
 
 2. **Post-Deployment Configuration**  
