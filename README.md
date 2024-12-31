@@ -33,6 +33,7 @@
 * [Alembic Database Migrations](#alembic-database-migrations)
 * [GitHub Actions](#github-actions)
   * [Secrets Configuration](#secrets-configuration)
+* [Production Deployment](#production-deployment)
 * [Makefile](#makefile)
 * [Important Considerations](#important-considerations)
 * [Contributing](#contributing)
@@ -304,6 +305,88 @@ ACCESS_SECRET_KEY: The secret key for access token generation.
 RESET_PASSWORD_SECRET_KEY: The secret key for reset password functionality.
 VERIFICATION_SECRET_KEY: The secret key for email or user verification.
 ```
+
+## Production Deployment
+
+### Overview
+
+Deployment is streamlined through **Vercel**, with dedicated buttons for the **Frontend** and **Backend** applications. Both require specific configurations during and after deployment to ensure proper functionality.
+
+---
+
+### Frontend Deployment
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvintasoftware%2Fnextjs-fastapi-template%2Ftree%2Fmain%2Fnextjs-frontend&env=API_BASE_URL&envDescription=The%20API_BASE_URL%20is%20the%20backend%20URL%20where%20the%20frontend%20sends%20requests.)
+
+1. **Deploying the Frontend**  
+   - Click the **Frontend** button above to start the deployment process.  
+   - During deployment, you will be prompted to set the `API_BASE_URL`. Use a placeholder value (e.g., `http://`) for now, as this will be updated with the backend URL later.  
+   - Complete the deployment process.
+
+2. **Post-Deployment Configuration**  
+   - Navigate to the **Settings** page of the deployed frontend project.  
+   - Access the **Environment Variables** section.  
+   - Update the `API_BASE_URL` variable with the backend URL once the backend deployment is complete.
+
+---
+
+### Backend Deployment
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvintasoftware%2Fnextjs-fastapi-template%2Ftree%2Fmain%2Ffastapi_backend&env=CORS_ORIGINS,TEST_DATABASE_URL,DATABASE_URL,ACCESS_SECRET_KEY,RESET_PASSWORD_SECRET_KEY,VERIFICATION_SECRET_KEY)
+
+1. **Deploying the Backend**  
+   - Click the **Backend** button above to begin deployment.  
+   - During the deployment process, you will be prompted to configure the following environment variables:
+
+     - **CORS_ORIGINS**  
+       - Set this to `["*"]` initially to allow all origins. You will update this with the frontend URL later.
+
+     - **DATABASE_URL**  
+       - Use a placeholder value (e.g., `https://`) if you don't yet have the actual database URL. Replace it with the correct URL post-deployment.
+
+     - **ACCESS_SECRET_KEY**, **RESET_PASSWORD_SECRET_KEY**, **VERIFICATION_SECRET_KEY**  
+       - You can temporarily set these secret keys as plain strings (e.g., `examplekey`) during deployment. However, you should generate secure keys and update them after the deployment in the **Post-Deployment Configuration** section.
+
+   - Complete the deployment process.
+
+2. **Post-Deployment Configuration**  
+   - Access the **Settings** page of the deployed backend project.  
+   - Navigate to the **Environment Variables** section and update the following variables with secure values:
+
+     - **CORS_ORIGINS**  
+       - Once the frontend is deployed, replace `["*"]` with the actual frontend URL.
+
+     - **DATABASE_URL**  
+       - Update this with the actual database URL if not set during deployment.
+
+     - **ACCESS_SECRET_KEY**  
+       - Generate a secure key for API access and set it here.  
+
+     - **RESET_PASSWORD_SECRET_KEY**  
+       - Generate a secure key for password reset functionality and set it.
+
+     - **VERIFICATION_SECRET_KEY**  
+       - Generate a secure key for user verification and configure it.
+
+   - For detailed instructions on how to set these secret keys, refer to the section on [Setting up Environment Variables](#setting-up-environment-variables).
+
+3. **Database Connection**
+
+   1. **Choosing a Database**
+      - You can use your own database hosted on a different service or opt for the [Neon](https://neon.tech/docs/introduction) database, which integrates seamlessly with Vercel.
+
+   2. **Setting Up a Neon Database via Vercel**
+      - In the **Backend** project page on Vercel, navigate to the **Storage** section.  
+      - Select the option to **Create a Database** to provision a Neon database.
+
+   3. **Configuring the Database URL**
+      - After creating the database, retrieve the **Database URL** provided by Neon.  
+      - Include this URL in your **Environment Variables** under `DATABASE_URL`.  
+      - Replace `postgres` with `postgres+asyncpg` at the start of the URL to ensure compatibility with asynchronous database operations.
+
+   4. **Migrating the Database**
+      - Once the database URL is configured, run your database migration script. This step is essential for creating the necessary tables and initializing your database schema.
+
 
 ## Makefile
 
