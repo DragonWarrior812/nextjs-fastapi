@@ -56,9 +56,7 @@ dependencies = [
     { name = "fastapi", extra = ["standard"] },
     { name = "fastapi-mail" },
     { name = "fastapi-users", extra = ["sqlalchemy"] },
-    { name = "migrate-to-uv" },
     { name = "pydantic-settings" },
-    { name = "pytest-asyncio" },
 ]
 
 [package.dev-dependencies]
@@ -68,6 +66,7 @@ dev = [
     { name = "mypy" },
     { name = "pre-commit" },
     { name = "pytest" },
+    { name = "pytest-asyncio" },
     { name = "pytest-mock" },
     { name = "python-dotenv" },
     { name = "ruff" },
@@ -80,9 +79,7 @@ requires-dist = [
     { name = "fastapi", extras = ["standard"], specifier = ">=0.115.0,<0.116" },
     { name = "fastapi-mail", specifier = ">=1.4.1,<2" },
     { name = "fastapi-users", extras = ["sqlalchemy"], specifier = ">=13.0.0,<14" },
-    { name = "migrate-to-uv", specifier = ">=0.2.1,<0.3" },
     { name = "pydantic-settings", specifier = ">=2.5.2,<3" },
-    { name = "pytest-asyncio", specifier = ">=0.24.0,<0.25" },
 ]
 
 [package.metadata.requires-dev]
@@ -92,6 +89,7 @@ dev = [
     { name = "mypy", specifier = ">=1.13.0,<2" },
     { name = "pre-commit", specifier = ">=3.4.0,<4" },
     { name = "pytest", specifier = ">=8.3.3,<9" },
+    { name = "pytest-asyncio", specifier = ">=0.24.0,<0.25" },
     { name = "pytest-mock", specifier = ">=3.14.0,<4" },
     { name = "python-dotenv", specifier = ">=1.0.1,<2" },
     { name = "ruff", specifier = ">=0.1.0,<0.2" },
@@ -640,22 +638,6 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/d6/54/cfe61301667036ec958cb99bd3efefba235e65cdeb9c84d24a8293ba1d90/mdurl-0.1.2.tar.gz", hash = "sha256:bb413d29f5eea38f31dd4754dd7377d4465116fb207585f97bf925588687c1ba", size = 8729 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/b3/38/89ba8ad64ae25be8de66a6d463314cf1eb366222074cfda9ee839c56a4b4/mdurl-0.1.2-py3-none-any.whl", hash = "sha256:84008a41e51615a49fc9966191ff91509e3c40b939176e643fd50a5c2196b8f8", size = 9979 },
-]
-
-[[package]]
-name = "migrate-to-uv"
-version = "0.2.1"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/20/67/f2742d0dcaa789a48b136c45123f5a1788e392e37ea95df688929df69824/migrate_to_uv-0.2.1.tar.gz", hash = "sha256:bcf54b1a7d647a8528822eecfdb797162e877d2375789e221513880bba2821e8", size = 92044 }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/32/3d/2c633d3d1e781bdafbd0bd484837c6fe9ea6bb5a5586f8b7f5dd1adfdc78/migrate_to_uv-0.2.1-py3-none-macosx_10_12_x86_64.whl", hash = "sha256:aea108470167868f9b965b82b76415b645f97abdcbbf0bf2212497cf5c222047", size = 1431615 },
-    { url = "https://files.pythonhosted.org/packages/cc/7b/0a6dc1680b68d359956025dcb7475390c7d0b54f0d0025758a749d1a9861/migrate_to_uv-0.2.1-py3-none-macosx_11_0_arm64.whl", hash = "sha256:e98b5b26756e040b5ed16212f3e00157cee8290183d568a78cc95260c2710d6c", size = 1281751 },
-    { url = "https://files.pythonhosted.org/packages/02/8e/4cedeed6b037c462f463e9d37dd457f8abd17a9fbb3a7e1f682c05c5d4d9/migrate_to_uv-0.2.1-py3-none-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:56a49bc301399696e531809b29311741b3081e06443c528ac2b10b9150120704", size = 1388960 },
-    { url = "https://files.pythonhosted.org/packages/ad/24/a420c3665d9301251a5a2a1f1b07db3ae9c561a7b2278f01cea93d793dbe/migrate_to_uv-0.2.1-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:9a04f992eb835b106c97c560529e47fdab777d156253830ad190750252444f91", size = 1506048 },
-    { url = "https://files.pythonhosted.org/packages/0f/ef/b6cb4ba8d7616f0284bd9debba4cf2fc61e1e62caea9d96d12a7dcce51d7/migrate_to_uv-0.2.1-py3-none-musllinux_1_1_aarch64.whl", hash = "sha256:7d6d41c666a2b5ef25ac0defee990c09e9474ef34cc1322608b922dd9aa5143d", size = 1401045 },
-    { url = "https://files.pythonhosted.org/packages/a1/ae/b29a83005e91cc763c4715c27070c2e825821e09714b0b81cd170bdf1928/migrate_to_uv-0.2.1-py3-none-musllinux_1_1_x86_64.whl", hash = "sha256:1c351c1b02266b8fe45a07ad283b0b4df41ed29cac524cd08294c3d7f44c59fc", size = 1555984 },
-    { url = "https://files.pythonhosted.org/packages/b6/44/ab36044f7c7246ce2ae05567c608f0f29f1f70c6dc24e5b55b0a823a76f3/migrate_to_uv-0.2.1-py3-none-win_amd64.whl", hash = "sha256:f9d043fe044fe444e1483b150a4bb8ce666ed57be7bbfcf25224ce3fb6373767", size = 1292310 },
-    { url = "https://files.pythonhosted.org/packages/c6/9c/f7afa9495f7f315d495a95f0a7f6bd629446cabdcb02943eb3f044de2059/migrate_to_uv-0.2.1-py3-none-win_arm64.whl", hash = "sha256:51f6037daa597b7aa676420445e759861fa63470ac55229f23bf420d7324dd79", size = 1176722 },
 ]
 
 [[package]]
