@@ -204,11 +204,11 @@ You can manually execute the same commands that the hot reloads call when they d
 
 1. To export the `openapi.json` schema:
    ```bash
-   cd fastapi_backend && poetry run python -m app.commands.generate_openapi_schema
+   cd fastapi_backend && uv run python -m app.commands.generate_openapi_schema
    ```
    or using Docker:
    ```bash
-   docker compose run --rm --no-deps -T backend poetry run python -m app.commands.generate_openapi_schema
+   docker compose run --rm --no-deps -T backend uv run python -m app.commands.generate_openapi_schema
    ```
 
 2. To generate the frontend client:
