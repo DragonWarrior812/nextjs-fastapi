@@ -49,7 +49,6 @@ jobs:
         run: uv run coverage run -m pytest
 
       - name: Show coverage file content
-        working-directory: ./fastapi_backend
         run: cat fastapi_backend/.coverage
 
       - name: Coveralls GitHub Action
