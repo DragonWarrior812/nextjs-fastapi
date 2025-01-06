@@ -123,7 +123,8 @@ Copy the `.env.example` files to `.env` and update the variables with your own v
    python3 -c "import secrets; print(secrets.token_hex(32))"
    ```
 2. The DATABASE, MAIL, OPENAPI, CORS, and FRONTEND_URL settings are ready to use locally.
-3. You can check the .env.example file for more information about the variables.
+3. The OPENAPI_URL setting is commented out. Uncommenting it will hide the /docs and openapi.json URLs, which is ideal for production.
+4. You can check the .env.example file for more information about the variables.
 
 **Frontend (`nextjs-frontend/.env.local`):**
 Copy the `.env.example` files to `.env`. These values are unlikely to change, so you can leave them as they are.
