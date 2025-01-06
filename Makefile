@@ -18,7 +18,7 @@ start-backend: ## Start the backend server with FastAPI and hot reload
 	cd $(BACKEND_DIR) && ./start.sh
 
 test-backend: ## Run backend tests using pytest
-	cd $(BACKEND_DIR) && poetry run pytest
+	cd $(BACKEND_DIR) && uv run pytest
 
 
 # Frontend commands

@@ -38,7 +38,7 @@ class MyHandler(FileSystemEventHandler):
         """Run mypy type checks and print output."""
         print("Running mypy type checks...")
         result = subprocess.run(
-            ["poetry", "run", "mypy", "app"],
+            ["uv", "run", "mypy", "app"],
             capture_output=True,
             text=True,
             check=False,
@@ -57,7 +57,7 @@ class MyHandler(FileSystemEventHandler):
         try:
             subprocess.run(
                 [
-                    "poetry",
+                    "uv",
                     "run",
                     "python",
                     "-m",

@@ -5,9 +5,9 @@ if [ -f /.dockerenv ]; then
     fastapi dev app/main.py --host 0.0.0.0 --port 8000 --reload &
     python watcher.py
 else
-    echo "Running locally with Poetry"
-    poetry run fastapi dev app/main.py --host 0.0.0.0 --port 8000 --reload &
-    poetry run python watcher.py
+    echo "Running locally with uv"
+    uv run fastapi dev app/main.py --host 0.0.0.0 --port 8000 --reload &
+    uv run python watcher.py
 fi
 
 wait
