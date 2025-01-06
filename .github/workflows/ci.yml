@@ -57,7 +57,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           flag-name: python-coverage
           parallel: true
-          path-to-lcov: ./coverage
+          path-to-lcov: fastapi_backend/.coverage
 
   build-frontend:
     name: Next.js CI
