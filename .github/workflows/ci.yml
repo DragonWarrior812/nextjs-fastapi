@@ -52,9 +52,6 @@ jobs:
         working-directory: ./fastapi_backend
         run: uv run coverage xml -o coverage.xml
 
-      - name: Show coverage file content
-        run: cat fastapi_backend/coverage.xml
-
       - name: Coveralls GitHub Action
         uses: coverallsapp/github-action@v2.3.4
         with:
