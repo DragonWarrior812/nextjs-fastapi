@@ -9,7 +9,7 @@
 * [Getting Started with This Template](#getting-started-with-this-template)
 * [Setup](#local-setup)
   * [Installing Required Tools](#installing-required-tools)
-    * [1. Poetry](#1-poetry)
+    * [1. uv](#1-uv)
     * [2. Node.js, npm and pnpm](#2-nodejsm-npm-and-pnpm)
     * [3. Docker](#3-docker)
     * [4. Docker Compose](#4-docker-compose)
@@ -56,7 +56,7 @@ This template streamlines building APIs with [FastAPI](https://fastapi.tiangolo.
 - [Shadcn/ui](https://ui.shadcn.com/): Beautiful and customizable React components
 - [OpenAPI-fetch](https://github.com/Hey-AI/openapi-fetch): Fully typed client generation from OpenAPI schema  
 - [fastapi-mail](https://sabuhish.github.io/fastapi-mail/): Efficient email handling for FastAPI applications
-- [Poetry](https://python-poetry.org/): Dependency management and packaging made easy
+- [uv](https://docs.astral.sh/uv/): An extremely fast Python package and project manager
 - [Pytest](https://docs.pytest.org/): Powerful Python testing framework
 - Code Quality Tools:
   - [Ruff](https://github.com/astral-sh/ruff): Fast Python linter
@@ -91,8 +91,8 @@ Once completed, proceed to the [Setup](#setup) section below.
 
 ### Installing Required Tools
 
-#### 1. Poetry
-Poetry is used to manage Python dependencies in the backend. Install Poetry by following the [official installation guide](https://python-poetry.org/docs/#installation).
+#### 1. uv
+uv is used to manage Python dependencies in the backend. Install uv by following the [official installation guide](https://docs.astral.sh/uv/getting-started/installation/).
 
 #### 2. Node.jsm, npm and pnpm
 Ensure Node.js and npm are installed for running the frontend. Follow the [Node.js installation guide](https://nodejs.org/en/download/).
@@ -150,7 +150,7 @@ To setup the project environment locally, use the following commands:
 
 1. Navigate to the `fastapi_backend` directory and run:
    ```bash
-   poetry install
+   uv sync
    ```
 
 #### Frontend
