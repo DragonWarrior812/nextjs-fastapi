@@ -4,6 +4,8 @@ services:
       context: fastapi_backend
     environment:
       - OPENAPI_OUTPUT_FILE=./shared-data/openapi.json
+      - DATABASE_URL=postgresql+asyncpg://postgres:password@db:5432/mydatabase
+      - TEST_DATABASE_URL=postgresql+asyncpg://postgres:password@db:5433/testdatabase
     ports:
       - "8000:8000"
     networks:

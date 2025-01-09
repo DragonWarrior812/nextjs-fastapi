@@ -3,6 +3,9 @@ FROM node:20-bookworm
 # Set the working directory
 WORKDIR /app
 
+# Install pnpm globally
+RUN npm install -g pnpm
+
 # Copy package files and install dependencies
 COPY package*.json ./
 
