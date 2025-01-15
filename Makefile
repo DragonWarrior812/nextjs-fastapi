@@ -12,7 +12,7 @@ help:
 	@awk '/^[a-zA-Z_-]+:/{split($$1, target, ":"); print "  " target[1] "\t" substr($$0, index($$0,$$2))}' $(MAKEFILE_LIST)
 
 # Backend commands
-.PHONY: start-backend test-backend migrate-backend
+.PHONY: start-backend test-backend
 
 start-backend: ## Start the backend server with FastAPI and hot reload
 	cd $(BACKEND_DIR) && ./start.sh
@@ -32,8 +32,10 @@ test-frontend: ## Run frontend tests using npm
 
 
 # Docker commands
-.PHONY: docker-backend-shell docker-frontend-shell build-backend-container build-frontend-container \
-        up-backend-container up-frontend-container
+.PHONY: docker-backend-shell docker-frontend-shell docker-build docker-build-backend \
+        docker-build-frontend docker-start-backend docker-start-frontend docker-up-test-db \
+        docker-migrate-db docker-db-schema docker-test-backend docker-test-frontend
+
 
 docker-backend-shell: ## Access the backend container shell
 	$(DOCKER_COMPOSE) run --rm backend sh
@@ -41,16 +43,19 @@ docker-backend-shell: ## Access the backend container shell
 docker-frontend-shell: ## Access the frontend container shell
 	$(DOCKER_COMPOSE) run --rm frontend sh
 
+docker-build: ## Build all the services
+	$(DOCKER_COMPOSE) build --no-cache
+
 docker-build-backend: ## Build the backend container with no cache
-	docker build backend --no-cache
+	$(DOCKER_COMPOSE) build backend --no-cache
 
 docker-build-frontend: ## Build the frontend container with no cache
-	docker build frontend --no-cache
+	$(DOCKER_COMPOSE) build frontend --no-cache
 
-docker-up-backend: ## Start the backend container
+docker-start-backend: ## Start the backend container
 	$(DOCKER_COMPOSE) up backend
 
-docker-up-frontend: ## Start the frontend container
+docker-start-frontend: ## Start the frontend container
 	$(DOCKER_COMPOSE) up frontend
 
 docker-up-test-db: ## Start the test database container

@@ -137,7 +137,7 @@ Copy the `.env.example` files to `.env`. These values are unlikely to change, so
 1. Use Docker to run the database to avoid local installation issues. Build and start the database container:
    ```bash
    docker compose build db
-   docker compose up db
+   docker compose up -d db
    ```
 2. Run the following command to apply database migrations:
    ```bash
@@ -164,8 +164,7 @@ To setup the project environment locally, use the following commands:
 
 1. Build the backend and frontend containers:
    ```bash
-   make docker-build-backend
-   make docker-build-frontend
+   make docker-build
    ```
 
 ## Running the Application
@@ -185,11 +184,11 @@ If you are not using Docker:
 If you are using Docker:
 1. Start the FastAPI server container:
    ```bash
-   make docker-up-backend
+   make docker-start-backend
    ```
 2. Start the Next.js development server container:
    ```bash
-   make docker-up-frontend
+   make docker-start-frontend
    ```
 
 - **Backend**: Access the API at `http://localhost:8000`.
