@@ -6,7 +6,7 @@ export function SubmitButton({ text }: { text: string }) {
 
   return (
     <Button className="w-full" type="submit" disabled={pending}>
-      {text}
+      {pending ? "Loading..." : text}
     </Button>
   );
 }
