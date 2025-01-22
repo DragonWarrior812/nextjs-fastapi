@@ -40,15 +40,15 @@ database_url = os.getenv("DATABASE_URL")
 if not database_url:
     raise ValueError("DATABASE_URL environment variable is not set!")
 
-tmpPostgres = urlparse(database_url)
+parsed_db_url = urlparse(database_url)
 
-formated_database_url = (
-    f"postgresql+asyncpg://{tmpPostgres.username}:{tmpPostgres.password}@"
-    f"{tmpPostgres.hostname}{':' + str(tmpPostgres.port) if tmpPostgres.port else ''}"
-    f"{tmpPostgres.path}"
+async_db_connection_url = (
+    f"postgresql+asyncpg://{parsed_db_url.username}:{parsed_db_url.password}@"
+    f"{parsed_db_url.hostname}{':' + str(parsed_db_url.port) if parsed_db_url.port else ''}"
+    f"{parsed_db_url.path}"
 )
 
-config.set_main_option("sqlalchemy.url", formated_database_url)
+config.set_main_option("sqlalchemy.url", async_db_connection_url)
 
 
 def run_migrations_offline() -> None:
