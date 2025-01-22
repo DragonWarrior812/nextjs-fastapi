@@ -1,5 +1,6 @@
 import asyncio
 import os
+from urllib.parse import urlparse
 
 from logging.config import fileConfig
 
@@ -35,10 +36,19 @@ target_metadata = Base.metadata
 # Retrieve the database URL from the environment
 # set it during execution
 database_url = os.getenv("DATABASE_URL")
+
 if not database_url:
     raise ValueError("DATABASE_URL environment variable is not set!")
 
-config.set_main_option("sqlalchemy.url", database_url)
+tmpPostgres = urlparse(database_url)
+
+formated_database_url = (
+    f"postgresql+asyncpg://{tmpPostgres.username}:{tmpPostgres.password}@"
+    f"{tmpPostgres.hostname}{':' + str(tmpPostgres.port) if tmpPostgres.port else ''}"
+    f"{tmpPostgres.path}"
+)
+
+config.set_main_option("sqlalchemy.url", formated_database_url)
 
 
 def run_migrations_offline() -> None:
