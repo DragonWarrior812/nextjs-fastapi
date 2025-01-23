@@ -333,37 +333,32 @@ VERIFICATION_SECRET_KEY: The secret key for email or user verification.
 
 ### Backend Deployment
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvintasoftware%2Fnextjs-fastapi-template%2Ftree%2Fmain%2Ffastapi_backend&env=CORS_ORIGINS,TEST_DATABASE_URL,DATABASE_URL,ACCESS_SECRET_KEY,RESET_PASSWORD_SECRET_KEY,VERIFICATION_SECRET_KEY)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvintasoftware%2Fnextjs-fastapi-template%2Ftree%2Fmain%2Ffastapi_backend&env=CORS_ORIGINS,ACCESS_SECRET_KEY,RESET_PASSWORD_SECRET_KEY,VERIFICATION_SECRET_KEY&stores=%5B%7B%22type%22%3A%22postgres%22%7D%5D)
 
 1. **Deploying the Backend**  
-   - Click the **Backend** button above to begin deployment.  
+   - Click the **Backend** button above to begin deployment.
+   - Set up the database first. The connection is automatically configured, so just follow the steps, and it should work by default.
    - During the deployment process, you will be prompted to configure the following environment variables:
 
      - **CORS_ORIGINS**  
        - Set this to `["*"]` initially to allow all origins. You will update this with the frontend URL later.
-
-     - **DATABASE_URL**  
-       - Use a placeholder value (e.g., `https://`) if you don't yet have the actual database URL. Replace it with the correct URL post-deployment.
 
      - **ACCESS_SECRET_KEY**, **RESET_PASSWORD_SECRET_KEY**, **VERIFICATION_SECRET_KEY**  
        - You can temporarily set these secret keys as plain strings (e.g., `examplekey`) during deployment. However, you should generate secure keys and update them after the deployment in the **Post-Deployment Configuration** section.
 
    - Complete the deployment process.
 
-2. **Post-Deployment Configuration**  
+2. **Post-Deployment Configuration**
    - Access the **Settings** page of the deployed backend project.  
    - Navigate to the **Environment Variables** section and update the following variables with secure values:
 
      - **CORS_ORIGINS**  
        - Once the frontend is deployed, replace `["*"]` with the actual frontend URL.
 
-     - **DATABASE_URL**  
-       - Update this with the actual database URL if not set during deployment.
-
      - **ACCESS_SECRET_KEY**  
        - Generate a secure key for API access and set it here.  
 
-     - **RESET_PASSWORD_SECRET_KEY**  
+     - **RESET_PASSWORD_SECRET_KEY**
        - Generate a secure key for password reset functionality and set it.
 
      - **VERIFICATION_SECRET_KEY**  
@@ -383,10 +378,9 @@ VERIFICATION_SECRET_KEY: The secret key for email or user verification.
    3. **Configuring the Database URL**
       - After creating the database, retrieve the **Database URL** provided by Neon.  
       - Include this URL in your **Environment Variables** under `DATABASE_URL`.  
-      - Replace `postgres` with `postgres+asyncpg` at the start of the URL to ensure compatibility with asynchronous database operations.
 
    4. **Migrating the Database**
-      - Once the database URL is configured, run your database migration script. This step is essential for creating the necessary tables and initializing your database schema.
+      - The database migration will happen automatically during the deployment GitHub action, setting up the necessary tables and schema.
 
 
 ## Makefile

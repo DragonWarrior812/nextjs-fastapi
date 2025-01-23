@@ -9,7 +9,7 @@ class Settings(BaseSettings):
 
     # Database
     DATABASE_URL: str
-    TEST_DATABASE_URL: str = None
+    TEST_DATABASE_URL: str | None = None
     EXPIRE_ON_COMMIT: bool = False
 
     # User
