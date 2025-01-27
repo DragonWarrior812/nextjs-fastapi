@@ -346,6 +346,14 @@ VERIFICATION_SECRET_KEY: The secret key for email or user verification.
 
 ## CI (GitHub Actions) Setup for Production Deployment
 
+To enable Continuous Integration through Github Actions, we provide **prod-backend-deploy.yml** and **prod-frontend-deploy.yml** files. To connect them to GitHub, simply move them to the .github/workflows/ directory.
+
+You can do it with the following commands:
+   ```bash
+    mv prod-backend-deploy.yml .github/workflows/prod-backend-deploy.yml
+    mv prod-frontend-deploy.yml .github/workflows/prod-frontend-deploy.yml
+   ```
+
 ### Prerequisites
 1. **Create a Vercel Token**:  
    - Generate your [Vercel Access Token](https://vercel.com/account/tokens).  
