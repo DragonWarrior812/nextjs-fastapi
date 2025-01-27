@@ -34,6 +34,8 @@
 * [GitHub Actions](#github-actions)
   * [Secrets Configuration](#secrets-configuration)
 * [Production Deployment](#production-deployment)
+* [CI (GitHub Actions) Setup for Production Deployment](#ci-github-actions-setup-for-production-deployment)
+* [Post-Deployment Configuration](#post-deployment-configuration)
 * [Makefile](#makefile)
 * [Important Considerations](#important-considerations)
 * [Contributing](#contributing)
@@ -322,14 +324,7 @@ VERIFICATION_SECRET_KEY: The secret key for email or user verification.
 1. **Deploying the Frontend**  
    - Click the **Frontend** button above to start the deployment process.  
    - During deployment, you will be prompted to set the `API_BASE_URL`. Use a placeholder value (e.g., `https://`) for now, as this will be updated with the backend URL later.  
-   - Complete the deployment process.
-
-2. **Post-Deployment Configuration**  
-   - Navigate to the **Settings** page of the deployed frontend project.  
-   - Access the **Environment Variables** section.  
-   - Update the `API_BASE_URL` variable with the backend URL once the backend deployment is complete.
-
----
+   - Complete the deployment process [here](#post-deployment-configuration).
 
 ### Backend Deployment
 
@@ -346,9 +341,74 @@ VERIFICATION_SECRET_KEY: The secret key for email or user verification.
      - **ACCESS_SECRET_KEY**, **RESET_PASSWORD_SECRET_KEY**, **VERIFICATION_SECRET_KEY**  
        - You can temporarily set these secret keys as plain strings (e.g., `examplekey`) during deployment. However, you should generate secure keys and update them after the deployment in the **Post-Deployment Configuration** section.
 
-   - Complete the deployment process.
+   - Complete the deployment process [here](#post-deployment-configuration).
 
-2. **Post-Deployment Configuration**
+
+## CI (GitHub Actions) Setup for Production Deployment
+
+### Prerequisites
+1. **Create a Vercel Token**:  
+   - Generate your [Vercel Access Token](https://vercel.com/account/tokens).  
+   - Save the token as `VERCEL_TOKEN` in your GitHub secrets.
+
+2. **Install Vercel CLI**:  
+   ```bash
+   pnpm i -g vercel@latest
+   ```
+3. Authenticate your account.
+    ```bash
+   vercel login
+   ```
+### Frontend Setup
+
+1. Link the nextjs-frontend Project
+
+2. Navigate to the nextjs-frontend directory and run:
+   ```bash
+   vercel link
+   ```
+3. Follow the prompts:
+   - Link to existing project? No
+   - Modify settings? No
+
+4. Save Project IDs and Add GitHub Secrets:
+  - Open `nextjs-frontend/.vercel/project.json` and add the following to your GitHub repository secrets:
+    - `projectId` → `VERCEL_PROJECT_ID_FRONTEND`
+    - `orgId` → `VERCEL_ORG_ID`
+
+### Backend Setup
+
+1. Link the fastapi_backend Project
+
+2. Navigate to the fastapi_backend directory and run:
+   ```bash
+   vercel link --local-config=vercel.prod.json
+   ```
+   - We have a special configuration than we need to set the --local-config value.
+3. Follow the prompts:
+   - Link to existing project? No
+   - Modify settings? No
+
+4. Save Project IDs and Add GitHub Secrets:
+  - Open `fastapi_backend/.vercel/project.json` and add the following to your GitHub repository secrets:
+    - `projectId` → `VERCEL_PROJECT_ID_BACKEND`
+    - `orgId` → `VERCEL_ORG_ID` (Only in case you haven't added that before)
+
+### Notes
+- Once everything is set up, simply run `git push`, and the deploy will automatically take place.
+- Ensure you complete the setup for both the frontend and backend separately.
+- Refer to the [Vercel CLI Documentation](https://vercel.com/docs/cli) for more details.
+- You can find the project_id into the vercel web project settings.
+- You can find the organization_id into the vercel web organization settings.
+
+## **Post-Deployment Configuration**
+
+### Frontend
+   - Navigate to the **Settings** page of the deployed frontend project.  
+   - Access the **Environment Variables** section.  
+   - Update the `API_BASE_URL` variable with the backend URL once the backend deployment is complete.
+
+### Backend
    - Access the **Settings** page of the deployed backend project.  
    - Navigate to the **Environment Variables** section and update the following variables with secure values:
 
@@ -366,7 +426,7 @@ VERIFICATION_SECRET_KEY: The secret key for email or user verification.
 
    - For detailed instructions on how to set these secret keys, refer to the section on [Setting up Environment Variables](#setting-up-environment-variables).
 
-3. **Database Connection**
+### Database Connection
 
    1. **Choosing a Database**
       - You can use your own database hosted on a different service or opt for the [Neon](https://neon.tech/docs/introduction) database, which integrates seamlessly with Vercel.
