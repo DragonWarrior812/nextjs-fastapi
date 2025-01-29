@@ -373,6 +373,7 @@ You can do it with the following commands:
 
 2. Navigate to the nextjs-frontend directory and run:
    ```bash
+   cd nextjs-frontend
    vercel link
    ```
 3. Follow the prompts:
@@ -390,6 +391,7 @@ You can do it with the following commands:
 
 2. Navigate to the fastapi_backend directory and run:
    ```bash
+   cd fastapi_backend
    vercel link --local-config=vercel.prod.json
    ```
    - We have a special configuration than we need to set the --local-config value.
