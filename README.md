@@ -367,6 +367,21 @@ You can do it with the following commands:
     ```bash
    vercel login
    ```
+### Database Creation (Required)
+
+   1. **Choosing a Database**
+      - You can use your own database hosted on a different service or opt for the [Neon](https://neon.tech/docs/introduction) database, which integrates seamlessly with Vercel.
+
+   2. **Setting Up a Neon Database via Vercel**
+      - In the **Projects dashboard** page on Vercel, navigate to the **Storage** section.  
+      - Select the option to **Create a Database** to provision a Neon database.
+
+   3. **Configuring the Database URL**
+      - After creating the database, retrieve the **Database URL** provided by Neon.  
+      - Include this URL in your **Environment Variables** under `DATABASE_URL`.  
+
+   4. **Migrating the Database**
+      - The database migration will happen automatically during the deployment GitHub action, setting up the necessary tables and schema.
 ### Frontend Setup
 
 1. Link the nextjs-frontend Project
@@ -435,23 +450,6 @@ You can do it with the following commands:
        - Generate a secure key for user verification and configure it.
 
    - For detailed instructions on how to set these secret keys, refer to the section on [Setting up Environment Variables](#setting-up-environment-variables).
-
-### Database Connection
-
-   1. **Choosing a Database**
-      - You can use your own database hosted on a different service or opt for the [Neon](https://neon.tech/docs/introduction) database, which integrates seamlessly with Vercel.
-
-   2. **Setting Up a Neon Database via Vercel**
-      - In the **Backend** project page on Vercel, navigate to the **Storage** section.  
-      - Select the option to **Create a Database** to provision a Neon database.
-
-   3. **Configuring the Database URL**
-      - After creating the database, retrieve the **Database URL** provided by Neon.  
-      - Include this URL in your **Environment Variables** under `DATABASE_URL`.  
-
-   4. **Migrating the Database**
-      - The database migration will happen automatically during the deployment GitHub action, setting up the necessary tables and schema.
-
 
 ## Makefile
 
