@@ -14,9 +14,6 @@
 </p>
 
 ---
-
-**Documentation**: TBA
-
 **Source Code**: <a href="https://github.com/vintasoftware/nextjs-fastapi-template" target="_blank">https://github.com/vintasoftware/nextjs-fastapi-template</a>
 
 ---
@@ -279,9 +276,9 @@ To activate pre-commit hooks, run the following commands for each configuration 
   pre-commit install -c .pre-commit-config.docker.yaml
   ```
 
-### Email Localhost Setup
+### Localhost Email Server Setup
 
-To set the email locally, you need to start [MailHog](https://github.com/mailhog/MailHog) by running the following command:
+To set up the email server locally, you need to start [MailHog](https://github.com/mailhog/MailHog) by running the following command:
    ```bash
    make docker-up-mailhog
    ```
@@ -334,7 +331,7 @@ VERIFICATION_SECRET_KEY: The secret key for email or user verification.
 
 ### Overview
 
- Deploying to Vercel is supported, with dedicated buttons for the Frontend and Backend applications. Both require specific configurations during and after deployment to ensure proper functionality.
+ Deploying to **Vercel** is supported, with dedicated buttons for the **Frontend** and **Backend** applications. Both require specific configurations during and after deployment to ensure proper functionality.
 
 ---
 
@@ -353,7 +350,7 @@ VERIFICATION_SECRET_KEY: The secret key for email or user verification.
 
 1. **Deploying the Backend**  
    - Click the **Backend** button above to begin deployment.
-   - First, Set up the database. The connection is automatically configured, so follow the steps, and it should work by default.
+   - First, set up the database. The connection is automatically configured, so follow the steps, and it should work by default.
    - During the deployment process, you will be prompted to configure the following environment variables:
 
      - **CORS_ORIGINS**  
@@ -402,7 +399,7 @@ You can do it with the following commands:
       - Include this URL in your **Environment Variables** under `DATABASE_URL`.  
 
    4. **Migrating the Database**
-      - The database migration will happen automatically during the deployment of GitHub action, setting up the necessary tables and schema.
+      - The database migration will happen automatically during the GitHub action deployment, setting up the necessary tables and schema.
 ### Frontend Setup
 
 1. Link the nextjs-frontend Project
@@ -430,7 +427,7 @@ You can do it with the following commands:
    cd fastapi_backend
    vercel link --local-config=vercel.prod.json
    ```
-   - We have a special configuration to set the --local-config value.
+   - We use a specific configuration file to set the --local-config value.
 3. Follow the prompts:
    - Link to existing project? No
    - Modify settings? No
