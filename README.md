@@ -2,7 +2,7 @@
   <a href="https://www.vintasoftware.com/blog/next-js-fastapi-template"><img src="https://cdn.prod.website-files.com/64b9f7763232fd7832edb089/67bcfe16c484e4960dcbf7fe_nextjs_and_fast_api_thumb.webp" alt="Next.js FastAPI Template"></a>
 </p>
 <p align="center">
-    <em>Next.js FastAPI Template: Modern TypeScript + Python stack with Zod validation.</em>
+    <em>Next.js FastAPI Template: Python + Modern TypeScript stack with Zod validation.</em>
 </p>
 <p align="center">
 <a href="https://github.com/vintasoftware/nextjs-fastapi-template/actions/workflows/ci.yml" target="_blank">
@@ -22,7 +22,7 @@
 ---
 
 # Next.js FastAPI Template
-Introducing the Next.js FastAPI Template: A cutting-edge foundation for modern full-stack development that seamlessly integrates Next.js with FastAPI. This template combines TypeScript's frontend with Python's backend power, enhanced by Zod's robust type validation. Perfect for developers seeking a production-ready architecture that balances performance, type safety, and developer experience in one cohesive package.
+Introducing the Next.js FastAPI Template: A cutting-edge foundation for modern full-stack development that seamlessly integrates Next.js with FastAPI. This template combines Python's backend power with TypeScript's frontend, enhanced by Zod's robust type validation. Perfect for developers seeking a production-ready architecture that balances performance, type safety, and developer experience in one cohesive package.
 
 ## Table of Contents
 * [About](#about)
@@ -118,7 +118,7 @@ Once completed, proceed to the [Setup](#setup) section below.
 uv is used to manage Python dependencies in the backend. Install uv by following the [official installation guide](https://docs.astral.sh/uv/getting-started/installation/).
 
 #### 2. Node.jsm, npm and pnpm
-To run the frontend, ensure Node.js and npm are installed to run. Follow the [Node.js installation guide](https://nodejs.org/en/download/).
+To run the frontend, ensure Node.js and npm are installed. Follow the [Node.js installation guide](https://nodejs.org/en/download/).
 After that, install pnpm by running:
 ```bash
 npm install -g pnpm
