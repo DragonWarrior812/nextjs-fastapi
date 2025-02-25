@@ -477,7 +477,7 @@ You can do it with the following commands:
 requests per execution instead of spinning up a new instance for each request. This improves performance, 
 reduces cold starts, and optimizes resource usage, making serverless workloads more efficient.
 
-Follow this [guide](https://vercel.com/docs/functions/fluid-compute#how-to-enable-fluid-compute) to activate fluid.
+Follow this [guide](https://vercel.com/docs/functions/fluid-compute#how-to-enable-fluid-compute) to activate Fluid.
 
 ## Makefile
 
