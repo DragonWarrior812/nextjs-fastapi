@@ -472,6 +472,13 @@ You can do it with the following commands:
 
    - For detailed instructions on setting these secret keys, please look at the section on [Setting up Environment Variables](#setting-up-environment-variables).
 
+### Fluid serverless activation
+[Fluid](https://vercel.com/docs/functions/fluid-compute) is Vercel's new concurrency model for serverless functions, allowing them to handle multiple 
+requests per execution instead of spinning up a new instance for each request. This improves performance, 
+reduces cold starts, and optimizes resource usage, making serverless workloads more efficient.
+
+Follow this [guide](https://vercel.com/docs/functions/fluid-compute#how-to-enable-fluid-compute) to activate fluid.
+
 ## Makefile
 
 This project includes a `Makefile` that provides a set of commands to simplify everyday tasks such as starting the backend and frontend servers, running tests, building Docker containers, and more.
