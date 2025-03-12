@@ -7,6 +7,10 @@ frontend TypeScript client, `nextjs-frontend`.
     The backend and the frontend are versioned together, that is, they have the same version number.
     When you update the backend, you should also update the frontend to the same version.
 
+## 0.0.2 <small>March 12, 2025</small> {id="0.0.2"}
+
+- Generate release draft using actions
+
 ## 0.0.1 <small>March 12, 2025</small> {id="0.0.1"}
 
 - Initial release
