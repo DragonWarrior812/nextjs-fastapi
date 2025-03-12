@@ -9,7 +9,7 @@ frontend TypeScript client, `nextjs-frontend`.
 
 ## 0.0.2 <small>March 12, 2025</small> {id="0.0.2"}
 
-- Generate release draft using actions
+- Generate release draft using github actions
 
 ## 0.0.1 <small>March 12, 2025</small> {id="0.0.1"}
 
