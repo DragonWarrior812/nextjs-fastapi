@@ -61,7 +61,7 @@ Introducing the Next.js FastAPI Template: A cutting-edge foundation for modern f
 * [Commercial Support](#commercial-support)
 
 ## About
-This template streamlines building APIs with [FastAPI](https://fastapi.tiangolo.com/) and dynamic frontends with [Next.js](https://nextjs.org/). It integrates the backend and frontend using [@hey-api/openapi-ts](https://github.com/hey-ai/openapi-ts) to generate a type-safe client, with automated watchers to keep the OpenAPI schema and client updated, ensuring a smooth and synchronized development workflow.  
+This template streamlines building APIs with [FastAPI](https://fastapi.tiangolo.com/) and dynamic frontends with [Next.js](https://nextjs.org/). It integrates the backend and frontend using [@hey-api/openapi-ts](https://github.com/hey-api/openapi-ts) to generate a type-safe client, with automated watchers to keep the OpenAPI schema and client updated, ensuring a smooth and synchronized development workflow.  
 
 - [Next.js](https://nextjs.org/): Fast, SEO-friendly frontend framework  
 - [FastAPI](https://fastapi.tiangolo.com/): High-performance Python backend  
@@ -91,7 +91,7 @@ This template streamlines building APIs with [FastAPI](https://fastapi.tiangolo.
 
 With this setup, you'll save time and maintain a seamless connection between your backend and frontend, boosting productivity and reliability.
 
-## Production-Ready Authentication & Dashboard features
+## Production-Ready Authentication & Dashboard Features
 This template comes with a pre-configured authentication system and a simple dashboard interface, allowing you to start building your application with user management features immediately.
 
 ## Getting Started with This Template
@@ -114,7 +114,7 @@ Once completed, proceed to the [Setup](#setup) section below.
 #### 1. uv
 uv is used to manage Python dependencies in the backend. Install uv by following the [official installation guide](https://docs.astral.sh/uv/getting-started/installation/).
 
-#### 2. Node.jsm, npm and pnpm
+#### 2. Node.js, npm and pnpm
 To run the frontend, ensure Node.js and npm are installed. Follow the [Node.js installation guide](https://nodejs.org/en/download/).
 After that, install pnpm by running:
 ```bash
@@ -164,7 +164,7 @@ Copy the `.env.example` files to `.env`. These values are unlikely to change, so
    make docker-migrate-db
    ```
 
-### Build the project (without Docker):
+### Build the Project (without Docker):
 To set the project environment locally, use the following commands:
 
 #### Backend
@@ -180,7 +180,7 @@ To set the project environment locally, use the following commands:
    pnpm install
    ```
 
-### Build the project (with Docker):
+### Build the Project (with Docker):
 
 1. Build the backend and frontend containers:
    ```bash
@@ -214,7 +214,7 @@ If you are using Docker:
 - **Backend**: Access the API at `http://localhost:8000`.
 - **Frontend**: Access the web application at `http://localhost:3000`.
 
-### Hot Reload on development
+### Hot Reload on Development
 The project includes two hot reloads running the application, one for the backend and one for the frontend. These automatically restart local servers when they detect changes, ensuring that the application is always up to date without needing manual restarts.
 
 - The **backend hot reload** monitors changes to the backend code.
@@ -441,8 +441,8 @@ You can do it with the following commands:
 - Once everything is set up, run `git push`, and the deployment will automatically occur.
 - Please ensure you complete the setup for both the frontend and backend separately.
 - Refer to the [Vercel CLI Documentation](https://vercel.com/docs/cli) for more details.
-- You can find the project_id into the vercel web project settings.
-- You can find the organization_id into the vercel web organization settings.
+- You can find the project_id in the vercel web project settings.
+- You can find the organization_id in the vercel web organization settings.
 
 ## **Post-Deployment Configuration**
 
@@ -469,7 +469,7 @@ You can do it with the following commands:
 
    - For detailed instructions on setting these secret keys, please look at the section on [Setting up Environment Variables](#setting-up-environment-variables).
 
-### Fluid serverless activation
+### Fluid Serverless Activation
 [Fluid](https://vercel.com/docs/functions/fluid-compute) is Vercel's new concurrency model for serverless functions, allowing them to handle multiple 
 requests per execution instead of spinning up a new instance for each request. This improves performance, 
 reduces cold starts, and optimizes resource usage, making serverless workloads more efficient.
