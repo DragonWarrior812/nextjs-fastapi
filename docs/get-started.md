@@ -13,7 +13,7 @@ Once completed, proceed to the [Setup](#setup) section below.
 #### 1. uv
 uv is used to manage Python dependencies in the backend. Install uv by following the [official installation guide](https://docs.astral.sh/uv/getting-started/installation/).
 
-#### 2. Node.jsm, npm and pnpm
+#### 2. Node.js, npm, and pnpm
 To run the frontend, ensure Node.js and npm are installed. Follow the [Node.js installation guide](https://nodejs.org/en/download/).
 After that, install pnpm by running:
 ```bash
