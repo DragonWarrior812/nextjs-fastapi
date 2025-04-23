@@ -71,4 +71,3 @@ repos:
         language: system
         files: uv.lock  # Trigger when uv.lock is modified
         pass_filenames: false
-        stages: [manual]
