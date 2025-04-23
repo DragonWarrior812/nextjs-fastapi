@@ -67,7 +67,7 @@ repos:
         # export requirements is required to vercel deploy
       - id: export-requirements
         name: Export requirements.txt
-        entry: sh -c 'cd fastapi_backend && uv export > requirements.txt'
+        entry: sh -c 'cd fastapi_backend && uv export > requirements.txt --without-hashes --no-strip-extras'
         language: system
         files: uv.lock  # Trigger when uv.lock is modified
         pass_filenames: false
