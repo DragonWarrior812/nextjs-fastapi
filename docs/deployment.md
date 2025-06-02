@@ -104,6 +104,13 @@ You can do it with the following commands:
     - `projectId` → `VERCEL_PROJECT_ID_BACKEND`
     - `orgId` → `VERCEL_ORG_ID` (Only in case you haven't added that before)
 
+5. Update requirements.txt file:
+      ```bash
+      cd fastapi_backend
+      uv export > requirements.txt
+      ```
+  - Export a new requirements.txt file is required to vercel deploy when the uv.lock is modified.
+
 ### Notes
 - Once everything is set up, run `git push`, and the deployment will automatically occur.
 - Please ensure you complete the setup for both the frontend and backend separately.
